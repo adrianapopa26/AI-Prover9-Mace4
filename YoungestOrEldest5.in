@@ -1,0 +1,53 @@
+assign(report_stderr, 2).
+set(ignore_option_dependencies). % GUI handles dependencies
+
+if(Prover9). % Options for Prover9
+  assign(max_seconds, 60).
+end_if.
+
+if(Mace4).   % Options for Mace4
+  assign(domain_size, 5).
+  assign(start_size, 5).
+  assign(end_size, 5).
+  assign(max_models, -1).
+  assign(max_seconds, 60).
+end_if.
+
+formulas(assumptions).
+
+Cheveyo = 0.
+Ethan = 1.
+Devlyn = 2.
+Victoria = 3.
+Maria = 4.
+
+Youngest(Cheveyo) | Youngest(Ethan) | Youngest(Devlyn) | Youngest(Victoria) | Youngest(Maria).
+Younger(x,y) -> -Youngest(y).
+Younger(x,y) & Younger(y,z) -> Younger(x,z).
+
+%Cheveyo and Ethan are older than Devlyn and Victoria. 
+Younger(Cheveyo,Devlyn).
+Younger(Victoria,Devlyn).
+Younger(Cheveyo,Ethan).
+Younger(Victoria,Ethan).
+
+%Maria is older than Victoria, but younger than both Ethan and Devlyn.
+Younger(Victoria,Maria).
+Younger(Ethan,Maria).
+Younger(Devlyn,Maria).
+
+%Cheveyo is older than Maria.
+Younger(Maria,Cheveyo).
+
+%If he is also younger than Ethan,
+Younger(Ethan,Cheveyo).
+
+end_of_list.
+
+formulas(goals).
+
+% who's youngest?
+Youngest(Victoria).
+
+end_of_list.
+

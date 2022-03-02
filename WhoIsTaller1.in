@@ -1,0 +1,51 @@
+assign(report_stderr, 2).
+set(ignore_option_dependencies). % GUI handles dependencies
+
+if(Prover9). % Options for Prover9
+  assign(max_seconds, 60).
+end_if.
+
+if(Mace4).   % Options for Mace4
+  assign(domain_size, 5).
+  assign(start_size, 5).
+  assign(end_size, 5).
+  assign(max_models, -1).
+  assign(max_seconds, 60).
+end_if.
+
+formulas(assumptions).
+
+James = 0.
+Kate = 1.
+Carly = 2.
+Sammy = 3.
+Natalie = 4.
+
+Short(James) | Short(Kate) | Short(Carly) | Short(Sammy) | Short(Natalie).
+Shorter(x,y) -> -Short(y).
+
+Shorter(x,y) & Shorter(y,z) -> Shorter(x,z).
+
+% James is taller than Kate and Carly
+Shorter(Kate,James). 
+Shorter(Carly,James).
+
+% Sammy is shorter than Kate. 
+Shorter(Sammy,Kate).
+
+% Natalie is shorter than Kate and Sammy,
+Shorter(Natalie,Kate).
+Shorter(Natalie,Sammy).
+
+% however Sammy is shorter than Carly
+Shorter(Sammy,Carly).
+
+end_of_list.
+
+formulas(goals).
+
+% Who is the shortest?
+Short(Natalie).
+
+end_of_list.
+

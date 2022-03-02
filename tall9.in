@@ -1,0 +1,34 @@
+formulas(assumptions).
+
+Tom != Matt.
+Tom != Tamara.
+Tom != Ben.
+
+Matt != Tamara.
+Matt != Ben.
+
+Tamara != Ben.
+
+Tall(Tom) | Tall(Matt) | Tall(Tamara) | Tall(Ben).
+Taller(x,y) -> -Tall(y).
+Taller(x,y) & Taller(y,z) -> Taller(x,z).
+
+
+%Tom is shorter than Matt and Tamara
+Taller(Matt, Tom).
+Taller(Tamara, Tom).
+
+%Matt is shorter than Ben.
+Taller(Ben, Matt).
+
+%Tamara is taller than Ben. 
+Taller(Tamara, Ben).
+
+
+%Tamara
+
+end_of_list.
+
+formulas(goals).
+
+end_of_list.

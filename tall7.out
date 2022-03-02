@@ -1,0 +1,140 @@
+============================== Mace4 =================================
+Mace4 (32) version Dec-2007, Dec 2007.
+Process 11304 was started by popaa on DESKTOP-1LD5VI6,
+Wed Dec  1 11:47:20 2021
+The command was "/cygdrive/c/Program Files (x86)/Prover9-Mace4/bin-win32/mace4 -c".
+============================== end of head ===========================
+
+============================== INPUT =================================
+assign(report_stderr,2).
+set(ignore_option_dependencies).
+if(Prover9).
+% Conditional input omitted.
+end_if.
+if(Mace4).
+% Conditional input included.
+assign(max_seconds,60).
+end_if.
+
+formulas(assumptions).
+Brett != Shannon.
+Brett != Rene.
+Brett != Mel.
+Shannon != Rene.
+Shannon != Mel.
+Rene != Mel.
+Short(Brett) | Short(Shannon) | Short(Rene) | Short(Mel).
+Shorter(x,y) -> -Short(y).
+Shorter(x,y) & Shorter(y,z) -> Shorter(x,z).
+Shorter(Shannon,Brett).
+Shorter(Rene,Shannon).
+Shorter(Mel,Brett).
+end_of_list.
+
+formulas(goals).
+end_of_list.
+
+============================== end of input ==========================
+
+% Enabling option dependencies (ignore applies only on input).
+
+============================== PROCESS NON-CLAUSAL FORMULAS ==========
+
+% Formulas that are not ordinary clauses:
+1 Shorter(x,y) -> -Short(y) # label(non_clause).  [assumption].
+2 Shorter(x,y) & Shorter(y,z) -> Shorter(x,z) # label(non_clause).  [assumption].
+
+============================== end of process non-clausal formulas ===
+
+============================== CLAUSES FOR SEARCH ====================
+
+formulas(mace4_clauses).
+Brett != Shannon.
+Brett != Rene.
+Brett != Mel.
+Shannon != Rene.
+Shannon != Mel.
+Rene != Mel.
+Short(Brett) | Short(Shannon) | Short(Rene) | Short(Mel).
+-Shorter(x,y) | -Short(y).
+-Shorter(x,y) | -Shorter(y,z) | Shorter(x,z).
+Shorter(Shannon,Brett).
+Shorter(Rene,Shannon).
+Shorter(Mel,Brett).
+end_of_list.
+
+============================== end of clauses for search =============
+
+% There are no domain elements in the input.
+
+============================== DOMAIN SIZE 2 =========================
+
+============================== STATISTICS ============================
+
+For domain size 2.
+
+Current CPU time: 0.00 seconds (total CPU time: 0.03 seconds).
+Ground clauses: seen=22, kept=22.
+Selections=1, assignments=1, propagations=4, current_models=0.
+Rewrite_terms=10, rewrite_bools=0, indexes=3.
+Rules_from_neg_clauses=3, cross_offs=3.
+
+============================== end of statistics =====================
+
+============================== DOMAIN SIZE 3 =========================
+
+============================== STATISTICS ============================
+
+For domain size 3.
+
+Current CPU time: 0.00 seconds (total CPU time: 0.03 seconds).
+Ground clauses: seen=46, kept=46.
+Selections=2, assignments=3, propagations=5, current_models=0.
+Rewrite_terms=21, rewrite_bools=3, indexes=7.
+Rules_from_neg_clauses=2, cross_offs=5.
+
+============================== end of statistics =====================
+
+============================== DOMAIN SIZE 4 =========================
+
+============================== MODEL =================================
+
+interpretation( 4, [number=1, seconds=0], [
+
+        function(Brett, [ 0 ]),
+
+        function(Mel, [ 1 ]),
+
+        function(Rene, [ 2 ]),
+
+        function(Shannon, [ 3 ]),
+
+        relation(Short(_), [ 0, 0, 1, 0 ]),
+
+        relation(Shorter(_,_), [
+			   0, 0, 0, 0,
+			   1, 0, 0, 0,
+			   1, 0, 0, 1,
+			   1, 0, 0, 0 ])
+]).
+
+============================== end of model ==========================
+
+============================== STATISTICS ============================
+
+For domain size 4.
+
+Current CPU time: 0.00 seconds (total CPU time: 0.03 seconds).
+Ground clauses: seen=90, kept=90.
+Selections=9, assignments=12, propagations=16, current_models=1.
+Rewrite_terms=35, rewrite_bools=145, indexes=10.
+Rules_from_neg_clauses=1, cross_offs=6.
+
+============================== end of statistics =====================
+
+User_CPU=0.03, System_CPU=0.03, Wall_clock=0.
+
+Exiting with 1 model.
+
+Process 11304 exit (max_models) Wed Dec  1 11:47:20 2021
+The process finished Wed Dec  1 11:47:20 2021

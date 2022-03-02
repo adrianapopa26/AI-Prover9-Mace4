@@ -1,0 +1,239 @@
+============================== Prover9 ===============================
+Prover9 (32) version Dec-2007, Dec 2007.
+Process 12172 was started by popaa on DESKTOP-1LD5VI6,
+Sat Nov 27 01:29:28 2021
+The command was "/cygdrive/c/Program Files (x86)/Prover9-Mace4/bin-win32/prover9".
+============================== end of head ===========================
+
+============================== INPUT =================================
+assign(report_stderr,2).
+set(ignore_option_dependencies).
+if(Prover9).
+% Conditional input included.
+assign(max_seconds,60).
+end_if.
+if(Mace4).
+% Conditional input omitted.
+end_if.
+
+formulas(assumptions).
+Elysha = 0.
+Logan = 1.
+Edward = 2.
+Jo = 3.
+Michael = 4.
+Edy = 5.
+Youngest(Elysha) | Youngest(Logan) | Youngest(Edward) | Youngest(Jo) | Youngest(Edy) | Youngest(Michael).
+Younger(x,y) -> -Youngest(y).
+Younger(x,y) & Younger(y,z) -> Younger(x,z).
+Younger(Logan,Elysha).
+Younger(Elysha,Edward).
+Younger(Michael,Jo).
+Younger(Michael,Edy).
+Younger(Edy,Jo).
+Younger(Edward,Michael).
+Younger(Elysha,Michael).
+Younger(Edward,Edy).
+Younger(Elysha,Edy).
+end_of_list.
+
+formulas(goals).
+Youngest(Logan).
+end_of_list.
+
+============================== end of input ==========================
+
+% Enabling option dependencies (ignore applies only on input).
+
+============================== PROCESS NON-CLAUSAL FORMULAS ==========
+
+% Formulas that are not ordinary clauses:
+1 Younger(x,y) -> -Youngest(y) # label(non_clause).  [assumption].
+2 Younger(x,y) & Younger(y,z) -> Younger(x,z) # label(non_clause).  [assumption].
+3 Youngest(Logan) # label(non_clause) # label(goal).  [goal].
+
+============================== end of process non-clausal formulas ===
+
+============================== PROCESS INITIAL CLAUSES ===============
+
+% Clauses before input processing:
+
+formulas(usable).
+end_of_list.
+
+formulas(sos).
+Elysha = 0.  [assumption].
+Logan = 1.  [assumption].
+Edward = 2.  [assumption].
+Jo = 3.  [assumption].
+Michael = 4.  [assumption].
+Edy = 5.  [assumption].
+Youngest(Elysha) | Youngest(Logan) | Youngest(Edward) | Youngest(Jo) | Youngest(Edy) | Youngest(Michael).  [assumption].
+-Younger(x,y) | -Youngest(y).  [clausify(1)].
+-Younger(x,y) | -Younger(y,z) | Younger(x,z).  [clausify(2)].
+Younger(Logan,Elysha).  [assumption].
+Younger(Elysha,Edward).  [assumption].
+Younger(Michael,Jo).  [assumption].
+Younger(Michael,Edy).  [assumption].
+Younger(Edy,Jo).  [assumption].
+Younger(Edward,Michael).  [assumption].
+Younger(Elysha,Michael).  [assumption].
+Younger(Edward,Edy).  [assumption].
+Younger(Elysha,Edy).  [assumption].
+-Youngest(Logan).  [deny(3)].
+end_of_list.
+
+formulas(demodulators).
+end_of_list.
+
+============================== PREDICATE ELIMINATION =================
+
+No predicates eliminated.
+
+============================== end predicate elimination =============
+
+Auto_denials:  (non-Horn, no changes).
+
+Term ordering decisions:
+Predicate symbol precedence:  predicate_order([ =, Youngest, Younger ]).
+Function symbol precedence:  function_order([ Edy, Elysha, Michael, Edward, Jo, Logan, 0, 1, 2, 3, 4, 5 ]).
+After inverse_order:  (no changes).
+Unfolding symbols: (none).
+
+Auto_inference settings:
+  % set(paramodulation).  % (positive equality literals)
+  % set(binary_resolution).  % (non-Horn)
+  % set(neg_ur_resolution).  % (non-Horn, less than 100 clauses)
+
+Auto_process settings:
+  % set(factor).  % (non-Horn)
+  % set(unit_deletion).  % (non-Horn)
+
+============================== end of process initial clauses ========
+
+============================== CLAUSES FOR SEARCH ====================
+
+% Clauses after input processing:
+
+formulas(usable).
+end_of_list.
+
+formulas(sos).
+5 0 = Elysha.  [copy(4),flip(a)].
+7 1 = Logan.  [copy(6),flip(a)].
+9 2 = Edward.  [copy(8),flip(a)].
+11 3 = Jo.  [copy(10),flip(a)].
+13 4 = Michael.  [copy(12),flip(a)].
+15 5 = Edy.  [copy(14),flip(a)].
+17 -Younger(x,y) | -Youngest(y).  [clausify(1)].
+18 -Younger(x,y) | -Younger(y,z) | Younger(x,z).  [clausify(2)].
+19 Younger(Logan,Elysha).  [assumption].
+20 Younger(Elysha,Edward).  [assumption].
+21 Younger(Michael,Jo).  [assumption].
+22 Younger(Michael,Edy).  [assumption].
+23 Younger(Edy,Jo).  [assumption].
+24 Younger(Edward,Michael).  [assumption].
+25 Younger(Elysha,Michael).  [assumption].
+26 Younger(Edward,Edy).  [assumption].
+27 Younger(Elysha,Edy).  [assumption].
+28 -Youngest(Logan).  [deny(3)].
+29 Youngest(Elysha) | Youngest(Edward) | Youngest(Jo) | Youngest(Edy) | Youngest(Michael).  [back_unit_del(16),unit_del(b,28)].
+end_of_list.
+
+formulas(demodulators).
+5 0 = Elysha.  [copy(4),flip(a)].
+7 1 = Logan.  [copy(6),flip(a)].
+9 2 = Edward.  [copy(8),flip(a)].
+11 3 = Jo.  [copy(10),flip(a)].
+13 4 = Michael.  [copy(12),flip(a)].
+15 5 = Edy.  [copy(14),flip(a)].
+end_of_list.
+
+============================== end of clauses for search =============
+
+============================== SEARCH ================================
+
+% Starting search at 0.03 seconds.
+
+given #1 (I,wt=3): 5 0 = Elysha.  [copy(4),flip(a)].
+
+given #2 (I,wt=3): 7 1 = Logan.  [copy(6),flip(a)].
+
+given #3 (I,wt=3): 9 2 = Edward.  [copy(8),flip(a)].
+
+given #4 (I,wt=3): 11 3 = Jo.  [copy(10),flip(a)].
+
+given #5 (I,wt=3): 13 4 = Michael.  [copy(12),flip(a)].
+
+given #6 (I,wt=3): 15 5 = Edy.  [copy(14),flip(a)].
+
+given #7 (I,wt=5): 17 -Younger(x,y) | -Youngest(y).  [clausify(1)].
+
+given #8 (I,wt=9): 18 -Younger(x,y) | -Younger(y,z) | Younger(x,z).  [clausify(2)].
+
+given #9 (I,wt=3): 19 Younger(Logan,Elysha).  [assumption].
+
+given #10 (I,wt=3): 20 Younger(Elysha,Edward).  [assumption].
+
+given #11 (I,wt=3): 21 Younger(Michael,Jo).  [assumption].
+
+given #12 (I,wt=3): 22 Younger(Michael,Edy).  [assumption].
+
+given #13 (I,wt=3): 23 Younger(Edy,Jo).  [assumption].
+
+given #14 (I,wt=3): 24 Younger(Edward,Michael).  [assumption].
+
+============================== PROOF =================================
+
+% Proof 1 at 0.05 (+ 0.05) seconds.
+% Length of proof is 20.
+% Level of proof is 7.
+% Maximum clause weight is 12.
+% Given clauses 14.
+
+1 Younger(x,y) -> -Youngest(y) # label(non_clause).  [assumption].
+3 Youngest(Logan) # label(non_clause) # label(goal).  [goal].
+16 Youngest(Elysha) | Youngest(Logan) | Youngest(Edward) | Youngest(Jo) | Youngest(Edy) | Youngest(Michael).  [assumption].
+17 -Younger(x,y) | -Youngest(y).  [clausify(1)].
+19 Younger(Logan,Elysha).  [assumption].
+20 Younger(Elysha,Edward).  [assumption].
+21 Younger(Michael,Jo).  [assumption].
+22 Younger(Michael,Edy).  [assumption].
+24 Younger(Edward,Michael).  [assumption].
+28 -Youngest(Logan).  [deny(3)].
+29 Youngest(Elysha) | Youngest(Edward) | Youngest(Jo) | Youngest(Edy) | Youngest(Michael).  [back_unit_del(16),unit_del(b,28)].
+32 -Youngest(Elysha).  [resolve(19,a,17,a)].
+33 Youngest(Edward) | Youngest(Jo) | Youngest(Edy) | Youngest(Michael).  [back_unit_del(29),unit_del(a,32)].
+36 -Youngest(Edward).  [resolve(20,a,17,a)].
+37 Youngest(Jo) | Youngest(Edy) | Youngest(Michael).  [back_unit_del(33),unit_del(a,36)].
+40 -Youngest(Jo).  [resolve(21,a,17,a)].
+41 Youngest(Edy) | Youngest(Michael).  [back_unit_del(37),unit_del(a,40)].
+44 -Youngest(Edy).  [resolve(22,a,17,a)].
+45 Youngest(Michael).  [back_unit_del(41),unit_del(a,44)].
+50 $F.  [resolve(24,a,17,a),unit_del(a,45)].
+
+============================== end of proof ==========================
+
+============================== STATISTICS ============================
+
+Given=14. Generated=54. Kept=40. proofs=1.
+Usable=14. Sos=19. Demods=6. Limbo=2, Disabled=24. Hints=0.
+Weight_deleted=0. Literals_deleted=0.
+Forward_subsumed=13. Back_subsumed=0.
+Sos_limit_deleted=0. Sos_displaced=0. Sos_removed=0.
+New_demodulators=6 (0 lex), Back_demodulated=0. Back_unit_deleted=5.
+Demod_attempts=252. Demod_rewrites=0.
+Res_instance_prunes=0. Para_instance_prunes=0. Basic_paramod_prunes=0.
+Nonunit_fsub_feature_tests=0. Nonunit_bsub_feature_tests=17.
+Megabytes=0.04.
+User_CPU=0.05, System_CPU=0.05, Wall_clock=0.
+
+============================== end of statistics =====================
+
+============================== end of search =========================
+
+THEOREM PROVED
+
+Exiting with 1 proof.
+
+Process 12172 exit (max_proofs) Sat Nov 27 01:29:28 2021

@@ -1,0 +1,2006 @@
+============================== Prover9 ===============================
+Prover9 (32) version Dec-2007, Dec 2007.
+Process 13896 was started by popaa on DESKTOP-1LD5VI6,
+Thu Nov 25 11:57:54 2021
+The command was "/cygdrive/c/Program Files (x86)/Prover9-Mace4/bin-win32/prover9".
+============================== end of head ===========================
+
+============================== INPUT =================================
+assign(report_stderr,2).
+set(ignore_option_dependencies).
+if(Prover9).
+% Conditional input included.
+assign(max_seconds,60).
+end_if.
+if(Mace4).
+% Conditional input omitted.
+end_if.
+
+formulas(assumptions).
+Barbara = 0.
+Carla = 1.
+Edna = 2.
+Fiona = 3.
+Mary = 4.
+Exercise(Barbara) | Exercise(Carla) | Exercise(Edna) | Exercise(Fiona) | Exercise(Mary).
+Coffee(Barbara) | Coffee(Carla) | Coffee(Edna) | Coffee(Fiona) | Coffee(Mary).
+Worry(Barbara) | Worry(Carla) | Worry(Edna) | Worry(Fiona) | Worry(Mary).
+Hunger(Barbara) | Hunger(Carla) | Hunger(Edna) | Hunger(Fiona) | Hunger(Mary).
+Snoring(Barbara) | Snoring(Carla) | Snoring(Edna) | Snoring(Fiona) | Snoring(Mary).
+Exercise(x) -> -Coffee(x) & -Worry(x) & -Hunger(x) & -Snoring(x).
+Coffee(x) -> -Exercise(x) & -Worry(x) & -Hunger(x) & -Snoring(x).
+Worry(x) -> -Coffee(x) & -Exercise(x) & -Hunger(x) & -Snoring(x).
+Hunger(x) -> -Coffee(x) & -Worry(x) & -Exercise(x) & -Snoring(x).
+Snoring(x) -> -Coffee(x) & -Worry(x) & -Hunger(x) & -Exercise(x).
+Called_12am(Barbara) | Called_12am(Carla) | Called_12am(Edna) | Called_12am(Fiona) | Called_12am(Mary).
+Called_1am(Barbara) | Called_1am(Carla) | Called_1am(Edna) | Called_1am(Fiona) | Called_1am(Mary).
+Called_2am(Barbara) | Called_2am(Carla) | Called_2am(Edna) | Called_2am(Fiona) | Called_2am(Mary).
+Called_3am(Barbara) | Called_3am(Carla) | Called_3am(Edna) | Called_3am(Fiona) | Called_3am(Mary).
+Called_4am(Barbara) | Called_4am(Carla) | Called_4am(Edna) | Called_4am(Fiona) | Called_4am(Mary).
+Called_12am(x) -> -Called_1am(x) & -Called_2am(x) & -Called_3am(x) & -Called_4am(x).
+Called_1am(x) -> -Called_12am(x) & -Called_2am(x) & -Called_3am(x) & -Called_4am(x).
+Called_2am(x) -> -Called_1am(x) & -Called_12am(x) & -Called_3am(x) & -Called_4am(x).
+Called_3am(x) -> -Called_1am(x) & -Called_2am(x) & -Called_12am(x) & -Called_4am(x).
+Called_4am(x) -> -Called_1am(x) & -Called_2am(x) & -Called_3am(x) & -Called_12am(x).
+-Exercise(Fiona).
+Exercise(x) -> Called_12am(x) & (Called_1am(Fiona) | Called_2am(Fiona) | Called_3am(Fiona) | Called_4am(Fiona)) | Called_1am(x) & (Called_2am(Fiona) | Called_3am(Fiona) | Called_4am(Fiona)) | Called_2am(x) & (Called_3am(Fiona) | Called_4am(Fiona)) | Called_3am(x) & Called_4am(Fiona).
+Exercise(x) & Coffee(y) -> Called_12am(y) & (Called_1am(x) | Called_2am(x) | Called_3am(x) | Called_4am(x)) | Called_1am(y) & (Called_2am(x) | Called_3am(x) | Called_4am(x)) | Called_2am(y) & (Called_3am(x) | Called_4am(x)) | Called_3am(y) & Called_4am(x).
+Called_12am(Carla).
+-Hunger(Carla).
+-Exercise(Carla).
+-Coffee(Mary).
+-Worry(Mary).
+-Called_3am(Mary).
+-Called_4am(Mary).
+Coffee(x) -> Called_12am(Mary) & (Called_1am(x) | Called_2am(x) | Called_3am(x) | Called_4am(x)) | Called_1am(Mary) & (Called_2am(x) | Called_3am(x) | Called_4am(x)) | Called_2am(Mary) & (Called_3am(x) | Called_4am(x)).
+Worry(x) -> Called_12am(Mary) & (Called_1am(x) | Called_2am(x) | Called_3am(x) | Called_4am(x)) | Called_1am(Mary) & (Called_2am(x) | Called_3am(x) | Called_4am(x)) | Called_2am(Mary) & (Called_3am(x) | Called_4am(x)).
+-Coffee(Edna).
+m1 <-> Called_12am(Mary) & (Called_1am(Fiona) | Called_2am(Fiona) | Called_3am(Fiona) | Called_4am(Fiona)) | Called_1am(Mary) & (Called_2am(Fiona) | Called_3am(Fiona) | Called_4am(Fiona)) | Called_2am(Mary) & (Called_3am(Fiona) | Called_4am(Fiona)) | Called_3am(Mary) & Called_4am(Fiona).
+end_of_list.
+
+formulas(goals).
+Called_4am(Fiona).
+end_of_list.
+
+============================== end of input ==========================
+
+% Enabling option dependencies (ignore applies only on input).
+
+============================== PROCESS NON-CLAUSAL FORMULAS ==========
+
+% Formulas that are not ordinary clauses:
+1 Exercise(x) -> -Coffee(x) & -Worry(x) & -Hunger(x) & -Snoring(x) # label(non_clause).  [assumption].
+2 Coffee(x) -> -Exercise(x) & -Worry(x) & -Hunger(x) & -Snoring(x) # label(non_clause).  [assumption].
+3 Worry(x) -> -Coffee(x) & -Exercise(x) & -Hunger(x) & -Snoring(x) # label(non_clause).  [assumption].
+4 Hunger(x) -> -Coffee(x) & -Worry(x) & -Exercise(x) & -Snoring(x) # label(non_clause).  [assumption].
+5 Snoring(x) -> -Coffee(x) & -Worry(x) & -Hunger(x) & -Exercise(x) # label(non_clause).  [assumption].
+6 Called_12am(x) -> -Called_1am(x) & -Called_2am(x) & -Called_3am(x) & -Called_4am(x) # label(non_clause).  [assumption].
+7 Called_1am(x) -> -Called_12am(x) & -Called_2am(x) & -Called_3am(x) & -Called_4am(x) # label(non_clause).  [assumption].
+8 Called_2am(x) -> -Called_1am(x) & -Called_12am(x) & -Called_3am(x) & -Called_4am(x) # label(non_clause).  [assumption].
+9 Called_3am(x) -> -Called_1am(x) & -Called_2am(x) & -Called_12am(x) & -Called_4am(x) # label(non_clause).  [assumption].
+10 Called_4am(x) -> -Called_1am(x) & -Called_2am(x) & -Called_3am(x) & -Called_12am(x) # label(non_clause).  [assumption].
+11 Exercise(x) -> Called_12am(x) & (Called_1am(Fiona) | Called_2am(Fiona) | Called_3am(Fiona) | Called_4am(Fiona)) | Called_1am(x) & (Called_2am(Fiona) | Called_3am(Fiona) | Called_4am(Fiona)) | Called_2am(x) & (Called_3am(Fiona) | Called_4am(Fiona)) | Called_3am(x) & Called_4am(Fiona) # label(non_clause).  [assumption].
+12 Exercise(x) & Coffee(y) -> Called_12am(y) & (Called_1am(x) | Called_2am(x) | Called_3am(x) | Called_4am(x)) | Called_1am(y) & (Called_2am(x) | Called_3am(x) | Called_4am(x)) | Called_2am(y) & (Called_3am(x) | Called_4am(x)) | Called_3am(y) & Called_4am(x) # label(non_clause).  [assumption].
+13 Coffee(x) -> Called_12am(Mary) & (Called_1am(x) | Called_2am(x) | Called_3am(x) | Called_4am(x)) | Called_1am(Mary) & (Called_2am(x) | Called_3am(x) | Called_4am(x)) | Called_2am(Mary) & (Called_3am(x) | Called_4am(x)) # label(non_clause).  [assumption].
+14 Worry(x) -> Called_12am(Mary) & (Called_1am(x) | Called_2am(x) | Called_3am(x) | Called_4am(x)) | Called_1am(Mary) & (Called_2am(x) | Called_3am(x) | Called_4am(x)) | Called_2am(Mary) & (Called_3am(x) | Called_4am(x)) # label(non_clause).  [assumption].
+15 m1 <-> Called_12am(Mary) & (Called_1am(Fiona) | Called_2am(Fiona) | Called_3am(Fiona) | Called_4am(Fiona)) | Called_1am(Mary) & (Called_2am(Fiona) | Called_3am(Fiona) | Called_4am(Fiona)) | Called_2am(Mary) & (Called_3am(Fiona) | Called_4am(Fiona)) | Called_3am(Mary) & Called_4am(Fiona) # label(non_clause).  [assumption].
+16 Called_4am(Fiona) # label(non_clause) # label(goal).  [goal].
+
+============================== end of process non-clausal formulas ===
+
+============================== PROCESS INITIAL CLAUSES ===============
+
+% Clauses before input processing:
+
+formulas(usable).
+end_of_list.
+
+formulas(sos).
+Barbara = 0.  [assumption].
+Carla = 1.  [assumption].
+Edna = 2.  [assumption].
+Fiona = 3.  [assumption].
+Mary = 4.  [assumption].
+Exercise(Barbara) | Exercise(Carla) | Exercise(Edna) | Exercise(Fiona) | Exercise(Mary).  [assumption].
+Coffee(Barbara) | Coffee(Carla) | Coffee(Edna) | Coffee(Fiona) | Coffee(Mary).  [assumption].
+Worry(Barbara) | Worry(Carla) | Worry(Edna) | Worry(Fiona) | Worry(Mary).  [assumption].
+Hunger(Barbara) | Hunger(Carla) | Hunger(Edna) | Hunger(Fiona) | Hunger(Mary).  [assumption].
+Snoring(Barbara) | Snoring(Carla) | Snoring(Edna) | Snoring(Fiona) | Snoring(Mary).  [assumption].
+-Exercise(x) | -Coffee(x).  [clausify(1)].
+-Exercise(x) | -Worry(x).  [clausify(1)].
+-Exercise(x) | -Hunger(x).  [clausify(1)].
+-Exercise(x) | -Snoring(x).  [clausify(1)].
+-Coffee(x) | -Exercise(x).  [clausify(2)].
+-Coffee(x) | -Worry(x).  [clausify(2)].
+-Coffee(x) | -Hunger(x).  [clausify(2)].
+-Coffee(x) | -Snoring(x).  [clausify(2)].
+-Worry(x) | -Coffee(x).  [clausify(3)].
+-Worry(x) | -Exercise(x).  [clausify(3)].
+-Worry(x) | -Hunger(x).  [clausify(3)].
+-Worry(x) | -Snoring(x).  [clausify(3)].
+-Hunger(x) | -Coffee(x).  [clausify(4)].
+-Hunger(x) | -Worry(x).  [clausify(4)].
+-Hunger(x) | -Exercise(x).  [clausify(4)].
+-Hunger(x) | -Snoring(x).  [clausify(4)].
+-Snoring(x) | -Coffee(x).  [clausify(5)].
+-Snoring(x) | -Worry(x).  [clausify(5)].
+-Snoring(x) | -Hunger(x).  [clausify(5)].
+-Snoring(x) | -Exercise(x).  [clausify(5)].
+Called_12am(Barbara) | Called_12am(Carla) | Called_12am(Edna) | Called_12am(Fiona) | Called_12am(Mary).  [assumption].
+Called_1am(Barbara) | Called_1am(Carla) | Called_1am(Edna) | Called_1am(Fiona) | Called_1am(Mary).  [assumption].
+Called_2am(Barbara) | Called_2am(Carla) | Called_2am(Edna) | Called_2am(Fiona) | Called_2am(Mary).  [assumption].
+Called_3am(Barbara) | Called_3am(Carla) | Called_3am(Edna) | Called_3am(Fiona) | Called_3am(Mary).  [assumption].
+Called_4am(Barbara) | Called_4am(Carla) | Called_4am(Edna) | Called_4am(Fiona) | Called_4am(Mary).  [assumption].
+-Called_12am(x) | -Called_1am(x).  [clausify(6)].
+-Called_12am(x) | -Called_2am(x).  [clausify(6)].
+-Called_12am(x) | -Called_3am(x).  [clausify(6)].
+-Called_12am(x) | -Called_4am(x).  [clausify(6)].
+-Called_1am(x) | -Called_12am(x).  [clausify(7)].
+-Called_1am(x) | -Called_2am(x).  [clausify(7)].
+-Called_1am(x) | -Called_3am(x).  [clausify(7)].
+-Called_1am(x) | -Called_4am(x).  [clausify(7)].
+-Called_2am(x) | -Called_1am(x).  [clausify(8)].
+-Called_2am(x) | -Called_12am(x).  [clausify(8)].
+-Called_2am(x) | -Called_3am(x).  [clausify(8)].
+-Called_2am(x) | -Called_4am(x).  [clausify(8)].
+-Called_3am(x) | -Called_1am(x).  [clausify(9)].
+-Called_3am(x) | -Called_2am(x).  [clausify(9)].
+-Called_3am(x) | -Called_12am(x).  [clausify(9)].
+-Called_3am(x) | -Called_4am(x).  [clausify(9)].
+-Called_4am(x) | -Called_1am(x).  [clausify(10)].
+-Called_4am(x) | -Called_2am(x).  [clausify(10)].
+-Called_4am(x) | -Called_3am(x).  [clausify(10)].
+-Called_4am(x) | -Called_12am(x).  [clausify(10)].
+-Exercise(Fiona).  [assumption].
+-Exercise(x) | Called_12am(x) | Called_1am(x) | Called_2am(x) | Called_3am(x).  [clausify(11)].
+-Exercise(x) | Called_12am(x) | Called_1am(x) | Called_2am(x) | Called_4am(Fiona).  [clausify(11)].
+-Exercise(x) | Called_12am(x) | Called_1am(x) | Called_3am(Fiona) | Called_4am(Fiona).  [clausify(11)].
+-Exercise(x) | Called_12am(x) | Called_2am(Fiona) | Called_3am(Fiona) | Called_4am(Fiona).  [clausify(11)].
+-Exercise(x) | Called_1am(Fiona) | Called_2am(Fiona) | Called_3am(Fiona) | Called_4am(Fiona).  [clausify(11)].
+-Exercise(x) | -Coffee(y) | Called_12am(y) | Called_1am(y) | Called_2am(y) | Called_3am(y).  [clausify(12)].
+-Exercise(x) | -Coffee(y) | Called_12am(y) | Called_1am(y) | Called_2am(y) | Called_4am(x).  [clausify(12)].
+-Exercise(x) | -Coffee(y) | Called_12am(y) | Called_1am(y) | Called_3am(x) | Called_4am(x).  [clausify(12)].
+-Exercise(x) | -Coffee(y) | Called_12am(y) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [clausify(12)].
+-Exercise(x) | -Coffee(y) | Called_1am(x) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [clausify(12)].
+Called_12am(Carla).  [assumption].
+-Hunger(Carla).  [assumption].
+-Exercise(Carla).  [assumption].
+-Coffee(Mary).  [assumption].
+-Worry(Mary).  [assumption].
+-Called_3am(Mary).  [assumption].
+-Called_4am(Mary).  [assumption].
+-Coffee(x) | Called_12am(Mary) | Called_1am(Mary) | Called_2am(Mary).  [clausify(13)].
+-Coffee(x) | Called_12am(Mary) | Called_1am(Mary) | Called_3am(x) | Called_4am(x).  [clausify(13)].
+-Coffee(x) | Called_12am(Mary) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [clausify(13)].
+-Coffee(x) | Called_1am(x) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [clausify(13)].
+-Worry(x) | Called_12am(Mary) | Called_1am(Mary) | Called_2am(Mary).  [clausify(14)].
+-Worry(x) | Called_12am(Mary) | Called_1am(Mary) | Called_3am(x) | Called_4am(x).  [clausify(14)].
+-Worry(x) | Called_12am(Mary) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [clausify(14)].
+-Worry(x) | Called_1am(x) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [clausify(14)].
+-Coffee(Edna).  [assumption].
+-m1 | Called_12am(Mary) | Called_1am(Mary) | Called_2am(Mary) | Called_3am(Mary).  [clausify(15)].
+-m1 | Called_12am(Mary) | Called_1am(Mary) | Called_2am(Mary) | Called_4am(Fiona).  [clausify(15)].
+-m1 | Called_12am(Mary) | Called_1am(Mary) | Called_3am(Fiona) | Called_4am(Fiona).  [clausify(15)].
+-m1 | Called_12am(Mary) | Called_2am(Fiona) | Called_3am(Fiona) | Called_4am(Fiona).  [clausify(15)].
+-m1 | Called_1am(Fiona) | Called_2am(Fiona) | Called_3am(Fiona) | Called_4am(Fiona).  [clausify(15)].
+m1 | -Called_12am(Mary) | -Called_1am(Fiona).  [clausify(15)].
+m1 | -Called_12am(Mary) | -Called_2am(Fiona).  [clausify(15)].
+m1 | -Called_12am(Mary) | -Called_3am(Fiona).  [clausify(15)].
+m1 | -Called_12am(Mary) | -Called_4am(Fiona).  [clausify(15)].
+m1 | -Called_1am(Mary) | -Called_2am(Fiona).  [clausify(15)].
+m1 | -Called_1am(Mary) | -Called_3am(Fiona).  [clausify(15)].
+m1 | -Called_1am(Mary) | -Called_4am(Fiona).  [clausify(15)].
+m1 | -Called_2am(Mary) | -Called_3am(Fiona).  [clausify(15)].
+m1 | -Called_2am(Mary) | -Called_4am(Fiona).  [clausify(15)].
+m1 | -Called_3am(Mary) | -Called_4am(Fiona).  [clausify(15)].
+-Called_4am(Fiona).  [deny(16)].
+end_of_list.
+
+formulas(demodulators).
+end_of_list.
+
+============================== PREDICATE ELIMINATION =================
+
+No predicates eliminated.
+
+============================== end predicate elimination =============
+
+Auto_denials:  (non-Horn, no changes).
+
+Term ordering decisions:
+Predicate symbol precedence:  predicate_order([ =, m1, Called_12am, Called_1am, Called_2am, Called_3am, Called_4am, Exercise, Coffee, Worry, Hunger, Snoring ]).
+Function symbol precedence:  function_order([ Mary, Fiona, Carla, Barbara, Edna, 0, 1, 2, 3, 4 ]).
+After inverse_order:  (no changes).
+Unfolding symbols: (none).
+
+Auto_inference settings:
+  % set(paramodulation).  % (positive equality literals)
+  % set(binary_resolution).  % (non-Horn)
+  % set(neg_ur_resolution).  % (non-Horn, less than 100 clauses)
+
+Auto_process settings:
+  % set(factor).  % (non-Horn)
+  % set(unit_deletion).  % (non-Horn)
+
+============================== end of process initial clauses ========
+
+============================== CLAUSES FOR SEARCH ====================
+
+% Clauses after input processing:
+
+formulas(usable).
+end_of_list.
+
+formulas(sos).
+18 0 = Barbara.  [copy(17),flip(a)].
+20 1 = Carla.  [copy(19),flip(a)].
+22 2 = Edna.  [copy(21),flip(a)].
+24 3 = Fiona.  [copy(23),flip(a)].
+26 4 = Mary.  [copy(25),flip(a)].
+31 Snoring(Barbara) | Snoring(Carla) | Snoring(Edna) | Snoring(Fiona) | Snoring(Mary).  [assumption].
+32 -Exercise(x) | -Coffee(x).  [clausify(1)].
+33 -Exercise(x) | -Worry(x).  [clausify(1)].
+34 -Exercise(x) | -Hunger(x).  [clausify(1)].
+35 -Exercise(x) | -Snoring(x).  [clausify(1)].
+36 -Coffee(x) | -Worry(x).  [clausify(2)].
+37 -Coffee(x) | -Hunger(x).  [clausify(2)].
+38 -Coffee(x) | -Snoring(x).  [clausify(2)].
+39 -Worry(x) | -Hunger(x).  [clausify(3)].
+40 -Worry(x) | -Snoring(x).  [clausify(3)].
+41 -Hunger(x) | -Snoring(x).  [clausify(4)].
+43 Called_1am(Barbara) | Called_1am(Carla) | Called_1am(Edna) | Called_1am(Fiona) | Called_1am(Mary).  [assumption].
+44 Called_2am(Barbara) | Called_2am(Carla) | Called_2am(Edna) | Called_2am(Fiona) | Called_2am(Mary).  [assumption].
+47 -Called_12am(x) | -Called_1am(x).  [clausify(6)].
+48 -Called_12am(x) | -Called_2am(x).  [clausify(6)].
+49 -Called_12am(x) | -Called_3am(x).  [clausify(6)].
+50 -Called_12am(x) | -Called_4am(x).  [clausify(6)].
+51 -Called_1am(x) | -Called_2am(x).  [clausify(7)].
+52 -Called_1am(x) | -Called_3am(x).  [clausify(7)].
+53 -Called_1am(x) | -Called_4am(x).  [clausify(7)].
+54 -Called_2am(x) | -Called_3am(x).  [clausify(8)].
+55 -Called_2am(x) | -Called_4am(x).  [clausify(8)].
+56 -Called_3am(x) | -Called_4am(x).  [clausify(9)].
+57 -Exercise(Fiona).  [assumption].
+63 -Exercise(x) | -Coffee(y) | Called_12am(y) | Called_1am(y) | Called_2am(y) | Called_3am(y).  [clausify(12)].
+64 -Exercise(x) | -Coffee(y) | Called_12am(y) | Called_1am(y) | Called_2am(y) | Called_4am(x).  [clausify(12)].
+65 -Exercise(x) | -Coffee(y) | Called_12am(y) | Called_1am(y) | Called_3am(x) | Called_4am(x).  [clausify(12)].
+66 -Exercise(x) | -Coffee(y) | Called_12am(y) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [clausify(12)].
+67 -Exercise(x) | -Coffee(y) | Called_1am(x) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [clausify(12)].
+68 Called_12am(Carla).  [assumption].
+69 -Hunger(Carla).  [assumption].
+70 -Exercise(Carla).  [assumption].
+71 -Coffee(Mary).  [assumption].
+72 -Worry(Mary).  [assumption].
+73 -Called_3am(Mary).  [assumption].
+74 -Called_4am(Mary).  [assumption].
+75 -Coffee(x) | Called_12am(Mary) | Called_1am(Mary) | Called_2am(Mary).  [clausify(13)].
+76 -Coffee(x) | Called_12am(Mary) | Called_1am(Mary) | Called_3am(x) | Called_4am(x).  [clausify(13)].
+77 -Coffee(x) | Called_12am(Mary) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [clausify(13)].
+78 -Coffee(x) | Called_1am(x) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [clausify(13)].
+79 -Worry(x) | Called_12am(Mary) | Called_1am(Mary) | Called_2am(Mary).  [clausify(14)].
+80 -Worry(x) | Called_12am(Mary) | Called_1am(Mary) | Called_3am(x) | Called_4am(x).  [clausify(14)].
+81 -Worry(x) | Called_12am(Mary) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [clausify(14)].
+82 -Worry(x) | Called_1am(x) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [clausify(14)].
+83 -Coffee(Edna).  [assumption].
+85 -m1 | Called_12am(Mary) | Called_1am(Mary) | Called_2am(Mary).  [copy(84),unit_del(e,73)].
+89 m1 | -Called_12am(Mary) | -Called_1am(Fiona).  [clausify(15)].
+90 m1 | -Called_12am(Mary) | -Called_2am(Fiona).  [clausify(15)].
+91 m1 | -Called_12am(Mary) | -Called_3am(Fiona).  [clausify(15)].
+93 m1 | -Called_1am(Mary) | -Called_2am(Fiona).  [clausify(15)].
+94 m1 | -Called_1am(Mary) | -Called_3am(Fiona).  [clausify(15)].
+96 m1 | -Called_2am(Mary) | -Called_3am(Fiona).  [clausify(15)].
+98 -Called_4am(Fiona).  [deny(16)].
+99 Exercise(Barbara) | Exercise(Edna) | Exercise(Mary).  [back_unit_del(27),unit_del(b,70),unit_del(d,57)].
+100 Hunger(Barbara) | Hunger(Edna) | Hunger(Fiona) | Hunger(Mary).  [back_unit_del(30),unit_del(b,69)].
+101 Coffee(Barbara) | Coffee(Carla) | Coffee(Fiona).  [back_unit_del(28),unit_del(c,83),unit_del(e,71)].
+102 Worry(Barbara) | Worry(Carla) | Worry(Edna) | Worry(Fiona).  [back_unit_del(29),unit_del(e,72)].
+103 Called_3am(Barbara) | Called_3am(Carla) | Called_3am(Edna) | Called_3am(Fiona).  [back_unit_del(45),unit_del(e,73)].
+104 Called_4am(Barbara) | Called_4am(Carla) | Called_4am(Edna).  [back_unit_del(46),unit_del(d,98),unit_del(e,74)].
+105 -m1 | Called_1am(Fiona) | Called_2am(Fiona) | Called_3am(Fiona).  [back_unit_del(88),unit_del(e,98)].
+106 -m1 | Called_12am(Mary) | Called_2am(Fiona) | Called_3am(Fiona).  [back_unit_del(87),unit_del(e,98)].
+107 -m1 | Called_12am(Mary) | Called_1am(Mary) | Called_3am(Fiona).  [back_unit_del(86),unit_del(e,98)].
+108 -Exercise(x) | Called_1am(Fiona) | Called_2am(Fiona) | Called_3am(Fiona).  [back_unit_del(62),unit_del(e,98)].
+109 -Exercise(x) | Called_12am(x) | Called_2am(Fiona) | Called_3am(Fiona).  [back_unit_del(61),unit_del(e,98)].
+110 -Exercise(x) | Called_12am(x) | Called_1am(x) | Called_3am(Fiona).  [back_unit_del(60),unit_del(e,98)].
+111 -Exercise(x) | Called_12am(x) | Called_1am(x) | Called_2am(x).  [back_unit_del(59),unit_del(e,98)].
+end_of_list.
+
+formulas(demodulators).
+18 0 = Barbara.  [copy(17),flip(a)].
+20 1 = Carla.  [copy(19),flip(a)].
+22 2 = Edna.  [copy(21),flip(a)].
+24 3 = Fiona.  [copy(23),flip(a)].
+26 4 = Mary.  [copy(25),flip(a)].
+end_of_list.
+
+============================== end of clauses for search =============
+
+============================== SEARCH ================================
+
+% Starting search at 0.00 seconds.
+
+given #1 (I,wt=3): 18 0 = Barbara.  [copy(17),flip(a)].
+
+given #2 (I,wt=3): 20 1 = Carla.  [copy(19),flip(a)].
+
+given #3 (I,wt=3): 22 2 = Edna.  [copy(21),flip(a)].
+
+given #4 (I,wt=3): 24 3 = Fiona.  [copy(23),flip(a)].
+
+given #5 (I,wt=3): 26 4 = Mary.  [copy(25),flip(a)].
+
+given #6 (I,wt=10): 31 Snoring(Barbara) | Snoring(Carla) | Snoring(Edna) | Snoring(Fiona) | Snoring(Mary).  [assumption].
+
+given #7 (I,wt=4): 32 -Exercise(x) | -Coffee(x).  [clausify(1)].
+
+given #8 (I,wt=4): 33 -Exercise(x) | -Worry(x).  [clausify(1)].
+
+given #9 (I,wt=4): 34 -Exercise(x) | -Hunger(x).  [clausify(1)].
+
+given #10 (I,wt=4): 35 -Exercise(x) | -Snoring(x).  [clausify(1)].
+
+given #11 (I,wt=4): 36 -Coffee(x) | -Worry(x).  [clausify(2)].
+
+given #12 (I,wt=4): 37 -Coffee(x) | -Hunger(x).  [clausify(2)].
+
+given #13 (I,wt=4): 38 -Coffee(x) | -Snoring(x).  [clausify(2)].
+
+given #14 (I,wt=4): 39 -Worry(x) | -Hunger(x).  [clausify(3)].
+
+given #15 (I,wt=4): 40 -Worry(x) | -Snoring(x).  [clausify(3)].
+
+given #16 (I,wt=4): 41 -Hunger(x) | -Snoring(x).  [clausify(4)].
+
+given #17 (I,wt=10): 43 Called_1am(Barbara) | Called_1am(Carla) | Called_1am(Edna) | Called_1am(Fiona) | Called_1am(Mary).  [assumption].
+
+given #18 (I,wt=10): 44 Called_2am(Barbara) | Called_2am(Carla) | Called_2am(Edna) | Called_2am(Fiona) | Called_2am(Mary).  [assumption].
+
+given #19 (I,wt=4): 47 -Called_12am(x) | -Called_1am(x).  [clausify(6)].
+
+given #20 (I,wt=4): 48 -Called_12am(x) | -Called_2am(x).  [clausify(6)].
+
+given #21 (I,wt=4): 49 -Called_12am(x) | -Called_3am(x).  [clausify(6)].
+
+given #22 (I,wt=4): 50 -Called_12am(x) | -Called_4am(x).  [clausify(6)].
+
+given #23 (I,wt=4): 51 -Called_1am(x) | -Called_2am(x).  [clausify(7)].
+
+given #24 (I,wt=4): 52 -Called_1am(x) | -Called_3am(x).  [clausify(7)].
+
+given #25 (I,wt=4): 53 -Called_1am(x) | -Called_4am(x).  [clausify(7)].
+
+given #26 (I,wt=4): 54 -Called_2am(x) | -Called_3am(x).  [clausify(8)].
+
+given #27 (I,wt=4): 55 -Called_2am(x) | -Called_4am(x).  [clausify(8)].
+
+given #28 (I,wt=4): 56 -Called_3am(x) | -Called_4am(x).  [clausify(9)].
+
+given #29 (I,wt=2): 57 -Exercise(Fiona).  [assumption].
+
+given #30 (I,wt=12): 63 -Exercise(x) | -Coffee(y) | Called_12am(y) | Called_1am(y) | Called_2am(y) | Called_3am(y).  [clausify(12)].
+
+given #31 (I,wt=12): 64 -Exercise(x) | -Coffee(y) | Called_12am(y) | Called_1am(y) | Called_2am(y) | Called_4am(x).  [clausify(12)].
+
+given #32 (I,wt=12): 65 -Exercise(x) | -Coffee(y) | Called_12am(y) | Called_1am(y) | Called_3am(x) | Called_4am(x).  [clausify(12)].
+
+given #33 (I,wt=12): 66 -Exercise(x) | -Coffee(y) | Called_12am(y) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [clausify(12)].
+
+given #34 (I,wt=12): 67 -Exercise(x) | -Coffee(y) | Called_1am(x) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [clausify(12)].
+
+given #35 (I,wt=2): 68 Called_12am(Carla).  [assumption].
+
+given #36 (I,wt=2): 69 -Hunger(Carla).  [assumption].
+
+given #37 (I,wt=2): 70 -Exercise(Carla).  [assumption].
+
+given #38 (I,wt=2): 71 -Coffee(Mary).  [assumption].
+
+given #39 (I,wt=2): 72 -Worry(Mary).  [assumption].
+
+given #40 (I,wt=2): 73 -Called_3am(Mary).  [assumption].
+
+given #41 (I,wt=2): 74 -Called_4am(Mary).  [assumption].
+
+given #42 (I,wt=8): 75 -Coffee(x) | Called_12am(Mary) | Called_1am(Mary) | Called_2am(Mary).  [clausify(13)].
+
+given #43 (I,wt=10): 76 -Coffee(x) | Called_12am(Mary) | Called_1am(Mary) | Called_3am(x) | Called_4am(x).  [clausify(13)].
+
+given #44 (I,wt=10): 77 -Coffee(x) | Called_12am(Mary) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [clausify(13)].
+
+given #45 (I,wt=10): 78 -Coffee(x) | Called_1am(x) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [clausify(13)].
+
+given #46 (I,wt=8): 79 -Worry(x) | Called_12am(Mary) | Called_1am(Mary) | Called_2am(Mary).  [clausify(14)].
+
+given #47 (I,wt=10): 80 -Worry(x) | Called_12am(Mary) | Called_1am(Mary) | Called_3am(x) | Called_4am(x).  [clausify(14)].
+
+given #48 (I,wt=10): 81 -Worry(x) | Called_12am(Mary) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [clausify(14)].
+
+given #49 (I,wt=10): 82 -Worry(x) | Called_1am(x) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [clausify(14)].
+
+given #50 (I,wt=2): 83 -Coffee(Edna).  [assumption].
+
+given #51 (I,wt=7): 85 -m1 | Called_12am(Mary) | Called_1am(Mary) | Called_2am(Mary).  [copy(84),unit_del(e,73)].
+
+given #52 (I,wt=5): 89 m1 | -Called_12am(Mary) | -Called_1am(Fiona).  [clausify(15)].
+
+given #53 (I,wt=5): 90 m1 | -Called_12am(Mary) | -Called_2am(Fiona).  [clausify(15)].
+
+given #54 (I,wt=5): 91 m1 | -Called_12am(Mary) | -Called_3am(Fiona).  [clausify(15)].
+
+given #55 (I,wt=5): 93 m1 | -Called_1am(Mary) | -Called_2am(Fiona).  [clausify(15)].
+
+given #56 (I,wt=5): 94 m1 | -Called_1am(Mary) | -Called_3am(Fiona).  [clausify(15)].
+
+given #57 (I,wt=5): 96 m1 | -Called_2am(Mary) | -Called_3am(Fiona).  [clausify(15)].
+
+given #58 (I,wt=2): 98 -Called_4am(Fiona).  [deny(16)].
+
+given #59 (I,wt=6): 99 Exercise(Barbara) | Exercise(Edna) | Exercise(Mary).  [back_unit_del(27),unit_del(b,70),unit_del(d,57)].
+
+given #60 (I,wt=8): 100 Hunger(Barbara) | Hunger(Edna) | Hunger(Fiona) | Hunger(Mary).  [back_unit_del(30),unit_del(b,69)].
+
+given #61 (I,wt=6): 101 Coffee(Barbara) | Coffee(Carla) | Coffee(Fiona).  [back_unit_del(28),unit_del(c,83),unit_del(e,71)].
+
+given #62 (I,wt=8): 102 Worry(Barbara) | Worry(Carla) | Worry(Edna) | Worry(Fiona).  [back_unit_del(29),unit_del(e,72)].
+
+given #63 (I,wt=7): 105 -m1 | Called_1am(Fiona) | Called_2am(Fiona) | Called_3am(Fiona).  [back_unit_del(88),unit_del(e,98)].
+
+given #64 (I,wt=7): 106 -m1 | Called_12am(Mary) | Called_2am(Fiona) | Called_3am(Fiona).  [back_unit_del(87),unit_del(e,98)].
+
+given #65 (I,wt=7): 107 -m1 | Called_12am(Mary) | Called_1am(Mary) | Called_3am(Fiona).  [back_unit_del(86),unit_del(e,98)].
+
+given #66 (I,wt=8): 108 -Exercise(x) | Called_1am(Fiona) | Called_2am(Fiona) | Called_3am(Fiona).  [back_unit_del(62),unit_del(e,98)].
+
+given #67 (I,wt=8): 109 -Exercise(x) | Called_12am(x) | Called_2am(Fiona) | Called_3am(Fiona).  [back_unit_del(61),unit_del(e,98)].
+
+given #68 (I,wt=8): 110 -Exercise(x) | Called_12am(x) | Called_1am(x) | Called_3am(Fiona).  [back_unit_del(60),unit_del(e,98)].
+
+given #69 (I,wt=8): 111 -Exercise(x) | Called_12am(x) | Called_1am(x) | Called_2am(x).  [back_unit_del(59),unit_del(e,98)].
+
+given #70 (A,wt=10): 112 -Exercise(Edna) | Snoring(Barbara) | Snoring(Carla) | Snoring(Fiona) | Snoring(Mary).  [resolve(35,b,31,c)].
+
+given #71 (F,wt=2): 118 -Called_4am(Carla).  [ur(50,a,68,a)].
+
+given #72 (F,wt=2): 119 -Called_3am(Carla).  [ur(49,a,68,a)].
+
+given #73 (F,wt=2): 120 -Called_2am(Carla).  [ur(48,a,68,a)].
+
+given #74 (F,wt=2): 121 -Called_1am(Carla).  [ur(47,a,68,a)].
+
+given #75 (T,wt=4): 122 Called_4am(Barbara) | Called_4am(Edna).  [back_unit_del(104),unit_del(b,118)].
+
+given #76 (T,wt=4): 159 Coffee(Fiona) | -Exercise(Barbara).  [back_unit_del(140),unit_del(a,152)].
+
+given #77 (T,wt=4): 169 Coffee(Barbara) | Coffee(Fiona).  [back_unit_del(101),unit_del(b,152)].
+
+given #78 (T,wt=4): 170 Called_4am(Barbara) | -Called_3am(Edna).  [resolve(122,b,56,b)].
+
+given #79 (A,wt=10): 113 -Worry(Edna) | Snoring(Barbara) | Snoring(Carla) | Snoring(Fiona) | Snoring(Mary).  [resolve(40,b,31,c)].
+
+given #80 (F,wt=2): 151 -Worry(Carla).  [ur(82,b,121,a,c,120,a,d,119,a,e,118,a)].
+
+given #81 (F,wt=2): 152 -Coffee(Carla).  [ur(78,b,121,a,c,120,a,d,119,a,e,118,a)].
+
+given #82 (T,wt=4): 171 Called_4am(Barbara) | -Called_2am(Edna).  [resolve(122,b,55,b)].
+
+given #83 (T,wt=4): 172 Called_4am(Barbara) | -Called_1am(Edna).  [resolve(122,b,53,b)].
+
+given #84 (T,wt=4): 173 Called_4am(Barbara) | -Called_12am(Edna).  [resolve(122,b,50,b)].
+
+given #85 (T,wt=6): 123 Called_3am(Barbara) | Called_3am(Edna) | Called_3am(Fiona).  [back_unit_del(103),unit_del(b,119)].
+
+given #86 (A,wt=10): 114 -Hunger(Edna) | Snoring(Barbara) | Snoring(Carla) | Snoring(Fiona) | Snoring(Mary).  [resolve(41,b,31,c)].
+
+given #87 (T,wt=6): 153 Worry(Barbara) | Worry(Fiona) | -Exercise(Edna).  [back_unit_del(145),unit_del(b,151)].
+
+given #88 (T,wt=6): 158 Worry(Barbara) | Worry(Edna) | Worry(Fiona).  [back_unit_del(102),unit_del(b,151)].
+
+given #89 (T,wt=6): 174 Called_3am(Barbara) | Called_3am(Fiona) | Called_4am(Barbara).  [resolve(123,b,170,b)].
+
+given #90 (T,wt=6): 175 Called_3am(Barbara) | Called_3am(Fiona) | -Called_2am(Edna).  [resolve(123,b,54,b)].
+
+given #91 (A,wt=8): 124 -Called_1am(Edna) | Called_2am(Barbara) | Called_2am(Fiona) | Called_2am(Mary).  [back_unit_del(117),unit_del(c,120)].
+
+given #92 (T,wt=6): 176 Called_3am(Barbara) | Called_3am(Fiona) | -Called_1am(Edna).  [resolve(123,b,52,b)].
+
+given #93 (T,wt=6): 177 Called_3am(Barbara) | Called_3am(Fiona) | -Called_12am(Edna).  [resolve(123,b,49,b)].
+
+given #94 (T,wt=6): 181 Called_3am(Barbara) | Called_3am(Fiona) | -Called_2am(Barbara).  [resolve(174,c,55,b)].
+
+given #95 (T,wt=6): 182 Called_3am(Barbara) | Called_3am(Fiona) | -Called_1am(Barbara).  [resolve(174,c,53,b)].
+
+given #96 (A,wt=8): 125 -Called_12am(Edna) | Called_2am(Barbara) | Called_2am(Fiona) | Called_2am(Mary).  [back_unit_del(116),unit_del(c,120)].
+
+given #97 (T,wt=6): 183 Called_3am(Barbara) | Called_3am(Fiona) | -Called_12am(Barbara).  [resolve(174,c,50,b)].
+
+given #98 (T,wt=8): 126 Called_2am(Barbara) | Called_2am(Edna) | Called_2am(Fiona) | Called_2am(Mary).  [back_unit_del(44),unit_del(b,120)].
+
+given #99 (T,wt=8): 127 -Called_12am(Edna) | Called_1am(Barbara) | Called_1am(Fiona) | Called_1am(Mary).  [back_unit_del(115),unit_del(c,121)].
+
+given #100 (T,wt=8): 128 Called_1am(Barbara) | Called_1am(Edna) | Called_1am(Fiona) | Called_1am(Mary).  [back_unit_del(43),unit_del(b,121)].
+
+given #101 (A,wt=8): 129 Hunger(Barbara) | Hunger(Fiona) | Hunger(Mary) | -Worry(Edna).  [resolve(100,b,39,b)].
+
+given #102 (T,wt=8): 130 Hunger(Barbara) | Hunger(Fiona) | Hunger(Mary) | -Exercise(Edna).  [resolve(100,b,34,b)].
+
+given #103 (T,wt=8): 165 Coffee(Fiona) | Called_12am(Mary) | Called_1am(Mary) | Called_2am(Mary).  [back_unit_del(134),unit_del(a,152)].
+
+given #104 (T,wt=6): 194 Called_12am(Mary) | Called_1am(Mary) | Called_2am(Mary).  [resolve(165,a,75,a),merge(d),merge(e),merge(f)].
+
+given #105 (T,wt=8): 179 Worry(Barbara) | Worry(Fiona) | Exercise(Barbara) | Exercise(Mary).  [resolve(153,c,99,b)].
+
+given #106 (A,wt=10): 146 Called_1am(Fiona) | Called_2am(Fiona) | Called_3am(Fiona) | Exercise(Barbara) | Exercise(Mary).  [resolve(108,a,99,b)].
+
+given #107 (T,wt=8): 185 Called_2am(Barbara) | Called_2am(Fiona) | Called_2am(Mary) | Called_4am(Barbara).  [resolve(126,b,171,b)].
+
+given #108 (T,wt=8): 187 Called_1am(Barbara) | Called_1am(Fiona) | Called_1am(Mary) | Called_4am(Barbara).  [resolve(128,b,172,b)].
+
+given #109 (T,wt=8): 198 Worry(Fiona) | Exercise(Barbara) | Exercise(Mary) | -Coffee(Barbara).  [resolve(179,a,36,b)].
+
+given #110 (T,wt=8): 203 Called_1am(Fiona) | Called_2am(Fiona) | Called_3am(Fiona) | Exercise(Mary).  [resolve(146,d,108,a),merge(e),merge(f),merge(g)].
+
+given #111 (A,wt=10): 147 Called_12am(Edna) | Called_2am(Fiona) | Called_3am(Fiona) | Exercise(Barbara) | Exercise(Mary).  [resolve(109,a,99,b)].
+
+given #112 (T,wt=6): 213 Called_1am(Fiona) | Called_2am(Fiona) | Called_3am(Fiona).  [resolve(203,d,108,a),merge(d),merge(e),merge(f)].
+
+given #113 (T,wt=6): 221 Called_1am(Fiona) | Called_2am(Fiona) | -Called_12am(Fiona).  [resolve(213,c,49,b)].
+
+given #114 (T,wt=7): 218 Called_1am(Fiona) | Called_2am(Fiona) | m1 | -Called_2am(Mary).  [resolve(213,c,96,c)].
+
+given #115 (T,wt=7): 219 Called_1am(Fiona) | Called_2am(Fiona) | m1 | -Called_1am(Mary).  [resolve(213,c,94,c)].
+
+given #116 (A,wt=10): 148 Called_12am(Edna) | Called_1am(Edna) | Called_3am(Fiona) | Exercise(Barbara) | Exercise(Mary).  [resolve(110,a,99,b)].
+
+given #117 (T,wt=7): 220 Called_1am(Fiona) | Called_2am(Fiona) | m1 | -Called_12am(Mary).  [resolve(213,c,91,c)].
+
+given #118 (T,wt=8): 204 Called_2am(Barbara) | Called_2am(Fiona) | Called_2am(Mary) | -Called_3am(Barbara).  [resolve(185,d,56,b)].
+
+given #119 (T,wt=8): 205 Called_2am(Barbara) | Called_2am(Fiona) | Called_2am(Mary) | -Called_1am(Barbara).  [resolve(185,d,53,b)].
+
+given #120 (T,wt=8): 206 Called_2am(Barbara) | Called_2am(Fiona) | Called_2am(Mary) | -Called_12am(Barbara).  [resolve(185,d,50,b)].
+
+given #121 (A,wt=10): 149 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Exercise(Barbara) | Exercise(Mary).  [resolve(111,a,99,b)].
+
+given #122 (T,wt=8): 207 Called_1am(Barbara) | Called_1am(Fiona) | Called_1am(Mary) | -Called_3am(Barbara).  [resolve(187,d,56,b)].
+
+given #123 (T,wt=8): 208 Called_1am(Barbara) | Called_1am(Fiona) | Called_1am(Mary) | -Called_2am(Barbara).  [resolve(187,d,55,b)].
+
+given #124 (T,wt=8): 209 Called_1am(Barbara) | Called_1am(Fiona) | Called_1am(Mary) | -Called_12am(Barbara).  [resolve(187,d,50,b)].
+
+given #125 (T,wt=8): 210 Worry(Fiona) | Exercise(Barbara) | Exercise(Mary) | Coffee(Fiona).  [resolve(198,d,169,a)].
+
+given #126 (A,wt=12): 150 Snoring(Barbara) | Snoring(Carla) | Snoring(Fiona) | Snoring(Mary) | Exercise(Barbara) | Exercise(Mary).  [resolve(112,a,99,b)].
+
+given #127 (T,wt=9): 222 Called_1am(Fiona) | Called_2am(Fiona) | m1 | Called_12am(Mary) | Called_1am(Mary).  [resolve(218,d,194,c)].
+
+given #128 (T,wt=9): 233 Called_1am(Fiona) | m1 | Called_12am(Mary) | Called_1am(Mary) | -Called_12am(Fiona).  [resolve(222,b,48,b)].
+
+given #129 (T,wt=10): 166 Coffee(Fiona) | Called_12am(Mary) | Called_1am(Mary) | Called_3am(Barbara) | Called_4am(Barbara).  [back_unit_del(133),unit_del(a,152)].
+
+given #130 (T,wt=10): 167 Coffee(Fiona) | Called_12am(Mary) | Called_2am(Barbara) | Called_3am(Barbara) | Called_4am(Barbara).  [back_unit_del(132),unit_del(a,152)].
+
+given #131 (A,wt=12): 155 Worry(Barbara) | Worry(Fiona) | Called_12am(Mary) | Called_1am(Mary) | Called_3am(Edna) | Called_4am(Edna).  [back_unit_del(143),unit_del(b,151)].
+
+given #132 (T,wt=10): 168 Coffee(Fiona) | Called_1am(Barbara) | Called_2am(Barbara) | Called_3am(Barbara) | Called_4am(Barbara).  [back_unit_del(131),unit_del(a,152)].
+
+given #133 (T,wt=10): 184 Called_2am(Barbara) | Called_2am(Fiona) | Called_2am(Mary) | Called_3am(Barbara) | Called_3am(Fiona).  [resolve(126,b,175,c)].
+
+given #134 (T,wt=8): 254 Called_2am(Barbara) | Called_2am(Fiona) | Called_2am(Mary) | Called_3am(Fiona).  [resolve(184,d,204,d),merge(e),merge(f),merge(g)].
+
+given #135 (T,wt=8): 257 Called_2am(Barbara) | Called_2am(Fiona) | Called_2am(Mary) | -Called_1am(Fiona).  [resolve(254,d,52,b)].
+
+given #136 (A,wt=12): 156 Worry(Barbara) | Worry(Fiona) | Called_12am(Mary) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna).  [back_unit_del(142),unit_del(b,151)].
+
+given #137 (T,wt=8): 258 Called_2am(Barbara) | Called_2am(Fiona) | Called_2am(Mary) | -Called_12am(Fiona).  [resolve(254,d,49,b)].
+
+given #138 (T,wt=9): 255 Called_2am(Barbara) | Called_2am(Fiona) | Called_2am(Mary) | m1 | -Called_1am(Mary).  [resolve(254,d,94,c)].
+
+given #139 (T,wt=9): 256 Called_2am(Barbara) | Called_2am(Fiona) | Called_2am(Mary) | m1 | -Called_12am(Mary).  [resolve(254,d,91,c)].
+
+given #140 (T,wt=10): 186 Called_1am(Barbara) | Called_1am(Fiona) | Called_1am(Mary) | Called_3am(Barbara) | Called_3am(Fiona).  [resolve(128,b,176,c)].
+
+given #141 (A,wt=12): 157 Worry(Barbara) | Worry(Fiona) | Called_1am(Edna) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna).  [back_unit_del(141),unit_del(b,151)].
+
+given #142 (T,wt=8): 261 Called_1am(Barbara) | Called_1am(Fiona) | Called_1am(Mary) | Called_3am(Fiona).  [resolve(186,d,207,d),merge(e),merge(f),merge(g)].
+
+given #143 (T,wt=8): 266 Called_1am(Barbara) | Called_1am(Fiona) | Called_1am(Mary) | -Called_2am(Fiona).  [resolve(261,d,54,b)].
+
+given #144 (T,wt=8): 267 Called_1am(Barbara) | Called_1am(Fiona) | Called_1am(Mary) | -Called_12am(Fiona).  [resolve(261,d,49,b)].
+
+given #145 (T,wt=9): 264 Called_1am(Barbara) | Called_1am(Fiona) | Called_1am(Mary) | m1 | -Called_2am(Mary).  [resolve(261,d,96,c)].
+
+given #146 (A,wt=12): 160 Coffee(Fiona) | -Exercise(x) | Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | Called_3am(Barbara).  [back_unit_del(139),unit_del(a,152)].
+
+given #147 (T,wt=9): 265 Called_1am(Barbara) | Called_1am(Fiona) | Called_1am(Mary) | m1 | -Called_12am(Mary).  [resolve(261,d,91,c)].
+
+given #148 (T,wt=9): 268 Called_1am(Barbara) | Called_1am(Fiona) | Called_1am(Mary) | m1 | Called_12am(Mary).  [resolve(266,d,222,b),merge(d),merge(g)].
+
+given #149 (T,wt=9): 271 Called_1am(Fiona) | Called_1am(Mary) | m1 | Called_12am(Mary) | -Called_12am(Barbara).  [resolve(268,a,47,b)].
+
+given #150 (T,wt=10): 189 Hunger(Barbara) | Hunger(Fiona) | Hunger(Mary) | Worry(Barbara) | Worry(Fiona).  [resolve(129,d,158,b)].
+
+given #151 (A,wt=12): 161 Coffee(Fiona) | -Exercise(x) | Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | Called_4am(x).  [back_unit_del(138),unit_del(a,152)].
+
+given #152 (T,wt=10): 190 Hunger(Barbara) | Hunger(Fiona) | Hunger(Mary) | Exercise(Barbara) | Exercise(Mary).  [resolve(130,d,99,b)].
+
+given #153 (T,wt=10): 214 Called_12am(Edna) | Called_2am(Fiona) | Called_3am(Fiona) | Exercise(Mary) | Coffee(Fiona).  [resolve(147,d,159,b)].
+
+given #154 (T,wt=10): 217 Called_12am(Edna) | Called_2am(Fiona) | Called_3am(Fiona) | Exercise(Mary) | Called_12am(Barbara).  [resolve(147,d,109,a),merge(f),merge(g)].
+
+given #155 (T,wt=10): 223 Called_12am(Edna) | Called_1am(Edna) | Called_3am(Fiona) | Exercise(Mary) | Coffee(Fiona).  [resolve(148,d,159,b)].
+
+given #156 (A,wt=12): 162 Coffee(Fiona) | -Exercise(x) | Called_12am(Barbara) | Called_1am(Barbara) | Called_3am(x) | Called_4am(x).  [back_unit_del(137),unit_del(a,152)].
+
+given #157 (T,wt=10): 226 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Exercise(Mary) | Coffee(Fiona).  [resolve(149,d,159,b)].
+
+given #158 (T,wt=10): 253 Called_1am(Barbara) | Called_2am(Barbara) | Called_3am(Barbara) | Called_4am(Barbara) | -Exercise(Barbara).  [factor(249,a,f),merge(f),merge(g),merge(h)].
+
+given #159 (T,wt=10): 272 Hunger(Fiona) | Hunger(Mary) | Worry(Barbara) | Worry(Fiona) | -Coffee(Barbara).  [resolve(189,a,37,b)].
+
+given #160 (T,wt=10): 273 Hunger(Fiona) | Hunger(Mary) | Worry(Barbara) | Worry(Fiona) | -Exercise(Barbara).  [resolve(189,a,34,b)].
+
+given #161 (A,wt=12): 163 Coffee(Fiona) | -Exercise(x) | Called_12am(Barbara) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [back_unit_del(136),unit_del(a,152)].
+
+given #162 (T,wt=10): 275 Hunger(Fiona) | Hunger(Mary) | Exercise(Barbara) | Exercise(Mary) | -Worry(Barbara).  [resolve(190,a,39,b)].
+
+given #163 (T,wt=10): 276 Hunger(Fiona) | Hunger(Mary) | Exercise(Barbara) | Exercise(Mary) | -Coffee(Barbara).  [resolve(190,a,37,b)].
+
+given #164 (T,wt=10): 277 Called_12am(Edna) | Called_2am(Fiona) | Called_3am(Fiona) | Exercise(Mary) | Called_12am(Mary).  [resolve(214,e,77,a),merge(f),merge(g),unit_del(f,98)].
+
+given #165 (T,wt=8): 303 Called_12am(Edna) | Called_2am(Fiona) | Called_3am(Fiona) | Called_12am(Mary).  [resolve(277,d,109,a),merge(e),merge(f),merge(g)].
+
+given #166 (A,wt=12): 164 Coffee(Fiona) | -Exercise(x) | Called_1am(x) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [back_unit_del(135),unit_del(a,152)].
+
+given #167 (T,wt=8): 306 Called_12am(Edna) | Called_2am(Fiona) | Called_12am(Mary) | -Called_1am(Fiona).  [resolve(303,c,52,b)].
+
+given #168 (T,wt=8): 307 Called_12am(Edna) | Called_2am(Fiona) | Called_12am(Mary) | -Called_12am(Fiona).  [resolve(303,c,49,b)].
+
+given #169 (T,wt=9): 304 Called_12am(Edna) | Called_2am(Fiona) | Called_12am(Mary) | m1 | -Called_2am(Mary).  [resolve(303,c,96,c)].
+
+given #170 (T,wt=9): 305 Called_12am(Edna) | Called_2am(Fiona) | Called_12am(Mary) | m1 | -Called_1am(Mary).  [resolve(303,c,94,c)].
+
+given #171 (A,wt=14): 178 Snoring(Barbara) | Snoring(Carla) | Snoring(Fiona) | Snoring(Mary) | Hunger(Barbara) | Hunger(Fiona) | Hunger(Mary).  [resolve(114,a,100,b)].
+
+given #172 (T,wt=9): 309 Called_12am(Edna) | Called_2am(Fiona) | Called_12am(Mary) | m1 | Called_1am(Mary).  [resolve(304,e,194,c),merge(e)].
+
+given #173 (T,wt=9): 313 Called_12am(Edna) | Called_12am(Mary) | m1 | Called_1am(Mary) | -Called_1am(Fiona).  [resolve(309,b,51,b)].
+
+given #174 (T,wt=9): 314 Called_12am(Edna) | Called_12am(Mary) | m1 | Called_1am(Mary) | -Called_12am(Fiona).  [resolve(309,b,48,b)].
+
+given #175 (T,wt=10): 294 Hunger(Fiona) | Hunger(Mary) | Worry(Barbara) | Worry(Fiona) | Coffee(Fiona).  [resolve(272,e,169,a)].
+
+given #176 (A,wt=12): 180 Worry(Barbara) | Worry(Fiona) | Snoring(Barbara) | Snoring(Carla) | Snoring(Fiona) | Snoring(Mary).  [resolve(158,b,113,a)].
+
+given #177 (T,wt=10): 300 Hunger(Fiona) | Hunger(Mary) | Exercise(Barbara) | Exercise(Mary) | Worry(Fiona).  [resolve(275,e,179,a),merge(f),merge(g)].
+
+given #178 (T,wt=10): 301 Hunger(Fiona) | Hunger(Mary) | Exercise(Barbara) | Exercise(Mary) | Coffee(Fiona).  [resolve(276,e,169,a)].
+
+given #179 (T,wt=10): 318 Hunger(Mary) | Exercise(Barbara) | Exercise(Mary) | Worry(Fiona) | -Coffee(Fiona).  [resolve(300,a,37,b)].
+
+given #180 (T,wt=10): 319 Hunger(Mary) | Exercise(Barbara) | Exercise(Mary) | Coffee(Fiona) | -Worry(Fiona).  [resolve(301,a,39,b)].
+
+given #181 (A,wt=12): 188 Called_1am(Barbara) | Called_1am(Fiona) | Called_1am(Mary) | Called_2am(Barbara) | Called_2am(Fiona) | Called_2am(Mary).  [resolve(128,b,124,a)].
+
+given #182 (T,wt=8): 320 Hunger(Mary) | Exercise(Barbara) | Exercise(Mary) | Coffee(Fiona).  [resolve(319,e,210,a),merge(e),merge(f),merge(g)].
+
+given #183 (T,wt=10): 321 Called_1am(Barbara) | Called_1am(Fiona) | Called_1am(Mary) | Called_2am(Fiona) | Called_2am(Mary).  [resolve(188,d,208,d),merge(f),merge(g),merge(h)].
+
+given #184 (T,wt=8): 322 Called_1am(Barbara) | Called_1am(Fiona) | Called_1am(Mary) | Called_2am(Mary).  [resolve(321,d,266,d),merge(e),merge(f),merge(g)].
+
+given #185 (T,wt=7): 323 Called_1am(Barbara) | Called_1am(Fiona) | Called_1am(Mary) | m1.  [resolve(322,d,264,e),merge(d),merge(e),merge(f)].
+
+given #186 (A,wt=14): 195 Worry(Fiona) | Exercise(Barbara) | Exercise(Mary) | Called_1am(Barbara) | Called_2am(Barbara) | Called_3am(Barbara) | Called_4am(Barbara).  [resolve(179,a,82,a)].
+
+given #187 (T,wt=7): 327 Called_1am(Fiona) | Called_1am(Mary) | m1 | -Called_12am(Barbara).  [resolve(323,a,47,b)].
+
+given #188 (T,wt=8): 324 Called_1am(Barbara) | Called_1am(Fiona) | Called_1am(Mary) | -Called_12am(Mary).  [resolve(322,d,48,b)].
+
+given #189 (T,wt=9): 326 Called_1am(Fiona) | Called_1am(Mary) | m1 | Called_3am(Barbara) | Called_3am(Fiona).  [resolve(323,a,182,c)].
+
+given #190 (T,wt=9): 329 Called_1am(Fiona) | Called_1am(Mary) | m1 | Called_3am(Fiona) | -Called_2am(Barbara).  [resolve(326,d,54,b)].
+
+given #191 (A,wt=14): 196 Worry(Fiona) | Exercise(Barbara) | Exercise(Mary) | Called_12am(Mary) | Called_2am(Barbara) | Called_3am(Barbara) | Called_4am(Barbara).  [resolve(179,a,81,a)].
+
+given #192 (T,wt=9): 330 Called_1am(Fiona) | Called_1am(Mary) | m1 | Called_3am(Fiona) | -Called_1am(Barbara).  [resolve(326,d,52,b)].
+
+given #193 (T,wt=7): 332 Called_1am(Fiona) | Called_1am(Mary) | m1 | Called_3am(Fiona).  [resolve(330,e,323,a),merge(e),merge(f),merge(g)].
+
+given #194 (T,wt=7): 333 Called_1am(Fiona) | Called_1am(Mary) | m1 | -Called_2am(Mary).  [resolve(332,d,96,c),merge(d)].
+
+given #195 (T,wt=7): 334 Called_1am(Fiona) | Called_1am(Mary) | m1 | -Called_12am(Mary).  [resolve(332,d,91,c),merge(d)].
+
+given #196 (A,wt=14): 197 Worry(Fiona) | Exercise(Barbara) | Exercise(Mary) | Called_12am(Mary) | Called_1am(Mary) | Called_3am(Barbara) | Called_4am(Barbara).  [resolve(179,a,80,a)].
+
+given #197 (T,wt=7): 335 Called_1am(Fiona) | Called_1am(Mary) | m1 | -Called_2am(Fiona).  [resolve(332,d,54,b)].
+
+given #198 (T,wt=7): 336 Called_1am(Fiona) | Called_1am(Mary) | m1 | -Called_12am(Fiona).  [resolve(332,d,49,b)].
+
+given #199 (T,wt=7): 337 Called_1am(Fiona) | Called_1am(Mary) | m1 | Called_12am(Mary).  [resolve(333,d,194,c),merge(e)].
+
+given #200 (T,wt=7): 339 Called_1am(Mary) | m1 | Called_12am(Mary) | Called_12am(Edna).  [resolve(337,a,313,e),merge(e),merge(f),merge(g)].
+
+given #201 (A,wt=12): 225 Called_12am(Edna) | Called_1am(Edna) | Called_3am(Fiona) | Exercise(Mary) | Called_12am(Barbara) | Called_1am(Barbara).  [resolve(148,d,110,a),merge(g)].
+
+given #202 (T,wt=7): 340 Called_1am(Mary) | m1 | Called_12am(Mary) | -Called_12am(Fiona).  [resolve(337,a,47,b)].
+
+given #203 (T,wt=7): 341 m1 | Called_12am(Mary) | Called_12am(Edna) | Called_2am(Fiona).  [resolve(339,a,305,e),merge(d),merge(f),merge(g)].
+
+given #204 (T,wt=7): 346 m1 | Called_12am(Mary) | Called_12am(Edna) | -Called_1am(Mary).  [resolve(341,d,93,c),merge(d)].
+
+given #205 (T,wt=5): 349 m1 | Called_12am(Mary) | Called_12am(Edna).  [resolve(346,d,339,a),merge(d),merge(e),merge(f)].
+
+given #206 (A,wt=14): 227 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Exercise(Mary) | Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara).  [resolve(149,d,111,a)].
+
+given #207 (T,wt=5): 351 m1 | Called_12am(Mary) | Called_4am(Barbara).  [resolve(349,c,173,b)].
+
+given #208 (T,wt=5): 356 m1 | Called_12am(Mary) | -Called_3am(Barbara).  [resolve(351,c,56,b)].
+
+given #209 (T,wt=5): 357 m1 | Called_12am(Mary) | -Called_2am(Barbara).  [resolve(351,c,55,b)].
+
+given #210 (T,wt=5): 358 m1 | Called_12am(Mary) | -Called_1am(Barbara).  [resolve(351,c,53,b)].
+
+given #211 (A,wt=12): 228 Exercise(Barbara) | Exercise(Mary) | Coffee(Fiona) | Called_12am(Mary) | Called_2am(Fiona) | Called_3am(Fiona).  [resolve(210,a,81,a),unit_del(g,98)].
+
+given #212 (T,wt=5): 359 m1 | Called_12am(Mary) | -Called_12am(Barbara).  [resolve(351,c,50,b)].
+
+given #213 (T,wt=7): 350 m1 | Called_12am(Mary) | Called_3am(Barbara) | Called_3am(Fiona).  [resolve(349,c,177,c)].
+
+given #214 (T,wt=5): 362 m1 | Called_12am(Mary) | Called_3am(Fiona).  [resolve(350,c,356,c),merge(d),merge(e)].
+
+given #215 (T,wt=5): 363 m1 | Called_12am(Mary) | -Called_2am(Mary).  [resolve(362,c,96,c),merge(c)].
+
+given #216 (A,wt=12): 229 Exercise(Barbara) | Exercise(Mary) | Coffee(Fiona) | Called_12am(Mary) | Called_1am(Mary) | Called_3am(Fiona).  [resolve(210,a,80,a),unit_del(g,98)].
+
+given #217 (T,wt=5): 364 m1 | Called_12am(Mary) | -Called_1am(Mary).  [resolve(362,c,94,c),merge(c)].
+
+given #218 (T,wt=5): 365 m1 | Called_12am(Mary) | -Called_2am(Fiona).  [resolve(362,c,54,b)].
+
+given #219 (T,wt=5): 366 m1 | Called_12am(Mary) | -Called_1am(Fiona).  [resolve(362,c,52,b)].
+
+given #220 (T,wt=5): 367 m1 | Called_12am(Mary) | -Called_12am(Fiona).  [resolve(362,c,49,b)].
+
+given #221 (A,wt=12): 230 Snoring(Carla) | Snoring(Fiona) | Snoring(Mary) | Exercise(Barbara) | Exercise(Mary) | -Hunger(Barbara).  [resolve(150,a,41,b)].
+
+given #222 (T,wt=5): 368 m1 | Called_12am(Mary) | Called_1am(Mary).  [resolve(363,c,194,c),merge(c)].
+
+given #223 (T,wt=3): 372 m1 | Called_12am(Mary).  [resolve(368,c,364,c),merge(c),merge(d)].
+
+given #224 (T,wt=5): 373 m1 | Called_1am(Fiona) | Called_1am(Mary).  [resolve(372,b,334,d),merge(d)].
+
+given #225 (T,wt=5): 375 m1 | Called_1am(Fiona) | Called_2am(Fiona).  [resolve(372,b,220,d),merge(d)].
+
+given #226 (A,wt=12): 231 Snoring(Carla) | Snoring(Fiona) | Snoring(Mary) | Exercise(Barbara) | Exercise(Mary) | -Worry(Barbara).  [resolve(150,a,40,b)].
+
+given #227 (T,wt=5): 376 m1 | Called_1am(Mary) | -Called_12am(Mary).  [resolve(373,b,89,c),merge(c)].
+
+given #228 (T,wt=3): 382 m1 | Called_1am(Mary).  [resolve(376,c,372,b),merge(c)].
+
+given #229 (T,wt=3): 383 m1 | -Called_12am(Mary).  [resolve(382,b,47,b)].
+
+given #230 (T,wt=1): 384 m1.  [resolve(383,b,372,b),merge(b)].
+
+given #231 (A,wt=12): 232 Snoring(Carla) | Snoring(Fiona) | Snoring(Mary) | Exercise(Barbara) | Exercise(Mary) | -Coffee(Barbara).  [resolve(150,a,38,b)].
+
+given #232 (T,wt=6): 385 Called_12am(Mary) | Called_1am(Mary) | Called_3am(Fiona).  [back_unit_del(107),unit_del(a,384)].
+
+given #233 (T,wt=6): 386 Called_12am(Mary) | Called_2am(Fiona) | Called_3am(Fiona).  [back_unit_del(106),unit_del(a,384)].
+
+given #234 (T,wt=6): 388 Called_12am(Mary) | Called_1am(Mary) | -Called_2am(Fiona).  [resolve(385,c,54,b)].
+
+given #235 (T,wt=6): 389 Called_12am(Mary) | Called_1am(Mary) | -Called_1am(Fiona).  [resolve(385,c,52,b)].
+
+given #236 (A,wt=18): 234 Called_12am(Mary) | Called_1am(Mary) | Called_3am(Barbara) | Called_4am(Barbara) | -Exercise(x) | Called_1am(x) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [resolve(166,a,67,b)].
+
+given #237 (T,wt=6): 390 Called_12am(Mary) | Called_1am(Mary) | -Called_12am(Fiona).  [resolve(385,c,49,b)].
+
+given #238 (T,wt=6): 391 Called_12am(Mary) | Called_2am(Fiona) | -Called_1am(Fiona).  [resolve(386,c,52,b)].
+
+given #239 (T,wt=6): 392 Called_12am(Mary) | Called_2am(Fiona) | -Called_12am(Fiona).  [resolve(386,c,49,b)].
+
+given #240 (T,wt=12): 246 Called_12am(Mary) | Called_2am(Barbara) | Called_3am(Barbara) | Called_4am(Barbara) | -Exercise(Barbara) | Called_12am(Fiona).  [factor(242,b,g),merge(g),merge(h)].
+
+given #241 (A,wt=18): 235 Called_12am(Mary) | Called_1am(Mary) | Called_3am(Barbara) | Called_4am(Barbara) | -Exercise(x) | Called_12am(Fiona) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [resolve(166,a,66,b)].
+
+given #242 (T,wt=12): 247 Worry(Fiona) | Called_12am(Mary) | Called_1am(Mary) | Called_3am(Edna) | Called_4am(Edna) | -Coffee(Barbara).  [resolve(155,a,36,b)].
+
+given #243 (T,wt=12): 248 Worry(Fiona) | Called_12am(Mary) | Called_1am(Mary) | Called_3am(Edna) | Called_4am(Edna) | -Exercise(Barbara).  [resolve(155,a,33,b)].
+
+given #244 (T,wt=12): 259 Worry(Fiona) | Called_12am(Mary) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | -Coffee(Barbara).  [resolve(156,a,36,b)].
+
+given #245 (T,wt=12): 260 Worry(Fiona) | Called_12am(Mary) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | -Exercise(Barbara).  [resolve(156,a,33,b)].
+
+given #246 (A,wt=18): 236 Called_12am(Mary) | Called_1am(Mary) | Called_3am(Barbara) | Called_4am(Barbara) | -Exercise(x) | Called_12am(Fiona) | Called_1am(Fiona) | Called_3am(x) | Called_4am(x).  [resolve(166,a,65,b)].
+
+given #247 (T,wt=12): 262 Worry(Fiona) | Called_1am(Edna) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | -Coffee(Barbara).  [resolve(157,a,36,b)].
+
+given #248 (T,wt=12): 263 Worry(Fiona) | Called_1am(Edna) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | -Exercise(Barbara).  [resolve(157,a,33,b)].
+
+given #249 (T,wt=12): 287 Coffee(Fiona) | Called_12am(Barbara) | Called_1am(Barbara) | Called_12am(Edna) | Called_2am(Fiona) | Called_3am(Fiona).  [resolve(162,b,217,d),merge(i),unit_del(d,73),unit_del(e,74)].
+
+given #250 (T,wt=12): 298 Coffee(Fiona) | Called_12am(Barbara) | Called_2am(Mary) | Called_12am(Edna) | Called_2am(Fiona) | Called_3am(Fiona).  [resolve(163,b,217,d),merge(i),unit_del(d,73),unit_del(e,74)].
+
+given #251 (A,wt=18): 237 Called_12am(Mary) | Called_1am(Mary) | Called_3am(Barbara) | Called_4am(Barbara) | -Exercise(x) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Fiona) | Called_4am(x).  [resolve(166,a,64,b)].
+
+given #252 (T,wt=12): 315 Worry(Barbara) | Worry(Fiona) | Snoring(Carla) | Snoring(Fiona) | Snoring(Mary) | -Hunger(Barbara).  [resolve(180,c,41,b)].
+
+given #253 (T,wt=12): 316 Worry(Barbara) | Worry(Fiona) | Snoring(Carla) | Snoring(Fiona) | Snoring(Mary) | -Coffee(Barbara).  [resolve(180,c,38,b)].
+
+given #254 (T,wt=12): 317 Worry(Barbara) | Worry(Fiona) | Snoring(Carla) | Snoring(Fiona) | Snoring(Mary) | -Exercise(Barbara).  [resolve(180,c,35,b)].
+
+given #255 (T,wt=12): 344 Called_12am(Edna) | Called_1am(Edna) | Called_3am(Fiona) | Called_12am(Barbara) | Called_1am(Barbara) | Coffee(Fiona).  [resolve(225,d,162,b),merge(g),merge(h),unit_del(g,73),unit_del(h,74)].
+
+given #256 (A,wt=14): 240 Called_12am(Mary) | Called_1am(Mary) | Called_3am(Barbara) | Called_4am(Barbara) | -Exercise(Barbara) | Called_12am(Fiona) | Called_1am(Fiona).  [factor(236,c,h),merge(h)].
+
+given #257 (T,wt=12): 381 Snoring(Carla) | Snoring(Fiona) | Snoring(Mary) | Exercise(Barbara) | Exercise(Mary) | Worry(Fiona).  [resolve(231,f,179,a),merge(g),merge(h)].
+
+given #258 (T,wt=12): 387 Snoring(Carla) | Snoring(Fiona) | Snoring(Mary) | Exercise(Barbara) | Exercise(Mary) | Coffee(Fiona).  [resolve(232,f,169,a)].
+
+given #259 (T,wt=12): 394 Worry(Fiona) | Called_12am(Mary) | Called_1am(Mary) | Called_3am(Edna) | Called_4am(Edna) | Coffee(Fiona).  [resolve(247,f,169,a)].
+
+given #260 (T,wt=12): 396 Worry(Fiona) | Called_12am(Mary) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Coffee(Fiona).  [resolve(259,f,169,a)].
+
+given #261 (A,wt=18): 241 Called_12am(Mary) | Called_2am(Barbara) | Called_3am(Barbara) | Called_4am(Barbara) | -Exercise(x) | Called_1am(x) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [resolve(167,a,67,b)].
+
+given #262 (T,wt=12): 399 Worry(Fiona) | Called_1am(Edna) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Coffee(Fiona).  [resolve(262,f,169,a)].
+
+given #263 (T,wt=12): 408 Worry(Barbara) | Worry(Fiona) | Snoring(Carla) | Snoring(Fiona) | Snoring(Mary) | Coffee(Fiona).  [resolve(316,f,169,a)].
+
+given #264 (T,wt=14): 269 Coffee(Fiona) | Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | Called_3am(Barbara) | Exercise(Barbara) | Exercise(Mary).  [resolve(160,b,99,b)].
+
+given #265 (T,wt=14): 274 Coffee(Fiona) | Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | Called_4am(Edna) | Exercise(Barbara) | Exercise(Mary).  [resolve(161,b,99,b)].
+
+given #266 (A,wt=18): 242 Called_12am(Mary) | Called_2am(Barbara) | Called_3am(Barbara) | Called_4am(Barbara) | -Exercise(x) | Called_12am(Fiona) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [resolve(167,a,66,b)].
+
+given #267 (T,wt=14): 288 Coffee(Fiona) | Called_12am(Barbara) | Called_1am(Barbara) | Called_3am(Edna) | Called_4am(Edna) | Exercise(Barbara) | Exercise(Mary).  [resolve(162,b,99,b)].
+
+given #268 (T,wt=14): 299 Coffee(Fiona) | Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Exercise(Barbara) | Exercise(Mary).  [resolve(163,b,99,b)].
+
+given #269 (T,wt=14): 308 Coffee(Fiona) | Called_1am(Edna) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Exercise(Barbara) | Exercise(Mary).  [resolve(164,b,99,b)].
+
+given #270 (T,wt=14): 310 Snoring(Carla) | Snoring(Fiona) | Snoring(Mary) | Hunger(Barbara) | Hunger(Fiona) | Hunger(Mary) | -Worry(Barbara).  [resolve(178,a,40,b)].
+
+given #271 (A,wt=18): 243 Called_12am(Mary) | Called_2am(Barbara) | Called_3am(Barbara) | Called_4am(Barbara) | -Exercise(x) | Called_12am(Fiona) | Called_1am(Fiona) | Called_3am(x) | Called_4am(x).  [resolve(167,a,65,b)].
+
+given #272 (T,wt=14): 311 Snoring(Carla) | Snoring(Fiona) | Snoring(Mary) | Hunger(Barbara) | Hunger(Fiona) | Hunger(Mary) | -Coffee(Barbara).  [resolve(178,a,38,b)].
+
+given #273 (T,wt=14): 312 Snoring(Carla) | Snoring(Fiona) | Snoring(Mary) | Hunger(Barbara) | Hunger(Fiona) | Hunger(Mary) | -Exercise(Barbara).  [resolve(178,a,35,b)].
+
+given #274 (T,wt=14): 328 Exercise(Barbara) | Exercise(Mary) | Called_1am(Barbara) | Called_2am(Barbara) | Called_3am(Barbara) | Called_4am(Barbara) | -Coffee(Fiona).  [resolve(195,a,36,b)].
+
+given #275 (T,wt=12): 460 Exercise(Barbara) | Exercise(Mary) | Called_1am(Barbara) | Called_2am(Barbara) | Called_3am(Barbara) | Called_4am(Barbara).  [resolve(328,g,168,a),merge(g),merge(h),merge(i),merge(j)].
+
+given #276 (A,wt=18): 244 Called_12am(Mary) | Called_2am(Barbara) | Called_3am(Barbara) | Called_4am(Barbara) | -Exercise(x) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Fiona) | Called_4am(x).  [resolve(167,a,64,b)].
+
+given #277 (T,wt=10): 464 Exercise(Mary) | Called_1am(Barbara) | Called_2am(Barbara) | Called_3am(Barbara) | Called_4am(Barbara).  [resolve(460,a,253,e),merge(f),merge(g),merge(h),merge(i)].
+
+given #278 (T,wt=14): 331 Exercise(Barbara) | Exercise(Mary) | Called_12am(Mary) | Called_2am(Barbara) | Called_3am(Barbara) | Called_4am(Barbara) | -Coffee(Fiona).  [resolve(196,a,36,b)].
+
+given #279 (T,wt=12): 468 Exercise(Barbara) | Exercise(Mary) | Called_12am(Mary) | Called_2am(Barbara) | Called_3am(Barbara) | Called_4am(Barbara).  [resolve(331,g,167,a),merge(g),merge(h),merge(i),merge(j)].
+
+given #280 (T,wt=12): 472 Exercise(Mary) | Called_12am(Mary) | Called_2am(Barbara) | Called_3am(Barbara) | Called_4am(Barbara) | Called_12am(Fiona).  [resolve(468,a,246,e),merge(f),merge(g),merge(h),merge(i)].
+
+given #281 (A,wt=18): 249 Called_1am(Barbara) | Called_2am(Barbara) | Called_3am(Barbara) | Called_4am(Barbara) | -Exercise(x) | Called_1am(x) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [resolve(168,a,67,b)].
+
+given #282 (T,wt=12): 474 Called_12am(Mary) | Called_2am(Barbara) | Called_3am(Barbara) | Called_4am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona).  [resolve(472,a,243,e),merge(f),merge(g),merge(h),merge(i),merge(j),unit_del(g,73),unit_del(h,74)].
+
+given #283 (T,wt=12): 475 Called_12am(Mary) | Called_2am(Barbara) | Called_3am(Barbara) | Called_4am(Barbara) | Called_12am(Fiona) | Called_2am(Mary).  [resolve(472,a,242,e),merge(f),merge(g),merge(h),merge(i),merge(j),unit_del(g,73),unit_del(h,74)].
+
+given #284 (T,wt=12): 476 Called_1am(Barbara) | Called_2am(Barbara) | Called_3am(Barbara) | Called_4am(Barbara) | Called_1am(Mary) | Called_2am(Mary).  [resolve(249,e,464,a),merge(i),merge(j),merge(k),merge(l),unit_del(g,73),unit_del(h,74)].
+
+given #285 (T,wt=12): 477 Called_12am(Mary) | Called_2am(Barbara) | Called_3am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona) | -Called_1am(Barbara).  [resolve(474,d,53,b)].
+
+given #286 (A,wt=18): 250 Called_1am(Barbara) | Called_2am(Barbara) | Called_3am(Barbara) | Called_4am(Barbara) | -Exercise(x) | Called_12am(Fiona) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [resolve(168,a,66,b)].
+
+given #287 (T,wt=12): 478 Called_12am(Mary) | Called_2am(Barbara) | Called_3am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona) | -Called_12am(Barbara).  [resolve(474,d,50,b)].
+
+given #288 (T,wt=12): 479 Called_12am(Mary) | Called_2am(Barbara) | Called_3am(Barbara) | Called_12am(Fiona) | Called_2am(Mary) | -Called_1am(Barbara).  [resolve(475,d,53,b)].
+
+given #289 (T,wt=12): 480 Called_12am(Mary) | Called_2am(Barbara) | Called_3am(Barbara) | Called_12am(Fiona) | Called_2am(Mary) | -Called_12am(Barbara).  [resolve(475,d,50,b)].
+
+given #290 (T,wt=12): 481 Called_1am(Barbara) | Called_2am(Barbara) | Called_3am(Barbara) | Called_1am(Mary) | Called_2am(Mary) | -Called_12am(Barbara).  [resolve(476,d,50,b)].
+
+given #291 (A,wt=18): 251 Called_1am(Barbara) | Called_2am(Barbara) | Called_3am(Barbara) | Called_4am(Barbara) | -Exercise(x) | Called_12am(Fiona) | Called_1am(Fiona) | Called_3am(x) | Called_4am(x).  [resolve(168,a,65,b)].
+
+given #292 (T,wt=12): 482 Called_1am(Barbara) | Called_2am(Barbara) | Called_3am(Barbara) | Called_4am(Barbara) | Called_12am(Fiona) | Called_2am(Mary).  [resolve(250,e,464,a),merge(i),merge(j),merge(k),merge(l),unit_del(g,73),unit_del(h,74)].
+
+given #293 (T,wt=12): 483 Called_1am(Barbara) | Called_2am(Barbara) | Called_3am(Barbara) | Called_4am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona).  [resolve(251,e,464,a),merge(i),merge(j),merge(k),merge(l),unit_del(g,73),unit_del(h,74)].
+
+given #294 (T,wt=12): 484 Called_1am(Barbara) | Called_2am(Barbara) | Called_3am(Barbara) | Called_12am(Fiona) | Called_2am(Mary) | -Called_12am(Barbara).  [resolve(482,d,50,b)].
+
+given #295 (T,wt=12): 485 Called_1am(Barbara) | Called_2am(Barbara) | Called_3am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona) | -Called_12am(Barbara).  [resolve(483,d,50,b)].
+
+given #296 (A,wt=18): 278 Called_12am(Edna) | Called_2am(Fiona) | Called_3am(Fiona) | Exercise(Mary) | -Exercise(x) | Called_1am(x) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [resolve(214,e,67,b)].
+
+given #297 (T,wt=14): 338 Exercise(Barbara) | Exercise(Mary) | Called_12am(Mary) | Called_1am(Mary) | Called_3am(Barbara) | Called_4am(Barbara) | -Coffee(Fiona).  [resolve(197,a,36,b)].
+
+given #298 (T,wt=12): 486 Exercise(Barbara) | Exercise(Mary) | Called_12am(Mary) | Called_1am(Mary) | Called_3am(Barbara) | Called_4am(Barbara).  [resolve(338,g,166,a),merge(g),merge(h),merge(i),merge(j)].
+
+given #299 (T,wt=14): 355 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | Coffee(Fiona).  [resolve(227,d,162,b),merge(h),merge(i),unit_del(h,73),unit_del(i,74)].
+
+given #300 (T,wt=14): 371 Snoring(Carla) | Snoring(Fiona) | Snoring(Mary) | Exercise(Barbara) | Exercise(Mary) | Hunger(Fiona) | Hunger(Mary).  [resolve(230,f,190,a),merge(h),merge(i)].
+
+given #301 (A,wt=18): 279 Called_12am(Edna) | Called_2am(Fiona) | Called_3am(Fiona) | Exercise(Mary) | -Exercise(x) | Called_12am(Fiona) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [resolve(214,e,66,b)].
+
+given #302 (T,wt=14): 400 Worry(Fiona) | Called_1am(Edna) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Called_12am(Edna) | Exercise(Mary).  [resolve(263,f,149,d),merge(g),merge(h)].
+
+given #303 (T,wt=14): 405 Called_12am(Barbara) | Called_2am(Mary) | Called_12am(Edna) | Called_2am(Fiona) | Called_3am(Fiona) | -Exercise(Mary) | Called_1am(Mary).  [factor(403,b,h),unit_del(h,73),unit_del(i,74)].
+
+given #304 (T,wt=12): 497 Called_12am(Barbara) | Called_2am(Mary) | Called_12am(Edna) | Called_2am(Fiona) | Called_3am(Fiona) | Called_1am(Mary).  [resolve(405,f,217,d),merge(g),merge(h),merge(i),merge(j)].
+
+given #305 (T,wt=12): 498 Called_12am(Barbara) | Called_2am(Mary) | Called_12am(Edna) | Called_2am(Fiona) | Called_1am(Mary) | -Called_1am(Fiona).  [resolve(497,e,52,b)].
+
+given #306 (A,wt=18): 284 Called_12am(Edna) | Called_1am(Edna) | Called_3am(Fiona) | Exercise(Mary) | -Exercise(x) | Called_1am(x) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [resolve(223,e,67,b)].
+
+given #307 (T,wt=12): 499 Called_12am(Barbara) | Called_2am(Mary) | Called_12am(Edna) | Called_2am(Fiona) | Called_1am(Mary) | -Called_12am(Fiona).  [resolve(497,e,49,b)].
+
+given #308 (T,wt=14): 406 Called_12am(Barbara) | Called_2am(Mary) | Called_12am(Edna) | Called_2am(Fiona) | Called_3am(Fiona) | -Exercise(Mary) | Called_12am(Fiona).  [factor(404,b,h),unit_del(h,73),unit_del(i,74)].
+
+given #309 (T,wt=12): 501 Called_12am(Barbara) | Called_2am(Mary) | Called_12am(Edna) | Called_2am(Fiona) | Called_3am(Fiona) | Called_12am(Fiona).  [resolve(406,f,217,d),merge(g),merge(h),merge(i),merge(j)].
+
+given #310 (T,wt=12): 502 Called_12am(Barbara) | Called_2am(Mary) | Called_12am(Edna) | Called_2am(Fiona) | Called_12am(Fiona) | -Called_1am(Fiona).  [resolve(501,e,52,b)].
+
+given #311 (A,wt=18): 285 Called_12am(Edna) | Called_1am(Edna) | Called_3am(Fiona) | Exercise(Mary) | -Exercise(x) | Called_12am(Fiona) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [resolve(223,e,66,b)].
+
+given #312 (T,wt=14): 407 Worry(Barbara) | Worry(Fiona) | Snoring(Carla) | Snoring(Fiona) | Snoring(Mary) | Hunger(Fiona) | Hunger(Mary).  [resolve(315,f,189,a),merge(h),merge(i)].
+
+given #313 (T,wt=14): 450 Called_1am(Edna) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Exercise(Barbara) | Exercise(Mary) | -Exercise(Edna).  [factor(446,a,h),merge(h),merge(i),merge(j)].
+
+given #314 (T,wt=12): 503 Called_1am(Edna) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Exercise(Barbara) | Exercise(Mary).  [resolve(450,g,99,b),merge(g),merge(h)].
+
+given #315 (T,wt=12): 505 Called_1am(Edna) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Exercise(Mary) | Worry(Fiona).  [resolve(503,e,263,f),merge(g),merge(h),merge(i),merge(j)].
+
+given #316 (A,wt=18): 286 Called_12am(Edna) | Called_1am(Edna) | Called_3am(Fiona) | Exercise(Mary) | -Exercise(x) | Called_12am(Fiona) | Called_1am(Fiona) | Called_3am(x) | Called_4am(x).  [resolve(223,e,65,b)].
+
+given #317 (T,wt=12): 507 Called_1am(Edna) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Exercise(Mary) | Coffee(Fiona).  [resolve(503,e,159,b)].
+
+given #318 (T,wt=12): 511 Called_1am(Edna) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Exercise(Mary) | -Coffee(Fiona).  [resolve(505,f,36,b)].
+
+given #319 (T,wt=10): 517 Called_1am(Edna) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Exercise(Mary).  [resolve(511,f,507,f),merge(f),merge(g),merge(h),merge(i),merge(j)].
+
+given #320 (T,wt=14): 455 Snoring(Carla) | Snoring(Fiona) | Snoring(Mary) | Hunger(Barbara) | Hunger(Fiona) | Hunger(Mary) | Coffee(Fiona).  [resolve(311,g,169,a)].
+
+given #321 (A,wt=18): 289 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Exercise(Mary) | -Exercise(x) | Called_1am(x) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [resolve(226,e,67,b)].
+
+given #322 (T,wt=14): 490 Exercise(Mary) | Called_12am(Mary) | Called_1am(Mary) | Called_3am(Barbara) | Called_4am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona).  [resolve(486,a,240,e),merge(f),merge(g),merge(h),merge(i)].
+
+given #323 (T,wt=12): 522 Called_12am(Mary) | Called_1am(Mary) | Called_3am(Barbara) | Called_4am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona).  [resolve(490,a,236,e),merge(g),merge(h),merge(i),merge(j),merge(k),merge(l),unit_del(g,73),unit_del(h,74)].
+
+given #324 (T,wt=12): 523 Called_12am(Mary) | Called_1am(Mary) | Called_3am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona) | -Called_2am(Barbara).  [resolve(522,d,55,b)].
+
+given #325 (T,wt=12): 524 Called_12am(Mary) | Called_1am(Mary) | Called_3am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona) | -Called_1am(Barbara).  [resolve(522,d,53,b)].
+
+given #326 (A,wt=18): 290 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Exercise(Mary) | -Exercise(x) | Called_12am(Fiona) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [resolve(226,e,66,b)].
+
+given #327 (T,wt=12): 525 Called_12am(Mary) | Called_1am(Mary) | Called_3am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona) | -Called_12am(Barbara).  [resolve(522,d,50,b)].
+
+given #328 (T,wt=14): 518 Called_1am(Edna) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Coffee(Fiona) | Called_1am(Mary) | Called_2am(Mary).  [resolve(517,e,164,b),unit_del(h,73),unit_del(i,74)].
+
+given #329 (T,wt=14): 519 Called_1am(Edna) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Coffee(Fiona) | Called_12am(Barbara) | Called_2am(Mary).  [resolve(517,e,163,b),unit_del(h,73),unit_del(i,74)].
+
+given #330 (T,wt=14): 520 Called_1am(Edna) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Coffee(Fiona) | Called_12am(Barbara) | Called_1am(Barbara).  [resolve(517,e,162,b),unit_del(h,73),unit_del(i,74)].
+
+given #331 (A,wt=18): 291 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Exercise(Mary) | -Exercise(x) | Called_12am(Fiona) | Called_1am(Fiona) | Called_3am(x) | Called_4am(x).  [resolve(226,e,65,b)].
+
+given #332 (T,wt=14): 531 Called_1am(Edna) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Called_1am(Mary) | Called_2am(Mary) | -Exercise(Edna).  [factor(527,a,h),merge(h),merge(i),merge(j)].
+
+given #333 (T,wt=14): 532 Called_1am(Edna) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Called_1am(Mary) | Called_2am(Mary) | -Exercise(Mary).  [factor(527,e,h),merge(h),unit_del(h,73),unit_del(i,74)].
+
+given #334 (T,wt=12): 545 Called_1am(Edna) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Called_1am(Mary) | Called_2am(Mary).  [resolve(532,g,517,e),merge(g),merge(h),merge(i),merge(j)].
+
+given #335 (T,wt=12): 546 Called_1am(Edna) | Called_2am(Edna) | Called_3am(Edna) | Called_1am(Mary) | Called_2am(Mary) | -Called_12am(Edna).  [resolve(545,d,50,b)].
+
+given #336 (A,wt=18): 292 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Exercise(Mary) | -Exercise(x) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Fiona) | Called_4am(x).  [resolve(226,e,64,b)].
+
+given #337 (T,wt=14): 537 Called_1am(Edna) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Called_12am(Barbara) | Called_2am(Mary) | -Exercise(Edna).  [factor(533,a,h),merge(h),merge(i),merge(j)].
+
+given #338 (T,wt=14): 543 Called_1am(Edna) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Called_12am(Barbara) | Called_1am(Barbara) | -Exercise(Edna).  [factor(539,a,h),merge(h),merge(i),merge(j)].
+
+given #339 (T,wt=16): 295 Hunger(Fiona) | Hunger(Mary) | Worry(Barbara) | Worry(Fiona) | Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Exercise(Mary).  [resolve(273,e,149,d)].
+
+given #340 (T,wt=16): 296 Hunger(Fiona) | Hunger(Mary) | Worry(Barbara) | Worry(Fiona) | Called_12am(Edna) | Called_1am(Edna) | Called_3am(Fiona) | Exercise(Mary).  [resolve(273,e,148,d)].
+
+given #341 (A,wt=16): 297 Hunger(Fiona) | Hunger(Mary) | Worry(Barbara) | Worry(Fiona) | Called_12am(Edna) | Called_2am(Fiona) | Called_3am(Fiona) | Exercise(Mary).  [resolve(273,e,147,d)].
+
+given #342 (T,wt=16): 415 Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | Called_3am(Barbara) | Exercise(Barbara) | Exercise(Mary) | Hunger(Mary) | Worry(Fiona).  [resolve(269,a,318,e),merge(h),merge(i)].
+
+given #343 (T,wt=16): 420 Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | Called_4am(Edna) | Exercise(Barbara) | Exercise(Mary) | Hunger(Mary) | Worry(Fiona).  [resolve(274,a,318,e),merge(h),merge(i)].
+
+given #344 (T,wt=16): 430 Called_12am(Barbara) | Called_1am(Barbara) | Called_3am(Edna) | Called_4am(Edna) | Exercise(Barbara) | Exercise(Mary) | Hunger(Mary) | Worry(Fiona).  [resolve(288,a,318,e),merge(h),merge(i)].
+
+given #345 (T,wt=16): 438 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Exercise(Barbara) | Exercise(Mary) | Hunger(Mary) | Worry(Fiona).  [resolve(299,a,318,e),merge(h),merge(i)].
+
+given #346 (A,wt=20): 401 Called_12am(Barbara) | Called_1am(Barbara) | Called_12am(Edna) | Called_2am(Fiona) | Called_3am(Fiona) | -Exercise(x) | Called_1am(x) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [resolve(287,a,67,b)].
+
+given #347 (T,wt=16): 444 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Exercise(Barbara) | Exercise(Mary) | -Exercise(Edna) | Called_12am(Fiona).  [factor(440,b,i),merge(i),merge(j)].
+
+given #348 (T,wt=14): 551 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Exercise(Barbara) | Exercise(Mary) | Called_12am(Fiona).  [resolve(444,g,99,b),merge(h),merge(i)].
+
+given #349 (T,wt=14): 557 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Exercise(Mary) | Called_12am(Fiona) | Coffee(Fiona).  [resolve(551,e,159,b)].
+
+given #350 (T,wt=14): 565 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Exercise(Mary) | Called_12am(Fiona) | -Exercise(Edna).  [factor(562,b,h),merge(h),merge(i)].
+
+given #351 (A,wt=20): 402 Called_12am(Barbara) | Called_1am(Barbara) | Called_12am(Edna) | Called_2am(Fiona) | Called_3am(Fiona) | -Exercise(x) | Called_12am(Fiona) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [resolve(287,a,66,b)].
+
+given #352 (T,wt=16): 526 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Exercise(Mary) | Called_12am(Fiona) | Called_2am(Barbara) | Called_3am(Barbara) | Called_4am(Barbara).  [resolve(290,e,149,d),merge(i),merge(j),merge(k),merge(l)].
+
+given #353 (T,wt=16): 538 Called_1am(Edna) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Called_12am(Barbara) | Called_2am(Mary) | -Exercise(Mary) | Called_12am(Fiona).  [factor(534,f,i),unit_del(i,73),unit_del(j,74)].
+
+given #354 (T,wt=14): 568 Called_1am(Edna) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Called_12am(Barbara) | Called_2am(Mary) | Called_12am(Fiona).  [resolve(538,g,517,e),merge(h),merge(i),merge(j),merge(k)].
+
+given #355 (T,wt=14): 569 Called_1am(Edna) | Called_2am(Edna) | Called_3am(Edna) | Called_12am(Barbara) | Called_2am(Mary) | Called_12am(Fiona) | -Called_12am(Edna).  [resolve(568,d,50,b)].
+
+given #356 (A,wt=20): 403 Called_12am(Barbara) | Called_2am(Mary) | Called_12am(Edna) | Called_2am(Fiona) | Called_3am(Fiona) | -Exercise(x) | Called_1am(x) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [resolve(298,a,67,b)].
+
+given #357 (T,wt=16): 544 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Exercise(Mary) | Called_12am(Fiona) | Called_1am(Fiona) | Called_3am(Barbara) | Called_4am(Barbara).  [resolve(291,e,149,d),merge(i),merge(j),merge(k),merge(l)].
+
+given #358 (T,wt=16): 547 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Exercise(Mary) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Fiona) | Called_4am(Barbara).  [resolve(292,e,149,d),merge(i),merge(j),merge(k),merge(l)].
+
+given #359 (T,wt=16): 548 Hunger(Mary) | Worry(Barbara) | Worry(Fiona) | Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Exercise(Mary) | -Coffee(Fiona).  [resolve(295,a,37,b)].
+
+given #360 (T,wt=14): 576 Hunger(Mary) | Worry(Barbara) | Worry(Fiona) | Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Exercise(Mary).  [resolve(548,h,226,e),merge(h),merge(i),merge(j),merge(k)].
+
+given #361 (A,wt=18): 409 Worry(Barbara) | Worry(Fiona) | Snoring(Carla) | Snoring(Fiona) | Snoring(Mary) | Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Exercise(Mary).  [resolve(317,f,149,d)].
+
+given #362 (T,wt=16): 549 Hunger(Mary) | Worry(Barbara) | Worry(Fiona) | Called_12am(Edna) | Called_1am(Edna) | Called_3am(Fiona) | Exercise(Mary) | -Coffee(Fiona).  [resolve(296,a,37,b)].
+
+given #363 (T,wt=14): 577 Hunger(Mary) | Worry(Barbara) | Worry(Fiona) | Called_12am(Edna) | Called_1am(Edna) | Called_3am(Fiona) | Exercise(Mary).  [resolve(549,h,223,e),merge(h),merge(i),merge(j),merge(k)].
+
+given #364 (T,wt=16): 550 Hunger(Mary) | Worry(Barbara) | Worry(Fiona) | Called_12am(Edna) | Called_2am(Fiona) | Called_3am(Fiona) | Exercise(Mary) | -Coffee(Fiona).  [resolve(297,a,37,b)].
+
+given #365 (T,wt=14): 578 Hunger(Mary) | Worry(Barbara) | Worry(Fiona) | Called_12am(Edna) | Called_2am(Fiona) | Called_3am(Fiona) | Exercise(Mary).  [resolve(550,h,214,e),merge(h),merge(i),merge(j),merge(k)].
+
+given #366 (A,wt=18): 410 Worry(Barbara) | Worry(Fiona) | Snoring(Carla) | Snoring(Fiona) | Snoring(Mary) | Called_12am(Edna) | Called_1am(Edna) | Called_3am(Fiona) | Exercise(Mary).  [resolve(317,f,148,d)].
+
+given #367 (T,wt=16): 555 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Exercise(Mary) | Called_12am(Fiona) | Worry(Fiona) | Called_12am(Mary).  [resolve(551,e,260,f),merge(i),merge(j),merge(k)].
+
+given #368 (T,wt=16): 558 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Exercise(Mary) | Called_12am(Fiona) | Called_1am(Barbara) | Called_2am(Barbara).  [resolve(551,e,111,a),merge(g)].
+
+given #369 (T,wt=16): 559 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Exercise(Mary) | Called_12am(Fiona) | Called_1am(Barbara) | Called_3am(Fiona).  [resolve(551,e,110,a),merge(g)].
+
+given #370 (T,wt=16): 560 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Exercise(Mary) | Called_12am(Fiona) | Called_2am(Fiona) | Called_3am(Fiona).  [resolve(551,e,109,a),merge(g)].
+
+given #371 (A,wt=18): 411 Worry(Barbara) | Worry(Fiona) | Snoring(Carla) | Snoring(Fiona) | Snoring(Mary) | Called_12am(Edna) | Called_2am(Fiona) | Called_3am(Fiona) | Exercise(Mary).  [resolve(317,f,147,d)].
+
+given #372 (T,wt=16): 579 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Exercise(Mary) | Called_12am(Fiona) | Called_12am(Mary) | -Coffee(Fiona).  [resolve(555,g,36,b)].
+
+given #373 (T,wt=14): 588 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Exercise(Mary) | Called_12am(Fiona) | Called_12am(Mary).  [resolve(579,h,557,g),merge(h),merge(i),merge(j),merge(k),merge(l),merge(m)].
+
+given #374 (T,wt=16): 582 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Called_12am(Fiona) | Called_1am(Barbara) | Called_2am(Barbara) | Coffee(Fiona).  [resolve(558,e,162,b),merge(i),merge(j),unit_del(i,73),unit_del(j,74)].
+
+given #375 (T,wt=16): 585 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Called_12am(Fiona) | Called_1am(Barbara) | Called_3am(Fiona) | Coffee(Fiona).  [resolve(559,e,162,b),merge(i),merge(j),unit_del(i,73),unit_del(j,74)].
+
+given #376 (A,wt=20): 412 Called_12am(Edna) | Called_1am(Edna) | Called_3am(Fiona) | Called_12am(Barbara) | Called_1am(Barbara) | -Exercise(x) | Called_1am(x) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [resolve(344,f,67,b)].
+
+given #377 (T,wt=14): 601 Called_12am(Edna) | Called_1am(Edna) | Called_3am(Fiona) | Called_12am(Barbara) | Called_1am(Barbara) | Called_1am(Mary) | Called_2am(Mary).  [resolve(412,f,225,d),merge(j),merge(k),merge(l),merge(m),merge(n),unit_del(h,73),unit_del(i,74)].
+
+given #378 (T,wt=14): 602 Called_12am(Edna) | Called_1am(Edna) | Called_12am(Barbara) | Called_1am(Barbara) | Called_1am(Mary) | Called_2am(Mary) | -Called_2am(Fiona).  [resolve(601,c,54,b)].
+
+given #379 (T,wt=14): 603 Called_12am(Edna) | Called_1am(Edna) | Called_12am(Barbara) | Called_1am(Barbara) | Called_1am(Mary) | Called_2am(Mary) | -Called_1am(Fiona).  [resolve(601,c,52,b)].
+
+given #380 (T,wt=14): 604 Called_12am(Edna) | Called_1am(Edna) | Called_12am(Barbara) | Called_1am(Barbara) | Called_1am(Mary) | Called_2am(Mary) | -Called_12am(Fiona).  [resolve(601,c,49,b)].
+
+given #381 (A,wt=20): 413 Called_12am(Edna) | Called_1am(Edna) | Called_3am(Fiona) | Called_12am(Barbara) | Called_1am(Barbara) | -Exercise(x) | Called_12am(Fiona) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [resolve(344,f,66,b)].
+
+given #382 (T,wt=14): 606 Called_12am(Edna) | Called_1am(Edna) | Called_3am(Fiona) | Called_12am(Barbara) | Called_1am(Barbara) | Called_12am(Fiona) | Called_2am(Mary).  [resolve(413,f,225,d),merge(j),merge(k),merge(l),merge(m),merge(n),unit_del(h,73),unit_del(i,74)].
+
+given #383 (T,wt=14): 607 Called_12am(Edna) | Called_1am(Edna) | Called_12am(Barbara) | Called_1am(Barbara) | Called_12am(Fiona) | Called_2am(Mary) | -Called_2am(Fiona).  [resolve(606,c,54,b)].
+
+given #384 (T,wt=14): 608 Called_12am(Edna) | Called_1am(Edna) | Called_12am(Barbara) | Called_1am(Barbara) | Called_12am(Fiona) | Called_2am(Mary) | -Called_1am(Fiona).  [resolve(606,c,52,b)].
+
+given #385 (T,wt=16): 589 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Called_12am(Fiona) | Called_12am(Mary) | Coffee(Fiona) | Called_2am(Mary).  [resolve(588,e,163,b),merge(h),unit_del(i,73),unit_del(j,74)].
+
+given #386 (A,wt=20): 414 Called_12am(Edna) | Called_1am(Edna) | Called_3am(Fiona) | Called_12am(Barbara) | Called_1am(Barbara) | -Exercise(x) | Called_12am(Fiona) | Called_1am(Fiona) | Called_3am(x) | Called_4am(x).  [resolve(344,f,65,b)].
+
+given #387 (T,wt=14): 618 Called_12am(Edna) | Called_1am(Edna) | Called_3am(Fiona) | Called_12am(Barbara) | Called_1am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona).  [resolve(414,f,225,d),merge(j),merge(k),merge(l),merge(m),merge(n),unit_del(h,73),unit_del(i,74)].
+
+given #388 (T,wt=14): 619 Called_12am(Edna) | Called_1am(Edna) | Called_12am(Barbara) | Called_1am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona) | -Called_2am(Fiona).  [resolve(618,c,54,b)].
+
+given #389 (T,wt=16): 590 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Called_12am(Fiona) | Called_12am(Mary) | Coffee(Fiona) | Called_1am(Barbara).  [resolve(588,e,162,b),merge(h),unit_del(i,73),unit_del(j,74)].
+
+given #390 (T,wt=16): 595 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Called_12am(Fiona) | Called_1am(Barbara) | Called_2am(Barbara) | -Exercise(Edna).  [factor(592,b,i),merge(i),merge(j)].
+
+given #391 (A,wt=22): 416 Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | Called_3am(Barbara) | Exercise(Barbara) | Exercise(Mary) | -Exercise(x) | Called_1am(x) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [resolve(269,a,67,b)].
+
+given #392 (T,wt=16): 599 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Called_12am(Fiona) | Called_1am(Barbara) | Called_3am(Fiona) | -Exercise(Edna).  [factor(597,b,i),merge(i),merge(j)].
+
+given #393 (T,wt=16): 613 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Called_12am(Fiona) | Called_12am(Mary) | Called_2am(Mary) | -Exercise(Edna).  [factor(610,b,i),merge(i),merge(j)].
+
+given #394 (T,wt=16): 614 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Called_12am(Fiona) | Called_12am(Mary) | Called_2am(Mary) | -Exercise(Mary).  [factor(610,g,i),unit_del(i,73),unit_del(j,74)].
+
+given #395 (T,wt=14): 625 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Called_12am(Fiona) | Called_12am(Mary) | Called_2am(Mary).  [resolve(614,h,588,e),merge(h),merge(i),merge(j),merge(k),merge(l),merge(m)].
+
+given #396 (A,wt=22): 417 Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | Called_3am(Barbara) | Exercise(Barbara) | Exercise(Mary) | -Exercise(x) | Called_12am(Fiona) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [resolve(269,a,66,b)].
+
+given #397 (T,wt=14): 626 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_12am(Fiona) | Called_12am(Mary) | Called_2am(Mary) | -Called_1am(Edna).  [resolve(625,d,53,b)].
+
+given #398 (T,wt=14): 627 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_12am(Fiona) | Called_12am(Mary) | Called_2am(Mary) | -Called_12am(Edna).  [resolve(625,d,50,b)].
+
+given #399 (T,wt=16): 624 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Called_12am(Fiona) | Called_12am(Mary) | Called_1am(Barbara) | -Exercise(Edna).  [factor(621,b,i),merge(i),merge(j)].
+
+given #400 (T,wt=18): 437 Called_12am(Barbara) | Called_1am(Barbara) | Called_3am(Edna) | Called_4am(Edna) | Exercise(Barbara) | Exercise(Mary) | -Exercise(Edna) | Called_12am(Fiona) | Called_1am(Fiona).  [factor(433,c,j),merge(j)].
+
+given #401 (A,wt=22): 418 Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | Called_3am(Barbara) | Exercise(Barbara) | Exercise(Mary) | -Exercise(x) | Called_12am(Fiona) | Called_1am(Fiona) | Called_3am(x) | Called_4am(x).  [resolve(269,a,65,b)].
+
+given #402 (T,wt=16): 628 Called_12am(Barbara) | Called_1am(Barbara) | Called_3am(Edna) | Called_4am(Edna) | Exercise(Barbara) | Exercise(Mary) | Called_12am(Fiona) | Called_1am(Fiona).  [resolve(437,g,99,b),merge(i),merge(j)].
+
+given #403 (T,wt=16): 634 Called_12am(Barbara) | Called_1am(Barbara) | Called_3am(Edna) | Called_4am(Edna) | Exercise(Mary) | Called_12am(Fiona) | Called_1am(Fiona) | Coffee(Fiona).  [resolve(628,e,159,b)].
+
+given #404 (T,wt=16): 635 Called_12am(Barbara) | Called_1am(Barbara) | Called_3am(Edna) | Called_4am(Edna) | Exercise(Mary) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Barbara).  [resolve(628,e,111,a),merge(h),merge(i)].
+
+given #405 (T,wt=16): 636 Called_12am(Barbara) | Called_1am(Barbara) | Called_3am(Edna) | Called_4am(Edna) | Exercise(Mary) | Called_12am(Fiona) | Called_1am(Fiona) | Called_3am(Fiona).  [resolve(628,e,110,a),merge(h),merge(i)].
+
+given #406 (A,wt=22): 419 Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | Called_3am(Barbara) | Exercise(Barbara) | Exercise(Mary) | -Exercise(x) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Fiona) | Called_4am(x).  [resolve(269,a,64,b)].
+
+given #407 (T,wt=16): 641 Called_12am(Barbara) | Called_1am(Barbara) | Called_3am(Edna) | Called_4am(Edna) | Exercise(Mary) | Called_12am(Fiona) | Called_1am(Fiona) | -Exercise(Edna).  [factor(639,c,i),merge(i)].
+
+given #408 (T,wt=16): 643 Called_12am(Barbara) | Called_1am(Barbara) | Called_3am(Edna) | Called_4am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Barbara) | Coffee(Fiona).  [resolve(635,e,162,b),merge(i),merge(j),unit_del(i,73),unit_del(j,74)].
+
+given #409 (T,wt=16): 645 Called_12am(Barbara) | Called_1am(Barbara) | Called_3am(Edna) | Called_4am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_3am(Fiona) | Coffee(Fiona).  [resolve(636,e,162,b),merge(i),merge(j),unit_del(i,73),unit_del(j,74)].
+
+given #410 (T,wt=16): 651 Called_12am(Barbara) | Called_1am(Barbara) | Called_3am(Edna) | Called_4am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Barbara) | -Exercise(Edna).  [factor(649,c,i),merge(i)].
+
+given #411 (A,wt=22): 421 Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | Called_4am(Edna) | Exercise(Barbara) | Exercise(Mary) | -Exercise(x) | Called_1am(x) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [resolve(274,a,67,b)].
+
+given #412 (T,wt=16): 655 Called_12am(Barbara) | Called_1am(Barbara) | Called_3am(Edna) | Called_4am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_3am(Fiona) | -Exercise(Edna).  [factor(654,c,i),merge(i)].
+
+given #413 (T,wt=18): 471 Exercise(Mary) | Called_12am(Mary) | Called_2am(Barbara) | Called_3am(Barbara) | Called_4am(Barbara) | Hunger(Fiona) | Hunger(Mary) | Worry(Barbara) | Worry(Fiona).  [resolve(468,a,273,e)].
+
+given #414 (T,wt=18): 489 Exercise(Mary) | Called_12am(Mary) | Called_1am(Mary) | Called_3am(Barbara) | Called_4am(Barbara) | Hunger(Fiona) | Hunger(Mary) | Worry(Barbara) | Worry(Fiona).  [resolve(486,a,273,e)].
+
+given #415 (T,wt=18): 587 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Called_12am(Fiona) | Called_2am(Fiona) | Called_3am(Fiona) | Coffee(Fiona) | Called_2am(Mary).  [resolve(560,e,163,b),merge(i),unit_del(j,73),unit_del(k,74)].
+
+given #416 (A,wt=22): 422 Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | Called_4am(Edna) | Exercise(Barbara) | Exercise(Mary) | -Exercise(x) | Called_12am(Fiona) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [resolve(274,a,66,b)].
+
+given #417 (T,wt=18): 656 Exercise(Mary) | Called_12am(Mary) | Called_2am(Barbara) | Called_3am(Barbara) | Called_4am(Barbara) | Hunger(Mary) | Worry(Barbara) | Worry(Fiona) | -Coffee(Fiona).  [resolve(471,f,37,b)].
+
+given #418 (T,wt=16): 663 Exercise(Mary) | Called_12am(Mary) | Called_2am(Barbara) | Called_3am(Barbara) | Called_4am(Barbara) | Hunger(Mary) | Worry(Barbara) | Worry(Fiona).  [resolve(656,i,167,a),merge(i),merge(j),merge(k),merge(l)].
+
+given #419 (T,wt=18): 657 Exercise(Mary) | Called_12am(Mary) | Called_1am(Mary) | Called_3am(Barbara) | Called_4am(Barbara) | Hunger(Mary) | Worry(Barbara) | Worry(Fiona) | -Coffee(Fiona).  [resolve(489,f,37,b)].
+
+given #420 (T,wt=16): 664 Exercise(Mary) | Called_12am(Mary) | Called_1am(Mary) | Called_3am(Barbara) | Called_4am(Barbara) | Hunger(Mary) | Worry(Barbara) | Worry(Fiona).  [resolve(657,i,166,a),merge(i),merge(j),merge(k),merge(l)].
+
+given #421 (A,wt=22): 423 Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | Called_4am(Edna) | Exercise(Barbara) | Exercise(Mary) | -Exercise(x) | Called_12am(Fiona) | Called_1am(Fiona) | Called_3am(x) | Called_4am(x).  [resolve(274,a,65,b)].
+
+given #422 (T,wt=18): 661 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Called_12am(Fiona) | Called_2am(Fiona) | Called_3am(Fiona) | Called_2am(Mary) | -Exercise(Edna).  [factor(659,b,j),merge(j),merge(k)].
+
+given #423 (T,wt=18): 662 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Called_12am(Fiona) | Called_2am(Fiona) | Called_3am(Fiona) | Called_2am(Mary) | -Exercise(Mary).  [factor(659,h,j),unit_del(j,73),unit_del(k,74)].
+
+given #424 (T,wt=16): 665 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Called_12am(Fiona) | Called_2am(Fiona) | Called_3am(Fiona) | Called_2am(Mary).  [resolve(662,i,560,e),merge(i),merge(j),merge(k),merge(l),merge(m),merge(n),merge(o)].
+
+given #425 (T,wt=16): 666 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_12am(Fiona) | Called_2am(Fiona) | Called_3am(Fiona) | Called_2am(Mary) | -Called_1am(Edna).  [resolve(665,d,53,b)].
+
+given #426 (A,wt=22): 424 Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | Called_4am(Edna) | Exercise(Barbara) | Exercise(Mary) | -Exercise(x) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Fiona) | Called_4am(x).  [resolve(274,a,64,b)].
+
+given #427 (T,wt=16): 667 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_12am(Fiona) | Called_2am(Fiona) | Called_3am(Fiona) | Called_2am(Mary) | -Called_12am(Edna).  [resolve(665,d,50,b)].
+
+given #428 (T,wt=18): 668 Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | Called_4am(Edna) | Exercise(Barbara) | Exercise(Mary) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Fiona).  [resolve(424,g,99,b),merge(j),merge(k),merge(l)].
+
+given #429 (T,wt=16): 674 Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | Called_4am(Edna) | Exercise(Mary) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Fiona).  [resolve(668,e,111,a),merge(i),merge(j),merge(k)].
+
+given #430 (T,wt=16): 676 Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | Called_4am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Fiona) | Coffee(Fiona).  [resolve(674,e,162,b),merge(i),merge(j),unit_del(i,73),unit_del(j,74)].
+
+given #431 (A,wt=22): 431 Called_12am(Barbara) | Called_1am(Barbara) | Called_3am(Edna) | Called_4am(Edna) | Exercise(Barbara) | Exercise(Mary) | -Exercise(x) | Called_1am(x) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [resolve(288,a,67,b)].
+
+given #432 (T,wt=16): 681 Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | Called_4am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Fiona) | -Exercise(Edna).  [factor(680,d,i)].
+
+given #433 (T,wt=18): 680 Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | Called_4am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Fiona) | -Exercise(x) | Called_4am(x).  [resolve(676,h,64,b),merge(i),merge(j),merge(k)].
+
+given #434 (T,wt=14): 682 Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | Called_4am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Fiona).  [resolve(680,h,674,e),merge(i),merge(j),merge(k),merge(l),merge(m),merge(n),merge(o),unit_del(h,74)].
+
+given #435 (T,wt=14): 683 Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Fiona) | -Called_3am(Edna).  [resolve(682,d,56,b)].
+
+given #436 (A,wt=22): 432 Called_12am(Barbara) | Called_1am(Barbara) | Called_3am(Edna) | Called_4am(Edna) | Exercise(Barbara) | Exercise(Mary) | -Exercise(x) | Called_12am(Fiona) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [resolve(288,a,66,b)].
+
+given #437 (T,wt=14): 684 Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Fiona) | -Called_2am(Edna).  [resolve(682,d,55,b)].
+
+given #438 (T,wt=14): 685 Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Fiona) | -Called_1am(Edna).  [resolve(682,d,53,b)].
+
+given #439 (T,wt=14): 686 Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Fiona) | -Called_12am(Edna).  [resolve(682,d,50,b)].
+
+given #440 (T,wt=14): 687 Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Fiona) | Called_2am(Mary).  [resolve(684,g,126,b),merge(g),merge(h)].
+
+given #441 (A,wt=22): 439 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Exercise(Barbara) | Exercise(Mary) | -Exercise(x) | Called_1am(x) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [resolve(299,a,67,b)].
+
+given #442 (T,wt=14): 688 Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Fiona) | Called_1am(Mary).  [resolve(685,g,128,b),merge(g),merge(h)].
+
+given #443 (T,wt=12): 690 Called_12am(Barbara) | Called_1am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Fiona) | Called_1am(Mary).  [resolve(688,c,208,d),merge(g),merge(h),merge(i)].
+
+given #444 (T,wt=10): 692 Called_12am(Barbara) | Called_1am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona) | Called_1am(Mary).  [resolve(690,e,266,d),merge(f),merge(g),merge(h)].
+
+given #445 (T,wt=12): 693 Called_12am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona) | Called_1am(Mary) | Called_12am(Mary) | Called_3am(Barbara).  [resolve(692,b,524,f),merge(f),merge(h),merge(i)].
+
+given #446 (A,wt=22): 451 Snoring(Carla) | Snoring(Fiona) | Snoring(Mary) | Hunger(Barbara) | Hunger(Fiona) | Hunger(Mary) | Worry(Fiona) | Called_1am(Edna) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna).  [resolve(310,g,157,a)].
+
+given #447 (T,wt=12): 695 Called_12am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona) | Called_1am(Mary) | Called_3am(Barbara) | Called_3am(Fiona).  [resolve(692,b,182,c)].
+
+given #448 (T,wt=12): 696 Called_12am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona) | Called_1am(Mary) | Called_12am(Mary) | -Called_2am(Barbara).  [resolve(693,f,54,b)].
+
+given #449 (T,wt=12): 697 Called_12am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona) | Called_1am(Mary) | Called_12am(Mary) | -Called_1am(Barbara).  [resolve(693,f,52,b)].
+
+given #450 (T,wt=10): 700 Called_12am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona) | Called_1am(Mary) | Called_12am(Mary).  [resolve(697,f,692,b),merge(f),merge(g),merge(h),merge(i)].
+
+given #451 (A,wt=22): 452 Snoring(Carla) | Snoring(Fiona) | Snoring(Mary) | Hunger(Barbara) | Hunger(Fiona) | Hunger(Mary) | Worry(Fiona) | Called_12am(Mary) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna).  [resolve(310,g,156,a)].
+
+given #452 (T,wt=8): 702 Called_12am(Barbara) | Called_12am(Fiona) | Called_1am(Mary) | Called_12am(Mary).  [resolve(700,c,389,c),merge(e),merge(f)].
+
+given #453 (T,wt=12): 698 Called_12am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona) | Called_1am(Mary) | Called_3am(Fiona) | -Called_2am(Barbara).  [resolve(695,e,54,b)].
+
+given #454 (T,wt=12): 699 Called_12am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona) | Called_1am(Mary) | Called_3am(Fiona) | -Called_1am(Barbara).  [resolve(695,e,52,b)].
+
+given #455 (T,wt=10): 703 Called_12am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona) | Called_1am(Mary) | Called_3am(Fiona).  [resolve(699,f,692,b),merge(f),merge(g),merge(h),merge(i)].
+
+given #456 (A,wt=22): 453 Snoring(Carla) | Snoring(Fiona) | Snoring(Mary) | Hunger(Barbara) | Hunger(Fiona) | Hunger(Mary) | Worry(Fiona) | Called_12am(Mary) | Called_1am(Mary) | Called_3am(Edna) | Called_4am(Edna).  [resolve(310,g,155,a)].
+
+given #457 (T,wt=10): 704 Called_12am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona) | Called_1am(Mary) | -Called_2am(Fiona).  [resolve(703,e,54,b)].
+
+given #458 (T,wt=14): 694 Called_12am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona) | Called_1am(Mary) | Called_2am(Barbara) | Called_2am(Fiona) | Called_2am(Mary).  [resolve(692,b,205,d)].
+
+given #459 (T,wt=14): 705 Called_12am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona) | Called_1am(Mary) | Called_2am(Fiona) | Called_2am(Mary) | -Called_1am(Barbara).  [resolve(694,e,51,b)].
+
+given #460 (T,wt=12): 706 Called_12am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona) | Called_1am(Mary) | Called_2am(Fiona) | Called_2am(Mary).  [resolve(705,g,692,b),merge(g),merge(h),merge(i),merge(j)].
+
+given #461 (A,wt=20): 456 Snoring(Carla) | Snoring(Fiona) | Snoring(Mary) | Hunger(Barbara) | Hunger(Fiona) | Hunger(Mary) | Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Exercise(Mary).  [resolve(312,g,149,d)].
+
+given #462 (T,wt=10): 707 Called_12am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona) | Called_1am(Mary) | Called_2am(Mary).  [resolve(706,e,704,e),merge(f),merge(g),merge(h),merge(i)].
+
+given #463 (T,wt=10): 708 Called_12am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona) | Called_1am(Mary) | -Called_12am(Mary).  [resolve(707,e,48,b)].
+
+given #464 (T,wt=20): 457 Snoring(Carla) | Snoring(Fiona) | Snoring(Mary) | Hunger(Barbara) | Hunger(Fiona) | Hunger(Mary) | Called_12am(Edna) | Called_1am(Edna) | Called_3am(Fiona) | Exercise(Mary).  [resolve(312,g,148,d)].
+
+given #465 (T,wt=20): 458 Snoring(Carla) | Snoring(Fiona) | Snoring(Mary) | Hunger(Barbara) | Hunger(Fiona) | Hunger(Mary) | Called_12am(Edna) | Called_2am(Fiona) | Called_3am(Fiona) | Exercise(Mary).  [resolve(312,g,147,d)].
+
+given #466 (A,wt=20): 469 Exercise(Mary) | Called_12am(Mary) | Called_2am(Barbara) | Called_3am(Barbara) | Called_4am(Barbara) | Worry(Barbara) | Worry(Fiona) | Snoring(Carla) | Snoring(Fiona) | Snoring(Mary).  [resolve(468,a,317,f)].
+
+given #467 (T,wt=20): 487 Exercise(Mary) | Called_12am(Mary) | Called_1am(Mary) | Called_3am(Barbara) | Called_4am(Barbara) | Worry(Barbara) | Worry(Fiona) | Snoring(Carla) | Snoring(Fiona) | Snoring(Mary).  [resolve(486,a,317,f)].
+
+given #468 (T,wt=20): 554 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Exercise(Mary) | Called_12am(Fiona) | Hunger(Fiona) | Hunger(Mary) | Worry(Barbara) | Worry(Fiona).  [resolve(551,e,273,e)].
+
+given #469 (T,wt=20): 562 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Exercise(Mary) | Called_12am(Fiona) | -Exercise(x) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [resolve(557,g,66,b),merge(h)].
+
+given #470 (T,wt=20): 563 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Exercise(Mary) | Called_12am(Fiona) | -Exercise(x) | Called_1am(Fiona) | Called_3am(x) | Called_4am(x).  [resolve(557,g,65,b),merge(h)].
+
+given #471 (A,wt=22): 470 Exercise(Mary) | Called_12am(Mary) | Called_2am(Barbara) | Called_3am(Barbara) | Called_4am(Barbara) | Snoring(Carla) | Snoring(Fiona) | Snoring(Mary) | Hunger(Barbara) | Hunger(Fiona) | Hunger(Mary).  [resolve(468,a,312,g)].
+
+given #472 (T,wt=20): 564 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Exercise(Mary) | Called_12am(Fiona) | -Exercise(x) | Called_1am(Fiona) | Called_2am(Fiona) | Called_4am(x).  [resolve(557,g,64,b),merge(h)].
+
+given #473 (T,wt=20): 566 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Fiona) | Called_2am(Barbara) | Called_3am(Barbara) | Called_4am(Barbara) | Coffee(Fiona) | Called_1am(Mary) | Called_2am(Mary).  [resolve(526,d,164,b),unit_del(k,73),unit_del(l,74)].
+
+given #474 (T,wt=20): 567 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Fiona) | Called_2am(Barbara) | Called_3am(Barbara) | Called_4am(Barbara) | Coffee(Fiona) | Called_12am(Barbara) | Called_2am(Mary).  [resolve(526,d,163,b),unit_del(k,73),unit_del(l,74)].
+
+given #475 (T,wt=20): 570 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_3am(Barbara) | Called_4am(Barbara) | Coffee(Fiona) | Called_1am(Mary) | Called_2am(Mary).  [resolve(544,d,164,b),unit_del(k,73),unit_del(l,74)].
+
+given #476 (A,wt=22): 488 Exercise(Mary) | Called_12am(Mary) | Called_1am(Mary) | Called_3am(Barbara) | Called_4am(Barbara) | Snoring(Carla) | Snoring(Fiona) | Snoring(Mary) | Hunger(Barbara) | Hunger(Fiona) | Hunger(Mary).  [resolve(486,a,312,g)].
+
+given #477 (T,wt=20): 571 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_3am(Barbara) | Called_4am(Barbara) | Coffee(Fiona) | Called_12am(Barbara) | Called_2am(Mary).  [resolve(544,d,163,b),unit_del(k,73),unit_del(l,74)].
+
+given #478 (T,wt=20): 572 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_3am(Barbara) | Called_4am(Barbara) | Coffee(Fiona) | Called_12am(Barbara) | Called_1am(Barbara).  [resolve(544,d,162,b),unit_del(k,73),unit_del(l,74)].
+
+given #479 (T,wt=20): 573 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Fiona) | Called_4am(Barbara) | Coffee(Fiona) | Called_1am(Mary) | Called_2am(Mary).  [resolve(547,d,164,b),unit_del(k,73),unit_del(l,74)].
+
+given #480 (T,wt=20): 574 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Fiona) | Called_4am(Barbara) | Coffee(Fiona) | Called_12am(Barbara) | Called_2am(Mary).  [resolve(547,d,163,b),unit_del(k,73),unit_del(l,74)].
+
+given #481 (A,wt=22): 491 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | -Exercise(x) | Called_1am(x) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [resolve(355,g,67,b)].
+
+given #482 (T,wt=16): 749 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | Called_1am(Mary) | Called_2am(Mary).  [resolve(491,g,227,d),merge(k),merge(l),merge(m),merge(n),merge(o),merge(p),unit_del(i,73),unit_del(j,74)].
+
+given #483 (T,wt=16): 750 Called_12am(Edna) | Called_1am(Edna) | Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | Called_1am(Mary) | Called_2am(Mary) | Called_4am(Barbara).  [resolve(749,c,171,b)].
+
+given #484 (T,wt=16): 751 Called_12am(Edna) | Called_1am(Edna) | Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | Called_1am(Mary) | Called_2am(Mary) | -Called_3am(Barbara).  [resolve(750,h,56,b)].
+
+given #485 (T,wt=20): 575 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Fiona) | Called_4am(Barbara) | Coffee(Fiona) | Called_12am(Barbara) | Called_1am(Barbara).  [resolve(547,d,162,b),unit_del(k,73),unit_del(l,74)].
+
+given #486 (A,wt=22): 492 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | -Exercise(x) | Called_12am(Fiona) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [resolve(355,g,66,b)].
+
+given #487 (T,wt=16): 757 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | Called_12am(Fiona) | Called_2am(Mary).  [resolve(492,g,227,d),merge(k),merge(l),merge(m),merge(n),merge(o),merge(p),unit_del(i,73),unit_del(j,74)].
+
+given #488 (T,wt=16): 758 Called_12am(Edna) | Called_1am(Edna) | Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | Called_12am(Fiona) | Called_2am(Mary) | Called_4am(Barbara).  [resolve(757,c,171,b)].
+
+given #489 (T,wt=16): 759 Called_12am(Edna) | Called_1am(Edna) | Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | Called_12am(Fiona) | Called_2am(Mary) | -Called_3am(Barbara).  [resolve(758,h,56,b)].
+
+given #490 (T,wt=20): 639 Called_12am(Barbara) | Called_1am(Barbara) | Called_3am(Edna) | Called_4am(Edna) | Exercise(Mary) | Called_12am(Fiona) | Called_1am(Fiona) | -Exercise(x) | Called_3am(x) | Called_4am(x).  [resolve(634,h,65,b),merge(i),merge(j)].
+
+given #491 (A,wt=22): 493 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | -Exercise(x) | Called_12am(Fiona) | Called_1am(Fiona) | Called_3am(x) | Called_4am(x).  [resolve(355,g,65,b)].
+
+given #492 (T,wt=16): 762 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona).  [resolve(493,g,227,d),merge(k),merge(l),merge(m),merge(n),merge(o),merge(p),unit_del(i,73),unit_del(j,74)].
+
+given #493 (T,wt=16): 763 Called_12am(Edna) | Called_1am(Edna) | Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Fiona).  [resolve(762,c,684,g),merge(h),merge(i),merge(j),merge(k),merge(l)].
+
+given #494 (T,wt=16): 764 Called_12am(Edna) | Called_1am(Edna) | Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona) | Called_4am(Barbara).  [resolve(762,c,171,b)].
+
+given #495 (T,wt=16): 765 Called_12am(Edna) | Called_1am(Edna) | Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona) | -Called_3am(Barbara).  [resolve(764,h,56,b)].
+
+given #496 (A,wt=22): 533 Called_1am(Edna) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Called_12am(Barbara) | Called_2am(Mary) | -Exercise(x) | Called_1am(x) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [resolve(519,e,67,b)].
+
+given #497 (T,wt=20): 640 Called_12am(Barbara) | Called_1am(Barbara) | Called_3am(Edna) | Called_4am(Edna) | Exercise(Mary) | Called_12am(Fiona) | Called_1am(Fiona) | -Exercise(x) | Called_2am(Fiona) | Called_4am(x).  [resolve(634,h,64,b),merge(i),merge(j)].
+
+given #498 (T,wt=20): 649 Called_12am(Barbara) | Called_1am(Barbara) | Called_3am(Edna) | Called_4am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Barbara) | -Exercise(x) | Called_3am(x) | Called_4am(x).  [resolve(643,h,65,b),merge(i),merge(j)].
+
+given #499 (T,wt=14): 767 Called_12am(Barbara) | Called_1am(Barbara) | Called_3am(Edna) | Called_4am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Barbara).  [resolve(649,h,635,e),merge(j),merge(k),merge(l),merge(m),merge(n),merge(o),merge(p),unit_del(h,73),unit_del(i,74)].
+
+given #500 (T,wt=14): 768 Called_12am(Barbara) | Called_1am(Barbara) | Called_3am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Barbara) | -Called_2am(Edna).  [resolve(767,d,55,b)].
+
+given #501 (A,wt=22): 539 Called_1am(Edna) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Called_12am(Barbara) | Called_1am(Barbara) | -Exercise(x) | Called_1am(x) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [resolve(520,e,67,b)].
+
+given #502 (T,wt=14): 769 Called_12am(Barbara) | Called_1am(Barbara) | Called_3am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Barbara) | -Called_1am(Edna).  [resolve(767,d,53,b)].
+
+given #503 (T,wt=14): 770 Called_12am(Barbara) | Called_1am(Barbara) | Called_3am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Barbara) | -Called_12am(Edna).  [resolve(767,d,50,b)].
+
+given #504 (T,wt=16): 771 Called_12am(Barbara) | Called_1am(Barbara) | Called_3am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Barbara) | Called_12am(Edna) | Called_1am(Edna).  [resolve(768,g,762,c),merge(i),merge(j),merge(k),merge(l),merge(m)].
+
+given #505 (T,wt=16): 772 Called_12am(Barbara) | Called_1am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Barbara) | Called_12am(Edna) | Called_1am(Edna) | -Called_2am(Edna).  [resolve(771,c,54,b)].
+
+given #506 (A,wt=22): 540 Called_1am(Edna) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Called_12am(Barbara) | Called_1am(Barbara) | -Exercise(x) | Called_12am(Fiona) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [resolve(520,e,66,b)].
+
+given #507 (T,wt=14): 773 Called_12am(Barbara) | Called_1am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Barbara) | Called_12am(Edna) | Called_1am(Edna).  [resolve(772,h,762,c),merge(h),merge(i),merge(j),merge(k),merge(l),merge(m),merge(n)].
+
+given #508 (T,wt=20): 654 Called_12am(Barbara) | Called_1am(Barbara) | Called_3am(Edna) | Called_4am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_3am(Fiona) | -Exercise(x) | Called_3am(x) | Called_4am(x).  [resolve(645,h,65,b),merge(i),merge(j)].
+
+given #509 (T,wt=14): 774 Called_12am(Barbara) | Called_1am(Barbara) | Called_3am(Edna) | Called_4am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_3am(Fiona).  [resolve(654,h,636,e),merge(j),merge(k),merge(l),merge(m),merge(n),merge(o),merge(p),unit_del(h,73),unit_del(i,74)].
+
+given #510 (T,wt=14): 775 Called_12am(Barbara) | Called_1am(Barbara) | Called_3am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_3am(Fiona) | -Called_2am(Edna).  [resolve(774,d,55,b)].
+
+given #511 (A,wt=22): 541 Called_1am(Edna) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Called_12am(Barbara) | Called_1am(Barbara) | -Exercise(x) | Called_12am(Fiona) | Called_1am(Fiona) | Called_3am(x) | Called_4am(x).  [resolve(520,e,65,b)].
+
+given #512 (T,wt=14): 776 Called_12am(Barbara) | Called_1am(Barbara) | Called_3am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_3am(Fiona) | -Called_1am(Edna).  [resolve(774,d,53,b)].
+
+given #513 (T,wt=14): 777 Called_12am(Barbara) | Called_1am(Barbara) | Called_3am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_3am(Fiona) | -Called_12am(Edna).  [resolve(774,d,50,b)].
+
+given #514 (T,wt=16): 779 Called_1am(Edna) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Called_12am(Barbara) | Called_1am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona).  [resolve(541,g,517,e),merge(k),merge(l),merge(m),merge(n),unit_del(i,73),unit_del(j,74)].
+
+given #515 (T,wt=16): 780 Called_1am(Edna) | Called_2am(Edna) | Called_3am(Edna) | Called_12am(Barbara) | Called_1am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona) | -Called_12am(Edna).  [resolve(779,d,50,b)].
+
+given #516 (A,wt=22): 552 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Exercise(Mary) | Called_12am(Fiona) | Worry(Barbara) | Worry(Fiona) | Snoring(Carla) | Snoring(Fiona) | Snoring(Mary).  [resolve(551,e,317,f)].
+
+given #517 (T,wt=20): 709 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Exercise(Mary) | Called_12am(Fiona) | Hunger(Mary) | Worry(Barbara) | Worry(Fiona) | -Coffee(Fiona).  [resolve(554,g,37,b)].
+
+given #518 (T,wt=18): 782 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Exercise(Mary) | Called_12am(Fiona) | Hunger(Mary) | Worry(Barbara) | Worry(Fiona).  [resolve(709,j,557,g),merge(j),merge(k),merge(l),merge(m),merge(n),merge(o)].
+
+given #519 (T,wt=20): 713 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Fiona) | Called_2am(Barbara) | Called_3am(Barbara) | Called_4am(Barbara) | Called_1am(Mary) | Called_2am(Mary) | -Exercise(Mary).  [factor(710,h,k),merge(k),unit_del(k,73),unit_del(l,74)].
+
+given #520 (T,wt=18): 784 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Fiona) | Called_2am(Barbara) | Called_3am(Barbara) | Called_4am(Barbara) | Called_1am(Mary) | Called_2am(Mary).  [resolve(713,j,526,d),merge(j),merge(k),merge(l),merge(m),merge(n),merge(o),merge(p)].
+
+given #521 (A,wt=24): 553 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Exercise(Mary) | Called_12am(Fiona) | Snoring(Carla) | Snoring(Fiona) | Snoring(Mary) | Hunger(Barbara) | Hunger(Fiona) | Hunger(Mary).  [resolve(551,e,312,g)].
+
+given #522 (T,wt=18): 785 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Fiona) | Called_2am(Barbara) | Called_3am(Barbara) | Called_1am(Mary) | Called_2am(Mary) | -Called_1am(Barbara).  [resolve(784,g,53,b)].
+
+given #523 (T,wt=18): 786 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Fiona) | Called_2am(Barbara) | Called_3am(Barbara) | Called_1am(Mary) | Called_2am(Mary) | -Called_12am(Barbara).  [resolve(784,g,50,b)].
+
+given #524 (T,wt=20): 718 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Fiona) | Called_2am(Barbara) | Called_3am(Barbara) | Called_4am(Barbara) | Called_12am(Barbara) | Called_2am(Mary) | -Exercise(Barbara).  [factor(716,e,k),merge(k),merge(l)].
+
+given #525 (T,wt=20): 719 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Fiona) | Called_2am(Barbara) | Called_3am(Barbara) | Called_4am(Barbara) | Called_12am(Barbara) | Called_2am(Mary) | -Exercise(Mary).  [factor(716,i,k),unit_del(k,73),unit_del(l,74)].
+
+given #526 (A,wt=22): 592 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Called_12am(Fiona) | Called_1am(Barbara) | Called_2am(Barbara) | -Exercise(x) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [resolve(582,h,66,b),merge(i)].
+
+given #527 (T,wt=16): 790 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Called_12am(Fiona) | Called_1am(Barbara) | Called_2am(Barbara) | Called_2am(Mary).  [resolve(592,h,558,e),merge(k),merge(l),merge(m),merge(n),merge(o),merge(p),merge(q),unit_del(i,73),unit_del(j,74)].
+
+given #528 (T,wt=16): 791 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_12am(Fiona) | Called_1am(Barbara) | Called_2am(Barbara) | Called_2am(Mary) | -Called_1am(Edna).  [resolve(790,d,53,b)].
+
+given #529 (T,wt=16): 792 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_12am(Fiona) | Called_1am(Barbara) | Called_2am(Barbara) | Called_2am(Mary) | -Called_12am(Edna).  [resolve(790,d,50,b)].
+
+given #530 (T,wt=18): 788 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Fiona) | Called_2am(Barbara) | Called_3am(Barbara) | Called_4am(Barbara) | Called_12am(Barbara) | Called_2am(Mary).  [resolve(719,j,526,d),merge(j),merge(k),merge(l),merge(m),merge(n),merge(o),merge(p)].
+
+given #531 (A,wt=22): 597 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Called_12am(Fiona) | Called_1am(Barbara) | Called_3am(Fiona) | -Exercise(x) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [resolve(585,h,66,b),merge(i)].
+
+given #532 (T,wt=16): 794 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Called_12am(Fiona) | Called_1am(Barbara) | Called_3am(Fiona) | Called_2am(Mary).  [resolve(597,h,559,e),merge(k),merge(l),merge(m),merge(n),merge(o),merge(p),merge(q),unit_del(i,73),unit_del(j,74)].
+
+given #533 (T,wt=16): 795 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_12am(Fiona) | Called_1am(Barbara) | Called_3am(Fiona) | Called_2am(Mary) | -Called_1am(Edna).  [resolve(794,d,53,b)].
+
+given #534 (T,wt=16): 796 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_12am(Fiona) | Called_1am(Barbara) | Called_3am(Fiona) | Called_2am(Mary) | -Called_12am(Edna).  [resolve(794,d,50,b)].
+
+given #535 (T,wt=18): 793 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Fiona) | Called_2am(Barbara) | Called_3am(Barbara) | Called_12am(Barbara) | Called_2am(Mary) | -Called_1am(Barbara).  [resolve(788,g,53,b)].
+
+given #536 (A,wt=22): 621 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Called_12am(Fiona) | Called_12am(Mary) | Called_1am(Barbara) | -Exercise(x) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [resolve(590,g,66,b),merge(i)].
+
+given #537 (T,wt=20): 724 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_3am(Barbara) | Called_4am(Barbara) | Called_1am(Mary) | Called_2am(Mary) | -Exercise(Mary).  [factor(720,h,k),merge(k),unit_del(k,73),unit_del(l,74)].
+
+given #538 (T,wt=18): 798 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_3am(Barbara) | Called_4am(Barbara) | Called_1am(Mary) | Called_2am(Mary).  [resolve(724,j,544,d),merge(j),merge(k),merge(l),merge(m),merge(n),merge(o),merge(p)].
+
+given #539 (T,wt=18): 799 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_3am(Barbara) | Called_1am(Mary) | Called_2am(Mary) | -Called_2am(Barbara).  [resolve(798,g,55,b)].
+
+given #540 (T,wt=18): 800 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_3am(Barbara) | Called_1am(Mary) | Called_2am(Mary) | -Called_1am(Barbara).  [resolve(798,g,53,b)].
+
+given #541 (A,wt=22): 622 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Called_12am(Fiona) | Called_12am(Mary) | Called_1am(Barbara) | -Exercise(x) | Called_1am(Fiona) | Called_3am(x) | Called_4am(x).  [resolve(590,g,65,b),merge(i)].
+
+given #542 (T,wt=16): 802 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Called_12am(Fiona) | Called_12am(Mary) | Called_1am(Barbara) | Called_1am(Fiona).  [resolve(622,h,588,e),merge(k),merge(l),merge(m),merge(n),merge(o),merge(p),unit_del(i,73),unit_del(j,74)].
+
+given #543 (T,wt=16): 803 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_12am(Fiona) | Called_12am(Mary) | Called_1am(Barbara) | Called_1am(Fiona) | -Called_1am(Edna).  [resolve(802,d,53,b)].
+
+given #544 (T,wt=16): 804 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_12am(Fiona) | Called_12am(Mary) | Called_1am(Barbara) | Called_1am(Fiona) | -Called_12am(Edna).  [resolve(802,d,50,b)].
+
+given #545 (T,wt=18): 801 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_3am(Barbara) | Called_1am(Mary) | Called_2am(Mary) | -Called_12am(Barbara).  [resolve(798,g,50,b)].
+
+given #546 (A,wt=24): 629 Called_12am(Barbara) | Called_1am(Barbara) | Called_3am(Edna) | Called_4am(Edna) | Exercise(Mary) | Called_12am(Fiona) | Called_1am(Fiona) | Worry(Barbara) | Worry(Fiona) | Snoring(Carla) | Snoring(Fiona) | Snoring(Mary).  [resolve(628,e,317,f)].
+
+given #547 (T,wt=20): 730 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_3am(Barbara) | Called_4am(Barbara) | Called_12am(Barbara) | Called_2am(Mary) | -Exercise(Mary).  [factor(727,i,k),unit_del(k,73),unit_del(l,74)].
+
+given #548 (T,wt=18): 806 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_3am(Barbara) | Called_4am(Barbara) | Called_12am(Barbara) | Called_2am(Mary).  [resolve(730,j,544,d),merge(j),merge(k),merge(l),merge(m),merge(n),merge(o),merge(p)].
+
+given #549 (T,wt=18): 807 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_3am(Barbara) | Called_12am(Barbara) | Called_2am(Mary) | -Called_2am(Barbara).  [resolve(806,g,55,b)].
+
+given #550 (T,wt=18): 808 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_3am(Barbara) | Called_12am(Barbara) | Called_2am(Mary) | -Called_1am(Barbara).  [resolve(806,g,53,b)].
+
+given #551 (A,wt=26): 630 Called_12am(Barbara) | Called_1am(Barbara) | Called_3am(Edna) | Called_4am(Edna) | Exercise(Mary) | Called_12am(Fiona) | Called_1am(Fiona) | Snoring(Carla) | Snoring(Fiona) | Snoring(Mary) | Hunger(Barbara) | Hunger(Fiona) | Hunger(Mary).  [resolve(628,e,312,g)].
+
+given #552 (T,wt=18): 809 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_3am(Barbara) | Called_12am(Barbara) | Called_2am(Mary) | Called_1am(Barbara).  [resolve(807,i,773,e),merge(i),merge(k),merge(l),merge(m),merge(n)].
+
+given #553 (T,wt=18): 810 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_12am(Barbara) | Called_2am(Mary) | Called_1am(Barbara) | -Called_2am(Barbara).  [resolve(809,f,54,b)].
+
+given #554 (T,wt=16): 811 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_12am(Barbara) | Called_2am(Mary) | Called_1am(Barbara).  [resolve(810,i,773,e),merge(i),merge(j),merge(k),merge(l),merge(m),merge(n)].
+
+given #555 (T,wt=16): 812 Called_12am(Edna) | Called_1am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_12am(Barbara) | Called_2am(Mary) | Called_1am(Barbara) | Called_4am(Barbara).  [resolve(811,c,171,b)].
+
+given #556 (A,wt=22): 631 Called_12am(Barbara) | Called_1am(Barbara) | Called_3am(Edna) | Called_4am(Edna) | Exercise(Mary) | Called_12am(Fiona) | Called_1am(Fiona) | Hunger(Fiona) | Hunger(Mary) | Worry(Barbara) | Worry(Fiona).  [resolve(628,e,273,e)].
+
+given #557 (T,wt=16): 813 Called_12am(Edna) | Called_1am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_12am(Barbara) | Called_2am(Mary) | Called_1am(Barbara) | -Called_3am(Barbara).  [resolve(812,h,56,b)].
+
+given #558 (T,wt=16): 814 Called_12am(Edna) | Called_1am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_12am(Barbara) | Called_2am(Mary) | Called_1am(Barbara) | -Called_2am(Barbara).  [resolve(812,h,55,b)].
+
+given #559 (T,wt=14): 816 Called_12am(Edna) | Called_1am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_12am(Barbara) | Called_2am(Mary) | Called_1am(Barbara).  [resolve(814,h,773,e),merge(h),merge(i),merge(j),merge(k),merge(l),merge(m)].
+
+given #560 (T,wt=14): 817 Called_12am(Edna) | Called_1am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_12am(Barbara) | Called_1am(Barbara) | -Called_1am(Mary).  [resolve(816,f,51,b)].
+
+given #561 (A,wt=24): 734 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_3am(Barbara) | Called_4am(Barbara) | Called_12am(Barbara) | Called_1am(Barbara) | -Exercise(x) | Called_3am(x) | Called_4am(x).  [resolve(572,h,65,b),merge(k),merge(l)].
+
+given #562 (T,wt=14): 818 Called_12am(Edna) | Called_1am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_12am(Barbara) | Called_1am(Barbara) | -Called_12am(Mary).  [resolve(816,f,48,b)].
+
+given #563 (T,wt=14): 819 Called_12am(Edna) | Called_1am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_12am(Barbara) | Called_1am(Barbara) | Called_12am(Mary).  [resolve(817,g,702,c),merge(g),merge(h)].
+
+given #564 (T,wt=14): 827 Called_12am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_12am(Barbara) | Called_1am(Barbara) | Called_12am(Mary) | Called_4am(Barbara).  [resolve(819,b,172,b)].
+
+given #565 (T,wt=14): 828 Called_12am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_12am(Barbara) | Called_1am(Barbara) | Called_12am(Mary) | -Called_3am(Barbara).  [resolve(827,g,56,b)].
+
+given #566 (A,wt=22): 740 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Fiona) | Called_4am(Barbara) | Called_1am(Mary) | Called_2am(Mary) | -Exercise(x) | Called_4am(x).  [resolve(573,h,64,b),merge(k),merge(l),merge(m)].
+
+given #567 (T,wt=14): 829 Called_12am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_12am(Barbara) | Called_1am(Barbara) | Called_12am(Mary) | -Called_2am(Barbara).  [resolve(827,g,55,b)].
+
+given #568 (T,wt=16): 822 Called_12am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_12am(Barbara) | Called_1am(Barbara) | Called_12am(Mary) | Called_2am(Edna) | Called_3am(Edna).  [resolve(819,b,803,h),merge(g),merge(j),merge(k),merge(l),merge(m)].
+
+given #569 (T,wt=16): 823 Called_12am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_12am(Barbara) | Called_1am(Barbara) | Called_12am(Mary) | Called_3am(Edna) | Called_3am(Fiona).  [resolve(819,b,776,g),merge(g),merge(h),merge(j),merge(k)].
+
+given #570 (T,wt=16): 824 Called_12am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_12am(Barbara) | Called_1am(Barbara) | Called_12am(Mary) | Called_3am(Edna) | Called_2am(Barbara).  [resolve(819,b,769,g),merge(g),merge(h),merge(j),merge(k)].
+
+given #571 (A,wt=22): 746 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Fiona) | Called_4am(Barbara) | Called_12am(Barbara) | Called_2am(Mary) | -Exercise(x) | Called_4am(x).  [resolve(574,h,64,b),merge(k),merge(l),merge(m)].
+
+given #572 (T,wt=16): 825 Called_12am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_12am(Barbara) | Called_1am(Barbara) | Called_12am(Mary) | Called_2am(Barbara) | Called_2am(Fiona).  [resolve(819,b,685,g),merge(g),merge(h),merge(j),merge(k)].
+
+given #573 (T,wt=14): 838 Called_12am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_12am(Barbara) | Called_1am(Barbara) | Called_12am(Mary) | Called_2am(Fiona).  [resolve(825,g,829,g),merge(h),merge(i),merge(j),merge(k),merge(l),merge(m)].
+
+given #574 (T,wt=16): 826 Called_12am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_12am(Barbara) | Called_1am(Barbara) | Called_12am(Mary) | Called_3am(Barbara) | Called_3am(Fiona).  [resolve(819,b,176,c)].
+
+given #575 (T,wt=14): 839 Called_12am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_12am(Barbara) | Called_1am(Barbara) | Called_12am(Mary) | Called_3am(Fiona).  [resolve(826,g,828,g),merge(h),merge(i),merge(j),merge(k),merge(l),merge(m)].
+
+given #576 (A,wt=22): 755 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Fiona) | Called_4am(Barbara) | Called_12am(Barbara) | Called_1am(Barbara) | -Exercise(x) | Called_4am(x).  [resolve(575,h,64,b),merge(k),merge(l),merge(m)].
+
+given #577 (T,wt=14): 840 Called_12am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_12am(Barbara) | Called_1am(Barbara) | Called_12am(Mary) | -Called_2am(Fiona).  [resolve(839,g,54,b)].
+
+given #578 (T,wt=12): 842 Called_12am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_12am(Barbara) | Called_1am(Barbara) | Called_12am(Mary).  [resolve(840,g,838,g),merge(g),merge(h),merge(i),merge(j),merge(k),merge(l)].
+
+given #579 (T,wt=14): 845 Called_12am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_12am(Barbara) | Called_12am(Mary) | Called_2am(Barbara) | Called_3am(Barbara).  [resolve(842,e,477,f),merge(f),merge(i),merge(j)].
+
+given #580 (T,wt=14): 847 Called_12am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_12am(Barbara) | Called_12am(Mary) | Called_3am(Barbara) | Called_3am(Fiona).  [resolve(842,e,182,c)].
+
+given #581 (A,wt=22): 815 Called_12am(Barbara) | Called_1am(Barbara) | Called_3am(Edna) | Called_4am(Edna) | Exercise(Mary) | Called_12am(Fiona) | Called_1am(Fiona) | Hunger(Mary) | Worry(Barbara) | Worry(Fiona) | -Coffee(Fiona).  [resolve(631,h,37,b)].
+
+given #582 (T,wt=14): 848 Called_12am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_12am(Barbara) | Called_12am(Mary) | Called_2am(Barbara) | -Called_1am(Barbara).  [resolve(845,g,52,b)].
+
+given #583 (T,wt=12): 852 Called_12am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_12am(Barbara) | Called_12am(Mary) | Called_2am(Barbara).  [resolve(848,g,842,e),merge(g),merge(h),merge(i),merge(j),merge(k)].
+
+given #584 (T,wt=12): 853 Called_12am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_12am(Barbara) | Called_12am(Mary) | -Called_1am(Barbara).  [resolve(852,f,51,b)].
+
+given #585 (T,wt=10): 854 Called_12am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_12am(Barbara) | Called_12am(Mary).  [resolve(853,f,842,e),merge(f),merge(g),merge(h),merge(i),merge(j)].
+
+given #586 (A,wt=18): 821 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_3am(Barbara) | Called_4am(Barbara) | Called_12am(Barbara) | Called_1am(Barbara).  [resolve(734,j,544,d),merge(l),merge(m),merge(n),merge(o),merge(p),merge(q),merge(r),unit_del(j,73),unit_del(k,74)].
+
+given #587 (T,wt=10): 857 Called_12am(Edna) | Called_12am(Fiona) | Called_12am(Barbara) | Called_12am(Mary) | Called_2am(Fiona).  [resolve(854,c,391,c),merge(e)].
+
+given #588 (T,wt=10): 859 Called_12am(Edna) | Called_12am(Fiona) | Called_12am(Barbara) | Called_12am(Mary) | -Called_1am(Fiona).  [resolve(857,e,51,b)].
+
+given #589 (T,wt=8): 860 Called_12am(Edna) | Called_12am(Fiona) | Called_12am(Barbara) | Called_12am(Mary).  [resolve(859,e,854,c),merge(e),merge(f),merge(g),merge(h)].
+
+given #590 (T,wt=8): 869 Called_12am(Fiona) | Called_12am(Barbara) | Called_12am(Mary) | Called_4am(Barbara).  [resolve(860,a,173,b)].
+
+given #591 (A,wt=18): 830 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Fiona) | Called_4am(Barbara) | Called_1am(Mary) | Called_2am(Mary).  [resolve(740,j,547,d),merge(k),merge(l),merge(m),merge(n),merge(o),merge(p),merge(q),unit_del(j,74)].
+
+given #592 (T,wt=8): 871 Called_12am(Fiona) | Called_12am(Barbara) | Called_12am(Mary) | -Called_3am(Barbara).  [resolve(869,d,56,b)].
+
+given #593 (T,wt=8): 872 Called_12am(Fiona) | Called_12am(Barbara) | Called_12am(Mary) | -Called_2am(Barbara).  [resolve(869,d,55,b)].
+
+given #594 (T,wt=8): 873 Called_12am(Fiona) | Called_12am(Barbara) | Called_12am(Mary) | -Called_1am(Barbara).  [resolve(869,d,53,b)].
+
+given #595 (T,wt=10): 868 Called_12am(Fiona) | Called_12am(Barbara) | Called_12am(Mary) | Called_3am(Barbara) | Called_3am(Fiona).  [resolve(860,a,177,c)].
+
+given #596 (A,wt=18): 837 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Fiona) | Called_4am(Barbara) | Called_12am(Barbara) | Called_2am(Mary).  [resolve(746,j,547,d),merge(k),merge(l),merge(m),merge(n),merge(o),merge(p),merge(q),unit_del(j,74)].
+
+given #597 (T,wt=8): 879 Called_12am(Fiona) | Called_12am(Barbara) | Called_12am(Mary) | Called_3am(Fiona).  [resolve(868,d,871,d),merge(e),merge(f),merge(g)].
+
+given #598 (T,wt=8): 883 Called_12am(Fiona) | Called_12am(Barbara) | Called_12am(Mary) | -Called_2am(Fiona).  [resolve(879,d,54,b)].
+
+given #599 (T,wt=8): 884 Called_12am(Fiona) | Called_12am(Barbara) | Called_12am(Mary) | -Called_1am(Fiona).  [resolve(879,d,52,b)].
+
+given #600 (T,wt=12): 867 Called_12am(Fiona) | Called_12am(Barbara) | Called_12am(Mary) | Called_2am(Edna) | Called_3am(Edna) | Called_2am(Mary).  [resolve(860,a,627,g),merge(d),merge(g),merge(h)].
+
+given #601 (A,wt=18): 841 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Fiona) | Called_4am(Barbara) | Called_12am(Barbara) | Called_1am(Barbara).  [resolve(755,j,547,d),merge(k),merge(l),merge(m),merge(n),merge(o),merge(p),merge(q),unit_del(j,74)].
+
+given #602 (T,wt=12): 870 Called_12am(Fiona) | Called_12am(Barbara) | Called_12am(Mary) | Called_2am(Barbara) | Called_2am(Fiona) | Called_2am(Mary).  [resolve(860,a,125,a)].
+
+given #603 (T,wt=10): 889 Called_12am(Fiona) | Called_12am(Barbara) | Called_12am(Mary) | Called_2am(Fiona) | Called_2am(Mary).  [resolve(870,d,872,d),merge(f),merge(g),merge(h)].
+
+given #604 (T,wt=8): 890 Called_12am(Fiona) | Called_12am(Barbara) | Called_12am(Mary) | Called_2am(Mary).  [resolve(889,d,883,d),merge(e),merge(f),merge(g)].
+
+given #605 (T,wt=8): 891 Called_12am(Fiona) | Called_12am(Barbara) | Called_12am(Mary) | -Called_1am(Mary).  [resolve(890,d,51,b)].
+
+given #606 (A,wt=20): 851 Called_12am(Barbara) | Called_1am(Barbara) | Called_3am(Edna) | Called_4am(Edna) | Exercise(Mary) | Called_12am(Fiona) | Called_1am(Fiona) | Hunger(Mary) | Worry(Barbara) | Worry(Fiona).  [resolve(815,k,634,h),merge(k),merge(l),merge(m),merge(n),merge(o),merge(p),merge(q)].
+
+given #607 (T,wt=6): 892 Called_12am(Fiona) | Called_12am(Barbara) | Called_12am(Mary).  [resolve(891,d,702,c),merge(d),merge(e),merge(f)].
+
+given #608 (T,wt=8): 900 Called_12am(Fiona) | Called_12am(Mary) | Called_3am(Barbara) | Called_3am(Fiona).  [resolve(892,b,183,c)].
+
+given #609 (T,wt=8): 901 Called_12am(Fiona) | Called_12am(Mary) | Called_3am(Fiona) | -Called_2am(Barbara).  [resolve(900,c,54,b)].
+
+given #610 (T,wt=8): 902 Called_12am(Fiona) | Called_12am(Mary) | Called_3am(Fiona) | -Called_1am(Barbara).  [resolve(900,c,52,b)].
+
+given #611 (A,wt=18): 858 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_3am(Barbara) | Called_12am(Barbara) | Called_1am(Barbara) | -Called_2am(Barbara).  [resolve(821,g,55,b)].
+
+given #612 (T,wt=8): 903 Called_12am(Fiona) | Called_12am(Mary) | Called_3am(Fiona) | -Called_12am(Barbara).  [resolve(900,c,49,b)].
+
+given #613 (T,wt=6): 905 Called_12am(Fiona) | Called_12am(Mary) | Called_3am(Fiona).  [resolve(903,d,892,b),merge(d),merge(e)].
+
+given #614 (T,wt=6): 906 Called_12am(Fiona) | Called_12am(Mary) | -Called_2am(Fiona).  [resolve(905,c,54,b)].
+
+given #615 (T,wt=6): 907 Called_12am(Fiona) | Called_12am(Mary) | -Called_1am(Fiona).  [resolve(905,c,52,b)].
+
+given #616 (A,wt=18): 874 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Fiona) | Called_1am(Mary) | Called_2am(Mary) | -Called_3am(Barbara).  [resolve(830,g,56,b)].
+
+given #617 (T,wt=10): 893 Called_12am(Fiona) | Called_12am(Mary) | Called_1am(Mary) | Called_3am(Barbara) | Called_1am(Fiona).  [resolve(892,b,525,f),merge(c),merge(f)].
+
+given #618 (T,wt=10): 896 Called_12am(Fiona) | Called_12am(Mary) | Called_2am(Barbara) | Called_3am(Barbara) | Called_2am(Mary).  [resolve(892,b,480,f),merge(c),merge(f)].
+
+given #619 (T,wt=10): 897 Called_12am(Fiona) | Called_12am(Mary) | Called_2am(Barbara) | Called_3am(Barbara) | Called_1am(Fiona).  [resolve(892,b,478,f),merge(c),merge(f)].
+
+given #620 (T,wt=10): 898 Called_12am(Fiona) | Called_12am(Mary) | Called_1am(Barbara) | Called_1am(Fiona) | Called_1am(Mary).  [resolve(892,b,209,d)].
+
+given #621 (A,wt=18): 875 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Fiona) | Called_1am(Mary) | Called_2am(Mary) | -Called_2am(Barbara).  [resolve(830,g,55,b)].
+
+given #622 (T,wt=10): 899 Called_12am(Fiona) | Called_12am(Mary) | Called_2am(Barbara) | Called_2am(Fiona) | Called_2am(Mary).  [resolve(892,b,206,d)].
+
+given #623 (T,wt=10): 908 Called_12am(Fiona) | Called_12am(Mary) | Called_1am(Mary) | Called_1am(Fiona) | -Called_2am(Barbara).  [resolve(893,d,54,b)].
+
+given #624 (T,wt=10): 909 Called_12am(Fiona) | Called_12am(Mary) | Called_1am(Mary) | Called_1am(Fiona) | -Called_1am(Barbara).  [resolve(893,d,52,b)].
+
+given #625 (T,wt=8): 917 Called_12am(Fiona) | Called_12am(Mary) | Called_1am(Mary) | Called_1am(Fiona).  [resolve(909,e,898,c),merge(e),merge(f),merge(g),merge(h)].
+
+given #626 (A,wt=18): 876 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Fiona) | Called_1am(Mary) | Called_2am(Mary) | -Called_1am(Barbara).  [resolve(830,g,53,b)].
+
+given #627 (T,wt=6): 918 Called_12am(Fiona) | Called_12am(Mary) | Called_1am(Mary).  [resolve(917,d,907,c),merge(d),merge(e)].
+
+given #628 (T,wt=10): 911 Called_12am(Fiona) | Called_12am(Mary) | Called_2am(Barbara) | Called_2am(Mary) | -Called_1am(Barbara).  [resolve(896,d,52,b)].
+
+given #629 (T,wt=10): 912 Called_12am(Fiona) | Called_12am(Mary) | Called_2am(Barbara) | Called_2am(Mary) | -Called_12am(Barbara).  [resolve(896,d,49,b)].
+
+given #630 (T,wt=8): 919 Called_12am(Fiona) | Called_12am(Mary) | Called_2am(Barbara) | Called_2am(Mary).  [resolve(912,e,892,b),merge(e),merge(f)].
+
+given #631 (A,wt=18): 877 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Fiona) | Called_1am(Mary) | Called_2am(Mary) | -Called_12am(Barbara).  [resolve(830,g,50,b)].
+
+given #632 (T,wt=8): 920 Called_12am(Fiona) | Called_12am(Mary) | Called_2am(Mary) | -Called_1am(Barbara).  [resolve(919,c,51,b)].
+
+given #633 (T,wt=8): 921 Called_12am(Fiona) | Called_12am(Mary) | Called_2am(Mary) | -Called_12am(Barbara).  [resolve(919,c,48,b)].
+
+given #634 (T,wt=6): 922 Called_12am(Fiona) | Called_12am(Mary) | Called_2am(Mary).  [resolve(921,d,892,b),merge(d),merge(e)].
+
+given #635 (T,wt=6): 923 Called_12am(Fiona) | Called_12am(Mary) | -Called_1am(Mary).  [resolve(922,c,51,b)].
+
+given #636 (A,wt=18): 880 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Fiona) | Called_12am(Barbara) | Called_2am(Mary) | -Called_3am(Barbara).  [resolve(837,g,56,b)].
+
+given #637 (T,wt=4): 924 Called_12am(Fiona) | Called_12am(Mary).  [resolve(923,c,918,c),merge(c),merge(d)].
+
+given #638 (T,wt=4): 925 Called_12am(Mary) | Called_2am(Fiona).  [resolve(924,a,392,c),merge(b)].
+
+given #639 (T,wt=4): 926 Called_12am(Mary) | Called_1am(Mary).  [resolve(924,a,390,c),merge(b)].
+
+given #640 (T,wt=4): 927 Called_12am(Mary) | -Called_1am(Fiona).  [resolve(925,b,51,b)].
+
+given #641 (A,wt=18): 881 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Fiona) | Called_12am(Barbara) | Called_2am(Mary) | -Called_2am(Barbara).  [resolve(837,g,55,b)].
+
+given #642 (T,wt=4): 928 Called_12am(Mary) | -Called_12am(Fiona).  [resolve(925,b,48,b)].
+
+given #643 (T,wt=2): 929 Called_12am(Mary).  [resolve(928,b,924,a),merge(b)].
+
+given #644 (T,wt=4): 1002 Called_1am(Barbara) | Called_1am(Fiona).  [back_unit_del(932),unit_del(c,934)].
+
+given #645 (T,wt=4): 1005 Called_1am(Fiona) | -Called_12am(Barbara).  [resolve(1002,a,47,b)].
+
+given #646 (A,wt=2): 933 -Called_2am(Mary).  [ur(48,a,929,a)].
+
+given #647 (F,wt=2): 934 -Called_1am(Mary).  [ur(47,a,929,a)].
+
+given #648 (T,wt=6): 992 Called_2am(Barbara) | Called_2am(Fiona) | -Called_12am(Fiona).  [back_unit_del(258),unit_del(c,933)].
+
+given #649 (T,wt=6): 993 Called_2am(Barbara) | Called_2am(Fiona) | -Called_1am(Fiona).  [back_unit_del(257),unit_del(c,933)].
+
+given #650 (T,wt=6): 994 Called_2am(Barbara) | Called_2am(Fiona) | Called_3am(Fiona).  [back_unit_del(254),unit_del(c,933)].
+
+given #651 (T,wt=6): 995 Called_2am(Barbara) | Called_2am(Fiona) | -Called_12am(Barbara).  [back_unit_del(206),unit_del(c,933)].
+
+given #652 (A,wt=14): 939 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Fiona) | -Called_1am(Barbara).  [back_unit_del(876),unit_del(g,934),unit_del(h,933)].
+
+given #653 (T,wt=6): 996 Called_2am(Barbara) | Called_2am(Fiona) | -Called_1am(Barbara).  [back_unit_del(205),unit_del(c,933)].
+
+given #654 (T,wt=6): 997 Called_2am(Barbara) | Called_2am(Fiona) | -Called_3am(Barbara).  [back_unit_del(204),unit_del(c,933)].
+
+given #655 (T,wt=6): 998 Called_2am(Barbara) | Called_2am(Fiona) | Called_4am(Barbara).  [back_unit_del(185),unit_del(c,933)].
+
+given #656 (T,wt=6): 999 Called_2am(Barbara) | Called_2am(Edna) | Called_2am(Fiona).  [back_unit_del(126),unit_del(d,933)].
+
+given #657 (A,wt=14): 948 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_3am(Barbara) | -Called_1am(Barbara).  [back_unit_del(800),unit_del(g,934),unit_del(h,933)].
+
+given #658 (T,wt=6): 1000 -Called_12am(Edna) | Called_2am(Barbara) | Called_2am(Fiona).  [back_unit_del(125),unit_del(d,933)].
+
+given #659 (T,wt=6): 1001 -Called_1am(Edna) | Called_2am(Barbara) | Called_2am(Fiona).  [back_unit_del(124),unit_del(d,933)].
+
+given #660 (T,wt=6): 1003 Called_12am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona).  [back_unit_del(931),unit_del(d,934)].
+
+given #661 (T,wt=6): 1004 Called_1am(Fiona) | Called_3am(Barbara) | Called_3am(Fiona).  [resolve(1002,a,182,c)].
+
+given #662 (A,wt=14): 951 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_12am(Fiona) | Called_1am(Barbara) | Called_3am(Fiona) | -Called_12am(Edna).  [back_unit_del(796),unit_del(g,933)].
+
+given #663 (T,wt=6): 1007 Called_2am(Barbara) | Called_2am(Fiona) | Called_1am(Fiona).  [resolve(996,c,1002,a)].
+
+given #664 (T,wt=6): 1010 Called_1am(Fiona) | Called_3am(Fiona) | -Called_2am(Barbara).  [resolve(1004,b,54,b)].
+
+given #665 (T,wt=6): 1011 Called_1am(Fiona) | Called_3am(Fiona) | -Called_1am(Barbara).  [resolve(1004,b,52,b)].
+
+given #666 (T,wt=4): 1013 Called_1am(Fiona) | Called_3am(Fiona).  [resolve(1011,c,1002,a),merge(c)].
+
+given #667 (A,wt=14): 952 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_12am(Fiona) | Called_1am(Barbara) | Called_3am(Fiona) | -Called_1am(Edna).  [back_unit_del(795),unit_del(g,933)].
+
+given #668 (T,wt=4): 1014 Called_1am(Fiona) | -Called_2am(Fiona).  [resolve(1013,b,54,b)].
+
+given #669 (T,wt=4): 1015 Called_1am(Fiona) | -Called_12am(Fiona).  [resolve(1013,b,49,b)].
+
+given #670 (T,wt=6): 1012 Called_2am(Fiona) | Called_1am(Fiona) | -Called_1am(Barbara).  [resolve(1007,a,51,b)].
+
+given #671 (T,wt=4): 1016 Called_2am(Fiona) | Called_1am(Fiona).  [resolve(1012,c,1002,a),merge(c)].
+
+given #672 (A,wt=14): 953 Called_12am(Barbara) | Called_2am(Edna) | Called_3am(Edna) | Called_4am(Edna) | Called_12am(Fiona) | Called_1am(Barbara) | Called_3am(Fiona).  [back_unit_del(794),unit_del(h,933)].
+
+given #673 (T,wt=2): 1017 Called_1am(Fiona).  [resolve(1016,a,1014,b),merge(b)].
+
+given #674 (T,wt=2): 1054 Called_2am(Barbara).  [back_unit_del(1018),unit_del(b,1023)].
+
+============================== PROOF =================================
+
+% Proof 1 at 0.22 (+ 0.11) seconds.
+% Length of proof is 303.
+% Level of proof is 75.
+% Maximum clause weight is 26.
+% Given clauses 674.
+
+1 Exercise(x) -> -Coffee(x) & -Worry(x) & -Hunger(x) & -Snoring(x) # label(non_clause).  [assumption].
+2 Coffee(x) -> -Exercise(x) & -Worry(x) & -Hunger(x) & -Snoring(x) # label(non_clause).  [assumption].
+6 Called_12am(x) -> -Called_1am(x) & -Called_2am(x) & -Called_3am(x) & -Called_4am(x) # label(non_clause).  [assumption].
+7 Called_1am(x) -> -Called_12am(x) & -Called_2am(x) & -Called_3am(x) & -Called_4am(x) # label(non_clause).  [assumption].
+8 Called_2am(x) -> -Called_1am(x) & -Called_12am(x) & -Called_3am(x) & -Called_4am(x) # label(non_clause).  [assumption].
+9 Called_3am(x) -> -Called_1am(x) & -Called_2am(x) & -Called_12am(x) & -Called_4am(x) # label(non_clause).  [assumption].
+11 Exercise(x) -> Called_12am(x) & (Called_1am(Fiona) | Called_2am(Fiona) | Called_3am(Fiona) | Called_4am(Fiona)) | Called_1am(x) & (Called_2am(Fiona) | Called_3am(Fiona) | Called_4am(Fiona)) | Called_2am(x) & (Called_3am(Fiona) | Called_4am(Fiona)) | Called_3am(x) & Called_4am(Fiona) # label(non_clause).  [assumption].
+12 Exercise(x) & Coffee(y) -> Called_12am(y) & (Called_1am(x) | Called_2am(x) | Called_3am(x) | Called_4am(x)) | Called_1am(y) & (Called_2am(x) | Called_3am(x) | Called_4am(x)) | Called_2am(y) & (Called_3am(x) | Called_4am(x)) | Called_3am(y) & Called_4am(x) # label(non_clause).  [assumption].
+13 Coffee(x) -> Called_12am(Mary) & (Called_1am(x) | Called_2am(x) | Called_3am(x) | Called_4am(x)) | Called_1am(Mary) & (Called_2am(x) | Called_3am(x) | Called_4am(x)) | Called_2am(Mary) & (Called_3am(x) | Called_4am(x)) # label(non_clause).  [assumption].
+14 Worry(x) -> Called_12am(Mary) & (Called_1am(x) | Called_2am(x) | Called_3am(x) | Called_4am(x)) | Called_1am(Mary) & (Called_2am(x) | Called_3am(x) | Called_4am(x)) | Called_2am(Mary) & (Called_3am(x) | Called_4am(x)) # label(non_clause).  [assumption].
+15 m1 <-> Called_12am(Mary) & (Called_1am(Fiona) | Called_2am(Fiona) | Called_3am(Fiona) | Called_4am(Fiona)) | Called_1am(Mary) & (Called_2am(Fiona) | Called_3am(Fiona) | Called_4am(Fiona)) | Called_2am(Mary) & (Called_3am(Fiona) | Called_4am(Fiona)) | Called_3am(Mary) & Called_4am(Fiona) # label(non_clause).  [assumption].
+16 Called_4am(Fiona) # label(non_clause) # label(goal).  [goal].
+27 Exercise(Barbara) | Exercise(Carla) | Exercise(Edna) | Exercise(Fiona) | Exercise(Mary).  [assumption].
+28 Coffee(Barbara) | Coffee(Carla) | Coffee(Edna) | Coffee(Fiona) | Coffee(Mary).  [assumption].
+29 Worry(Barbara) | Worry(Carla) | Worry(Edna) | Worry(Fiona) | Worry(Mary).  [assumption].
+32 -Exercise(x) | -Coffee(x).  [clausify(1)].
+33 -Exercise(x) | -Worry(x).  [clausify(1)].
+36 -Coffee(x) | -Worry(x).  [clausify(2)].
+43 Called_1am(Barbara) | Called_1am(Carla) | Called_1am(Edna) | Called_1am(Fiona) | Called_1am(Mary).  [assumption].
+44 Called_2am(Barbara) | Called_2am(Carla) | Called_2am(Edna) | Called_2am(Fiona) | Called_2am(Mary).  [assumption].
+45 Called_3am(Barbara) | Called_3am(Carla) | Called_3am(Edna) | Called_3am(Fiona) | Called_3am(Mary).  [assumption].
+46 Called_4am(Barbara) | Called_4am(Carla) | Called_4am(Edna) | Called_4am(Fiona) | Called_4am(Mary).  [assumption].
+47 -Called_12am(x) | -Called_1am(x).  [clausify(6)].
+48 -Called_12am(x) | -Called_2am(x).  [clausify(6)].
+49 -Called_12am(x) | -Called_3am(x).  [clausify(6)].
+50 -Called_12am(x) | -Called_4am(x).  [clausify(6)].
+51 -Called_1am(x) | -Called_2am(x).  [clausify(7)].
+52 -Called_1am(x) | -Called_3am(x).  [clausify(7)].
+53 -Called_1am(x) | -Called_4am(x).  [clausify(7)].
+54 -Called_2am(x) | -Called_3am(x).  [clausify(8)].
+55 -Called_2am(x) | -Called_4am(x).  [clausify(8)].
+56 -Called_3am(x) | -Called_4am(x).  [clausify(9)].
+57 -Exercise(Fiona).  [assumption].
+59 -Exercise(x) | Called_12am(x) | Called_1am(x) | Called_2am(x) | Called_4am(Fiona).  [clausify(11)].
+61 -Exercise(x) | Called_12am(x) | Called_2am(Fiona) | Called_3am(Fiona) | Called_4am(Fiona).  [clausify(11)].
+64 -Exercise(x) | -Coffee(y) | Called_12am(y) | Called_1am(y) | Called_2am(y) | Called_4am(x).  [clausify(12)].
+65 -Exercise(x) | -Coffee(y) | Called_12am(y) | Called_1am(y) | Called_3am(x) | Called_4am(x).  [clausify(12)].
+66 -Exercise(x) | -Coffee(y) | Called_12am(y) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [clausify(12)].
+68 Called_12am(Carla).  [assumption].
+70 -Exercise(Carla).  [assumption].
+71 -Coffee(Mary).  [assumption].
+72 -Worry(Mary).  [assumption].
+73 -Called_3am(Mary).  [assumption].
+74 -Called_4am(Mary).  [assumption].
+75 -Coffee(x) | Called_12am(Mary) | Called_1am(Mary) | Called_2am(Mary).  [clausify(13)].
+76 -Coffee(x) | Called_12am(Mary) | Called_1am(Mary) | Called_3am(x) | Called_4am(x).  [clausify(13)].
+77 -Coffee(x) | Called_12am(Mary) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [clausify(13)].
+78 -Coffee(x) | Called_1am(x) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [clausify(13)].
+80 -Worry(x) | Called_12am(Mary) | Called_1am(Mary) | Called_3am(x) | Called_4am(x).  [clausify(14)].
+81 -Worry(x) | Called_12am(Mary) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [clausify(14)].
+82 -Worry(x) | Called_1am(x) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [clausify(14)].
+83 -Coffee(Edna).  [assumption].
+86 -m1 | Called_12am(Mary) | Called_1am(Mary) | Called_3am(Fiona) | Called_4am(Fiona).  [clausify(15)].
+87 -m1 | Called_12am(Mary) | Called_2am(Fiona) | Called_3am(Fiona) | Called_4am(Fiona).  [clausify(15)].
+89 m1 | -Called_12am(Mary) | -Called_1am(Fiona).  [clausify(15)].
+91 m1 | -Called_12am(Mary) | -Called_3am(Fiona).  [clausify(15)].
+93 m1 | -Called_1am(Mary) | -Called_2am(Fiona).  [clausify(15)].
+94 m1 | -Called_1am(Mary) | -Called_3am(Fiona).  [clausify(15)].
+96 m1 | -Called_2am(Mary) | -Called_3am(Fiona).  [clausify(15)].
+98 -Called_4am(Fiona).  [deny(16)].
+99 Exercise(Barbara) | Exercise(Edna) | Exercise(Mary).  [back_unit_del(27),unit_del(b,70),unit_del(d,57)].
+101 Coffee(Barbara) | Coffee(Carla) | Coffee(Fiona).  [back_unit_del(28),unit_del(c,83),unit_del(e,71)].
+102 Worry(Barbara) | Worry(Carla) | Worry(Edna) | Worry(Fiona).  [back_unit_del(29),unit_del(e,72)].
+103 Called_3am(Barbara) | Called_3am(Carla) | Called_3am(Edna) | Called_3am(Fiona).  [back_unit_del(45),unit_del(e,73)].
+104 Called_4am(Barbara) | Called_4am(Carla) | Called_4am(Edna).  [back_unit_del(46),unit_del(d,98),unit_del(e,74)].
+106 -m1 | Called_12am(Mary) | Called_2am(Fiona) | Called_3am(Fiona).  [back_unit_del(87),unit_del(e,98)].
+107 -m1 | Called_12am(Mary) | Called_1am(Mary) | Called_3am(Fiona).  [back_unit_del(86),unit_del(e,98)].
+109 -Exercise(x) | Called_12am(x) | Called_2am(Fiona) | Called_3am(Fiona).  [back_unit_del(61),unit_del(e,98)].
+111 -Exercise(x) | Called_12am(x) | Called_1am(x) | Called_2am(x).  [back_unit_del(59),unit_del(e,98)].
+116 -Called_12am(Edna) | Called_2am(Barbara) | Called_2am(Carla) | Called_2am(Fiona) | Called_2am(Mary).  [resolve(48,b,44,c)].
+117 -Called_1am(Edna) | Called_2am(Barbara) | Called_2am(Carla) | Called_2am(Fiona) | Called_2am(Mary).  [resolve(51,b,44,c)].
+118 -Called_4am(Carla).  [ur(50,a,68,a)].
+119 -Called_3am(Carla).  [ur(49,a,68,a)].
+120 -Called_2am(Carla).  [ur(48,a,68,a)].
+121 -Called_1am(Carla).  [ur(47,a,68,a)].
+122 Called_4am(Barbara) | Called_4am(Edna).  [back_unit_del(104),unit_del(b,118)].
+123 Called_3am(Barbara) | Called_3am(Edna) | Called_3am(Fiona).  [back_unit_del(103),unit_del(b,119)].
+124 -Called_1am(Edna) | Called_2am(Barbara) | Called_2am(Fiona) | Called_2am(Mary).  [back_unit_del(117),unit_del(c,120)].
+125 -Called_12am(Edna) | Called_2am(Barbara) | Called_2am(Fiona) | Called_2am(Mary).  [back_unit_del(116),unit_del(c,120)].
+126 Called_2am(Barbara) | Called_2am(Edna) | Called_2am(Fiona) | Called_2am(Mary).  [back_unit_del(44),unit_del(b,120)].
+128 Called_1am(Barbara) | Called_1am(Edna) | Called_1am(Fiona) | Called_1am(Mary).  [back_unit_del(43),unit_del(b,121)].
+132 Coffee(Carla) | Coffee(Fiona) | Called_12am(Mary) | Called_2am(Barbara) | Called_3am(Barbara) | Called_4am(Barbara).  [resolve(101,a,77,a)].
+133 Coffee(Carla) | Coffee(Fiona) | Called_12am(Mary) | Called_1am(Mary) | Called_3am(Barbara) | Called_4am(Barbara).  [resolve(101,a,76,a)].
+134 Coffee(Carla) | Coffee(Fiona) | Called_12am(Mary) | Called_1am(Mary) | Called_2am(Mary).  [resolve(101,a,75,a)].
+136 Coffee(Carla) | Coffee(Fiona) | -Exercise(x) | Called_12am(Barbara) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [resolve(101,a,66,b)].
+137 Coffee(Carla) | Coffee(Fiona) | -Exercise(x) | Called_12am(Barbara) | Called_1am(Barbara) | Called_3am(x) | Called_4am(x).  [resolve(101,a,65,b)].
+138 Coffee(Carla) | Coffee(Fiona) | -Exercise(x) | Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | Called_4am(x).  [resolve(101,a,64,b)].
+140 Coffee(Carla) | Coffee(Fiona) | -Exercise(Barbara).  [resolve(101,a,32,b)].
+145 Worry(Barbara) | Worry(Carla) | Worry(Fiona) | -Exercise(Edna).  [resolve(102,c,33,b)].
+147 Called_12am(Edna) | Called_2am(Fiona) | Called_3am(Fiona) | Exercise(Barbara) | Exercise(Mary).  [resolve(109,a,99,b)].
+149 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Exercise(Barbara) | Exercise(Mary).  [resolve(111,a,99,b)].
+151 -Worry(Carla).  [ur(82,b,121,a,c,120,a,d,119,a,e,118,a)].
+152 -Coffee(Carla).  [ur(78,b,121,a,c,120,a,d,119,a,e,118,a)].
+153 Worry(Barbara) | Worry(Fiona) | -Exercise(Edna).  [back_unit_del(145),unit_del(b,151)].
+159 Coffee(Fiona) | -Exercise(Barbara).  [back_unit_del(140),unit_del(a,152)].
+161 Coffee(Fiona) | -Exercise(x) | Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | Called_4am(x).  [back_unit_del(138),unit_del(a,152)].
+162 Coffee(Fiona) | -Exercise(x) | Called_12am(Barbara) | Called_1am(Barbara) | Called_3am(x) | Called_4am(x).  [back_unit_del(137),unit_del(a,152)].
+163 Coffee(Fiona) | -Exercise(x) | Called_12am(Barbara) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [back_unit_del(136),unit_del(a,152)].
+165 Coffee(Fiona) | Called_12am(Mary) | Called_1am(Mary) | Called_2am(Mary).  [back_unit_del(134),unit_del(a,152)].
+166 Coffee(Fiona) | Called_12am(Mary) | Called_1am(Mary) | Called_3am(Barbara) | Called_4am(Barbara).  [back_unit_del(133),unit_del(a,152)].
+167 Coffee(Fiona) | Called_12am(Mary) | Called_2am(Barbara) | Called_3am(Barbara) | Called_4am(Barbara).  [back_unit_del(132),unit_del(a,152)].
+170 Called_4am(Barbara) | -Called_3am(Edna).  [resolve(122,b,56,b)].
+171 Called_4am(Barbara) | -Called_2am(Edna).  [resolve(122,b,55,b)].
+172 Called_4am(Barbara) | -Called_1am(Edna).  [resolve(122,b,53,b)].
+173 Called_4am(Barbara) | -Called_12am(Edna).  [resolve(122,b,50,b)].
+174 Called_3am(Barbara) | Called_3am(Fiona) | Called_4am(Barbara).  [resolve(123,b,170,b)].
+175 Called_3am(Barbara) | Called_3am(Fiona) | -Called_2am(Edna).  [resolve(123,b,54,b)].
+176 Called_3am(Barbara) | Called_3am(Fiona) | -Called_1am(Edna).  [resolve(123,b,52,b)].
+177 Called_3am(Barbara) | Called_3am(Fiona) | -Called_12am(Edna).  [resolve(123,b,49,b)].
+179 Worry(Barbara) | Worry(Fiona) | Exercise(Barbara) | Exercise(Mary).  [resolve(153,c,99,b)].
+181 Called_3am(Barbara) | Called_3am(Fiona) | -Called_2am(Barbara).  [resolve(174,c,55,b)].
+182 Called_3am(Barbara) | Called_3am(Fiona) | -Called_1am(Barbara).  [resolve(174,c,53,b)].
+183 Called_3am(Barbara) | Called_3am(Fiona) | -Called_12am(Barbara).  [resolve(174,c,50,b)].
+184 Called_2am(Barbara) | Called_2am(Fiona) | Called_2am(Mary) | Called_3am(Barbara) | Called_3am(Fiona).  [resolve(126,b,175,c)].
+185 Called_2am(Barbara) | Called_2am(Fiona) | Called_2am(Mary) | Called_4am(Barbara).  [resolve(126,b,171,b)].
+186 Called_1am(Barbara) | Called_1am(Fiona) | Called_1am(Mary) | Called_3am(Barbara) | Called_3am(Fiona).  [resolve(128,b,176,c)].
+187 Called_1am(Barbara) | Called_1am(Fiona) | Called_1am(Mary) | Called_4am(Barbara).  [resolve(128,b,172,b)].
+188 Called_1am(Barbara) | Called_1am(Fiona) | Called_1am(Mary) | Called_2am(Barbara) | Called_2am(Fiona) | Called_2am(Mary).  [resolve(128,b,124,a)].
+194 Called_12am(Mary) | Called_1am(Mary) | Called_2am(Mary).  [resolve(165,a,75,a),merge(d),merge(e),merge(f)].
+196 Worry(Fiona) | Exercise(Barbara) | Exercise(Mary) | Called_12am(Mary) | Called_2am(Barbara) | Called_3am(Barbara) | Called_4am(Barbara).  [resolve(179,a,81,a)].
+197 Worry(Fiona) | Exercise(Barbara) | Exercise(Mary) | Called_12am(Mary) | Called_1am(Mary) | Called_3am(Barbara) | Called_4am(Barbara).  [resolve(179,a,80,a)].
+204 Called_2am(Barbara) | Called_2am(Fiona) | Called_2am(Mary) | -Called_3am(Barbara).  [resolve(185,d,56,b)].
+205 Called_2am(Barbara) | Called_2am(Fiona) | Called_2am(Mary) | -Called_1am(Barbara).  [resolve(185,d,53,b)].
+207 Called_1am(Barbara) | Called_1am(Fiona) | Called_1am(Mary) | -Called_3am(Barbara).  [resolve(187,d,56,b)].
+208 Called_1am(Barbara) | Called_1am(Fiona) | Called_1am(Mary) | -Called_2am(Barbara).  [resolve(187,d,55,b)].
+209 Called_1am(Barbara) | Called_1am(Fiona) | Called_1am(Mary) | -Called_12am(Barbara).  [resolve(187,d,50,b)].
+214 Called_12am(Edna) | Called_2am(Fiona) | Called_3am(Fiona) | Exercise(Mary) | Coffee(Fiona).  [resolve(147,d,159,b)].
+226 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Exercise(Mary) | Coffee(Fiona).  [resolve(149,d,159,b)].
+227 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Exercise(Mary) | Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara).  [resolve(149,d,111,a)].
+236 Called_12am(Mary) | Called_1am(Mary) | Called_3am(Barbara) | Called_4am(Barbara) | -Exercise(x) | Called_12am(Fiona) | Called_1am(Fiona) | Called_3am(x) | Called_4am(x).  [resolve(166,a,65,b)].
+240 Called_12am(Mary) | Called_1am(Mary) | Called_3am(Barbara) | Called_4am(Barbara) | -Exercise(Barbara) | Called_12am(Fiona) | Called_1am(Fiona).  [factor(236,c,h),merge(h)].
+242 Called_12am(Mary) | Called_2am(Barbara) | Called_3am(Barbara) | Called_4am(Barbara) | -Exercise(x) | Called_12am(Fiona) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [resolve(167,a,66,b)].
+243 Called_12am(Mary) | Called_2am(Barbara) | Called_3am(Barbara) | Called_4am(Barbara) | -Exercise(x) | Called_12am(Fiona) | Called_1am(Fiona) | Called_3am(x) | Called_4am(x).  [resolve(167,a,65,b)].
+246 Called_12am(Mary) | Called_2am(Barbara) | Called_3am(Barbara) | Called_4am(Barbara) | -Exercise(Barbara) | Called_12am(Fiona).  [factor(242,b,g),merge(g),merge(h)].
+254 Called_2am(Barbara) | Called_2am(Fiona) | Called_2am(Mary) | Called_3am(Fiona).  [resolve(184,d,204,d),merge(e),merge(f),merge(g)].
+257 Called_2am(Barbara) | Called_2am(Fiona) | Called_2am(Mary) | -Called_1am(Fiona).  [resolve(254,d,52,b)].
+261 Called_1am(Barbara) | Called_1am(Fiona) | Called_1am(Mary) | Called_3am(Fiona).  [resolve(186,d,207,d),merge(e),merge(f),merge(g)].
+264 Called_1am(Barbara) | Called_1am(Fiona) | Called_1am(Mary) | m1 | -Called_2am(Mary).  [resolve(261,d,96,c)].
+266 Called_1am(Barbara) | Called_1am(Fiona) | Called_1am(Mary) | -Called_2am(Fiona).  [resolve(261,d,54,b)].
+274 Coffee(Fiona) | Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | Called_4am(Edna) | Exercise(Barbara) | Exercise(Mary).  [resolve(161,b,99,b)].
+277 Called_12am(Edna) | Called_2am(Fiona) | Called_3am(Fiona) | Exercise(Mary) | Called_12am(Mary).  [resolve(214,e,77,a),merge(f),merge(g),unit_del(f,98)].
+288 Coffee(Fiona) | Called_12am(Barbara) | Called_1am(Barbara) | Called_3am(Edna) | Called_4am(Edna) | Exercise(Barbara) | Exercise(Mary).  [resolve(162,b,99,b)].
+291 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Exercise(Mary) | -Exercise(x) | Called_12am(Fiona) | Called_1am(Fiona) | Called_3am(x) | Called_4am(x).  [resolve(226,e,65,b)].
+303 Called_12am(Edna) | Called_2am(Fiona) | Called_3am(Fiona) | Called_12am(Mary).  [resolve(277,d,109,a),merge(e),merge(f),merge(g)].
+304 Called_12am(Edna) | Called_2am(Fiona) | Called_12am(Mary) | m1 | -Called_2am(Mary).  [resolve(303,c,96,c)].
+305 Called_12am(Edna) | Called_2am(Fiona) | Called_12am(Mary) | m1 | -Called_1am(Mary).  [resolve(303,c,94,c)].
+309 Called_12am(Edna) | Called_2am(Fiona) | Called_12am(Mary) | m1 | Called_1am(Mary).  [resolve(304,e,194,c),merge(e)].
+313 Called_12am(Edna) | Called_12am(Mary) | m1 | Called_1am(Mary) | -Called_1am(Fiona).  [resolve(309,b,51,b)].
+321 Called_1am(Barbara) | Called_1am(Fiona) | Called_1am(Mary) | Called_2am(Fiona) | Called_2am(Mary).  [resolve(188,d,208,d),merge(f),merge(g),merge(h)].
+322 Called_1am(Barbara) | Called_1am(Fiona) | Called_1am(Mary) | Called_2am(Mary).  [resolve(321,d,266,d),merge(e),merge(f),merge(g)].
+323 Called_1am(Barbara) | Called_1am(Fiona) | Called_1am(Mary) | m1.  [resolve(322,d,264,e),merge(d),merge(e),merge(f)].
+324 Called_1am(Barbara) | Called_1am(Fiona) | Called_1am(Mary) | -Called_12am(Mary).  [resolve(322,d,48,b)].
+326 Called_1am(Fiona) | Called_1am(Mary) | m1 | Called_3am(Barbara) | Called_3am(Fiona).  [resolve(323,a,182,c)].
+330 Called_1am(Fiona) | Called_1am(Mary) | m1 | Called_3am(Fiona) | -Called_1am(Barbara).  [resolve(326,d,52,b)].
+331 Exercise(Barbara) | Exercise(Mary) | Called_12am(Mary) | Called_2am(Barbara) | Called_3am(Barbara) | Called_4am(Barbara) | -Coffee(Fiona).  [resolve(196,a,36,b)].
+332 Called_1am(Fiona) | Called_1am(Mary) | m1 | Called_3am(Fiona).  [resolve(330,e,323,a),merge(e),merge(f),merge(g)].
+333 Called_1am(Fiona) | Called_1am(Mary) | m1 | -Called_2am(Mary).  [resolve(332,d,96,c),merge(d)].
+334 Called_1am(Fiona) | Called_1am(Mary) | m1 | -Called_12am(Mary).  [resolve(332,d,91,c),merge(d)].
+337 Called_1am(Fiona) | Called_1am(Mary) | m1 | Called_12am(Mary).  [resolve(333,d,194,c),merge(e)].
+338 Exercise(Barbara) | Exercise(Mary) | Called_12am(Mary) | Called_1am(Mary) | Called_3am(Barbara) | Called_4am(Barbara) | -Coffee(Fiona).  [resolve(197,a,36,b)].
+339 Called_1am(Mary) | m1 | Called_12am(Mary) | Called_12am(Edna).  [resolve(337,a,313,e),merge(e),merge(f),merge(g)].
+341 m1 | Called_12am(Mary) | Called_12am(Edna) | Called_2am(Fiona).  [resolve(339,a,305,e),merge(d),merge(f),merge(g)].
+346 m1 | Called_12am(Mary) | Called_12am(Edna) | -Called_1am(Mary).  [resolve(341,d,93,c),merge(d)].
+349 m1 | Called_12am(Mary) | Called_12am(Edna).  [resolve(346,d,339,a),merge(d),merge(e),merge(f)].
+350 m1 | Called_12am(Mary) | Called_3am(Barbara) | Called_3am(Fiona).  [resolve(349,c,177,c)].
+351 m1 | Called_12am(Mary) | Called_4am(Barbara).  [resolve(349,c,173,b)].
+355 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | Coffee(Fiona).  [resolve(227,d,162,b),merge(h),merge(i),unit_del(h,73),unit_del(i,74)].
+356 m1 | Called_12am(Mary) | -Called_3am(Barbara).  [resolve(351,c,56,b)].
+362 m1 | Called_12am(Mary) | Called_3am(Fiona).  [resolve(350,c,356,c),merge(d),merge(e)].
+363 m1 | Called_12am(Mary) | -Called_2am(Mary).  [resolve(362,c,96,c),merge(c)].
+364 m1 | Called_12am(Mary) | -Called_1am(Mary).  [resolve(362,c,94,c),merge(c)].
+368 m1 | Called_12am(Mary) | Called_1am(Mary).  [resolve(363,c,194,c),merge(c)].
+372 m1 | Called_12am(Mary).  [resolve(368,c,364,c),merge(c),merge(d)].
+373 m1 | Called_1am(Fiona) | Called_1am(Mary).  [resolve(372,b,334,d),merge(d)].
+376 m1 | Called_1am(Mary) | -Called_12am(Mary).  [resolve(373,b,89,c),merge(c)].
+382 m1 | Called_1am(Mary).  [resolve(376,c,372,b),merge(c)].
+383 m1 | -Called_12am(Mary).  [resolve(382,b,47,b)].
+384 m1.  [resolve(383,b,372,b),merge(b)].
+385 Called_12am(Mary) | Called_1am(Mary) | Called_3am(Fiona).  [back_unit_del(107),unit_del(a,384)].
+386 Called_12am(Mary) | Called_2am(Fiona) | Called_3am(Fiona).  [back_unit_del(106),unit_del(a,384)].
+389 Called_12am(Mary) | Called_1am(Mary) | -Called_1am(Fiona).  [resolve(385,c,52,b)].
+391 Called_12am(Mary) | Called_2am(Fiona) | -Called_1am(Fiona).  [resolve(386,c,52,b)].
+392 Called_12am(Mary) | Called_2am(Fiona) | -Called_12am(Fiona).  [resolve(386,c,49,b)].
+424 Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | Called_4am(Edna) | Exercise(Barbara) | Exercise(Mary) | -Exercise(x) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Fiona) | Called_4am(x).  [resolve(274,a,64,b)].
+433 Called_12am(Barbara) | Called_1am(Barbara) | Called_3am(Edna) | Called_4am(Edna) | Exercise(Barbara) | Exercise(Mary) | -Exercise(x) | Called_12am(Fiona) | Called_1am(Fiona) | Called_3am(x) | Called_4am(x).  [resolve(288,a,65,b)].
+437 Called_12am(Barbara) | Called_1am(Barbara) | Called_3am(Edna) | Called_4am(Edna) | Exercise(Barbara) | Exercise(Mary) | -Exercise(Edna) | Called_12am(Fiona) | Called_1am(Fiona).  [factor(433,c,j),merge(j)].
+468 Exercise(Barbara) | Exercise(Mary) | Called_12am(Mary) | Called_2am(Barbara) | Called_3am(Barbara) | Called_4am(Barbara).  [resolve(331,g,167,a),merge(g),merge(h),merge(i),merge(j)].
+472 Exercise(Mary) | Called_12am(Mary) | Called_2am(Barbara) | Called_3am(Barbara) | Called_4am(Barbara) | Called_12am(Fiona).  [resolve(468,a,246,e),merge(f),merge(g),merge(h),merge(i)].
+474 Called_12am(Mary) | Called_2am(Barbara) | Called_3am(Barbara) | Called_4am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona).  [resolve(472,a,243,e),merge(f),merge(g),merge(h),merge(i),merge(j),unit_del(g,73),unit_del(h,74)].
+475 Called_12am(Mary) | Called_2am(Barbara) | Called_3am(Barbara) | Called_4am(Barbara) | Called_12am(Fiona) | Called_2am(Mary).  [resolve(472,a,242,e),merge(f),merge(g),merge(h),merge(i),merge(j),unit_del(g,73),unit_del(h,74)].
+477 Called_12am(Mary) | Called_2am(Barbara) | Called_3am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona) | -Called_1am(Barbara).  [resolve(474,d,53,b)].
+480 Called_12am(Mary) | Called_2am(Barbara) | Called_3am(Barbara) | Called_12am(Fiona) | Called_2am(Mary) | -Called_12am(Barbara).  [resolve(475,d,50,b)].
+486 Exercise(Barbara) | Exercise(Mary) | Called_12am(Mary) | Called_1am(Mary) | Called_3am(Barbara) | Called_4am(Barbara).  [resolve(338,g,166,a),merge(g),merge(h),merge(i),merge(j)].
+490 Exercise(Mary) | Called_12am(Mary) | Called_1am(Mary) | Called_3am(Barbara) | Called_4am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona).  [resolve(486,a,240,e),merge(f),merge(g),merge(h),merge(i)].
+493 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | -Exercise(x) | Called_12am(Fiona) | Called_1am(Fiona) | Called_3am(x) | Called_4am(x).  [resolve(355,g,65,b)].
+522 Called_12am(Mary) | Called_1am(Mary) | Called_3am(Barbara) | Called_4am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona).  [resolve(490,a,236,e),merge(g),merge(h),merge(i),merge(j),merge(k),merge(l),unit_del(g,73),unit_del(h,74)].
+524 Called_12am(Mary) | Called_1am(Mary) | Called_3am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona) | -Called_1am(Barbara).  [resolve(522,d,53,b)].
+525 Called_12am(Mary) | Called_1am(Mary) | Called_3am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona) | -Called_12am(Barbara).  [resolve(522,d,50,b)].
+544 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Exercise(Mary) | Called_12am(Fiona) | Called_1am(Fiona) | Called_3am(Barbara) | Called_4am(Barbara).  [resolve(291,e,149,d),merge(i),merge(j),merge(k),merge(l)].
+571 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_3am(Barbara) | Called_4am(Barbara) | Coffee(Fiona) | Called_12am(Barbara) | Called_2am(Mary).  [resolve(544,d,163,b),unit_del(k,73),unit_del(l,74)].
+628 Called_12am(Barbara) | Called_1am(Barbara) | Called_3am(Edna) | Called_4am(Edna) | Exercise(Barbara) | Exercise(Mary) | Called_12am(Fiona) | Called_1am(Fiona).  [resolve(437,g,99,b),merge(i),merge(j)].
+635 Called_12am(Barbara) | Called_1am(Barbara) | Called_3am(Edna) | Called_4am(Edna) | Exercise(Mary) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Barbara).  [resolve(628,e,111,a),merge(h),merge(i)].
+643 Called_12am(Barbara) | Called_1am(Barbara) | Called_3am(Edna) | Called_4am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Barbara) | Coffee(Fiona).  [resolve(635,e,162,b),merge(i),merge(j),unit_del(i,73),unit_del(j,74)].
+649 Called_12am(Barbara) | Called_1am(Barbara) | Called_3am(Edna) | Called_4am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Barbara) | -Exercise(x) | Called_3am(x) | Called_4am(x).  [resolve(643,h,65,b),merge(i),merge(j)].
+668 Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | Called_4am(Edna) | Exercise(Barbara) | Exercise(Mary) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Fiona).  [resolve(424,g,99,b),merge(j),merge(k),merge(l)].
+674 Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | Called_4am(Edna) | Exercise(Mary) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Fiona).  [resolve(668,e,111,a),merge(i),merge(j),merge(k)].
+676 Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | Called_4am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Fiona) | Coffee(Fiona).  [resolve(674,e,162,b),merge(i),merge(j),unit_del(i,73),unit_del(j,74)].
+680 Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | Called_4am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Fiona) | -Exercise(x) | Called_4am(x).  [resolve(676,h,64,b),merge(i),merge(j),merge(k)].
+682 Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | Called_4am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Fiona).  [resolve(680,h,674,e),merge(i),merge(j),merge(k),merge(l),merge(m),merge(n),merge(o),unit_del(h,74)].
+685 Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Fiona) | -Called_1am(Edna).  [resolve(682,d,53,b)].
+688 Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Fiona) | Called_1am(Mary).  [resolve(685,g,128,b),merge(g),merge(h)].
+690 Called_12am(Barbara) | Called_1am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Fiona) | Called_1am(Mary).  [resolve(688,c,208,d),merge(g),merge(h),merge(i)].
+692 Called_12am(Barbara) | Called_1am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona) | Called_1am(Mary).  [resolve(690,e,266,d),merge(f),merge(g),merge(h)].
+693 Called_12am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona) | Called_1am(Mary) | Called_12am(Mary) | Called_3am(Barbara).  [resolve(692,b,524,f),merge(f),merge(h),merge(i)].
+697 Called_12am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona) | Called_1am(Mary) | Called_12am(Mary) | -Called_1am(Barbara).  [resolve(693,f,52,b)].
+700 Called_12am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona) | Called_1am(Mary) | Called_12am(Mary).  [resolve(697,f,692,b),merge(f),merge(g),merge(h),merge(i)].
+702 Called_12am(Barbara) | Called_12am(Fiona) | Called_1am(Mary) | Called_12am(Mary).  [resolve(700,c,389,c),merge(e),merge(f)].
+727 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_3am(Barbara) | Called_4am(Barbara) | Called_12am(Barbara) | Called_2am(Mary) | -Exercise(x) | Called_2am(x) | Called_3am(x) | Called_4am(x).  [resolve(571,h,66,b),merge(k)].
+730 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_3am(Barbara) | Called_4am(Barbara) | Called_12am(Barbara) | Called_2am(Mary) | -Exercise(Mary).  [factor(727,i,k),unit_del(k,73),unit_del(l,74)].
+762 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Barbara) | Called_1am(Barbara) | Called_2am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona).  [resolve(493,g,227,d),merge(k),merge(l),merge(m),merge(n),merge(o),merge(p),unit_del(i,73),unit_del(j,74)].
+767 Called_12am(Barbara) | Called_1am(Barbara) | Called_3am(Edna) | Called_4am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Barbara).  [resolve(649,h,635,e),merge(j),merge(k),merge(l),merge(m),merge(n),merge(o),merge(p),unit_del(h,73),unit_del(i,74)].
+768 Called_12am(Barbara) | Called_1am(Barbara) | Called_3am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Barbara) | -Called_2am(Edna).  [resolve(767,d,55,b)].
+771 Called_12am(Barbara) | Called_1am(Barbara) | Called_3am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Barbara) | Called_12am(Edna) | Called_1am(Edna).  [resolve(768,g,762,c),merge(i),merge(j),merge(k),merge(l),merge(m)].
+772 Called_12am(Barbara) | Called_1am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Barbara) | Called_12am(Edna) | Called_1am(Edna) | -Called_2am(Edna).  [resolve(771,c,54,b)].
+773 Called_12am(Barbara) | Called_1am(Barbara) | Called_12am(Fiona) | Called_1am(Fiona) | Called_2am(Barbara) | Called_12am(Edna) | Called_1am(Edna).  [resolve(772,h,762,c),merge(h),merge(i),merge(j),merge(k),merge(l),merge(m),merge(n)].
+806 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_3am(Barbara) | Called_4am(Barbara) | Called_12am(Barbara) | Called_2am(Mary).  [resolve(730,j,544,d),merge(j),merge(k),merge(l),merge(m),merge(n),merge(o),merge(p)].
+807 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_3am(Barbara) | Called_12am(Barbara) | Called_2am(Mary) | -Called_2am(Barbara).  [resolve(806,g,55,b)].
+809 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_3am(Barbara) | Called_12am(Barbara) | Called_2am(Mary) | Called_1am(Barbara).  [resolve(807,i,773,e),merge(i),merge(k),merge(l),merge(m),merge(n)].
+810 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_12am(Barbara) | Called_2am(Mary) | Called_1am(Barbara) | -Called_2am(Barbara).  [resolve(809,f,54,b)].
+811 Called_12am(Edna) | Called_1am(Edna) | Called_2am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_12am(Barbara) | Called_2am(Mary) | Called_1am(Barbara).  [resolve(810,i,773,e),merge(i),merge(j),merge(k),merge(l),merge(m),merge(n)].
+812 Called_12am(Edna) | Called_1am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_12am(Barbara) | Called_2am(Mary) | Called_1am(Barbara) | Called_4am(Barbara).  [resolve(811,c,171,b)].
+814 Called_12am(Edna) | Called_1am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_12am(Barbara) | Called_2am(Mary) | Called_1am(Barbara) | -Called_2am(Barbara).  [resolve(812,h,55,b)].
+816 Called_12am(Edna) | Called_1am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_12am(Barbara) | Called_2am(Mary) | Called_1am(Barbara).  [resolve(814,h,773,e),merge(h),merge(i),merge(j),merge(k),merge(l),merge(m)].
+817 Called_12am(Edna) | Called_1am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_12am(Barbara) | Called_1am(Barbara) | -Called_1am(Mary).  [resolve(816,f,51,b)].
+819 Called_12am(Edna) | Called_1am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_12am(Barbara) | Called_1am(Barbara) | Called_12am(Mary).  [resolve(817,g,702,c),merge(g),merge(h)].
+825 Called_12am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_12am(Barbara) | Called_1am(Barbara) | Called_12am(Mary) | Called_2am(Barbara) | Called_2am(Fiona).  [resolve(819,b,685,g),merge(g),merge(h),merge(j),merge(k)].
+826 Called_12am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_12am(Barbara) | Called_1am(Barbara) | Called_12am(Mary) | Called_3am(Barbara) | Called_3am(Fiona).  [resolve(819,b,176,c)].
+827 Called_12am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_12am(Barbara) | Called_1am(Barbara) | Called_12am(Mary) | Called_4am(Barbara).  [resolve(819,b,172,b)].
+828 Called_12am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_12am(Barbara) | Called_1am(Barbara) | Called_12am(Mary) | -Called_3am(Barbara).  [resolve(827,g,56,b)].
+829 Called_12am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_12am(Barbara) | Called_1am(Barbara) | Called_12am(Mary) | -Called_2am(Barbara).  [resolve(827,g,55,b)].
+838 Called_12am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_12am(Barbara) | Called_1am(Barbara) | Called_12am(Mary) | Called_2am(Fiona).  [resolve(825,g,829,g),merge(h),merge(i),merge(j),merge(k),merge(l),merge(m)].
+839 Called_12am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_12am(Barbara) | Called_1am(Barbara) | Called_12am(Mary) | Called_3am(Fiona).  [resolve(826,g,828,g),merge(h),merge(i),merge(j),merge(k),merge(l),merge(m)].
+840 Called_12am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_12am(Barbara) | Called_1am(Barbara) | Called_12am(Mary) | -Called_2am(Fiona).  [resolve(839,g,54,b)].
+842 Called_12am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_12am(Barbara) | Called_1am(Barbara) | Called_12am(Mary).  [resolve(840,g,838,g),merge(g),merge(h),merge(i),merge(j),merge(k),merge(l)].
+845 Called_12am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_12am(Barbara) | Called_12am(Mary) | Called_2am(Barbara) | Called_3am(Barbara).  [resolve(842,e,477,f),merge(f),merge(i),merge(j)].
+848 Called_12am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_12am(Barbara) | Called_12am(Mary) | Called_2am(Barbara) | -Called_1am(Barbara).  [resolve(845,g,52,b)].
+852 Called_12am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_12am(Barbara) | Called_12am(Mary) | Called_2am(Barbara).  [resolve(848,g,842,e),merge(g),merge(h),merge(i),merge(j),merge(k)].
+853 Called_12am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_12am(Barbara) | Called_12am(Mary) | -Called_1am(Barbara).  [resolve(852,f,51,b)].
+854 Called_12am(Edna) | Called_12am(Fiona) | Called_1am(Fiona) | Called_12am(Barbara) | Called_12am(Mary).  [resolve(853,f,842,e),merge(f),merge(g),merge(h),merge(i),merge(j)].
+857 Called_12am(Edna) | Called_12am(Fiona) | Called_12am(Barbara) | Called_12am(Mary) | Called_2am(Fiona).  [resolve(854,c,391,c),merge(e)].
+859 Called_12am(Edna) | Called_12am(Fiona) | Called_12am(Barbara) | Called_12am(Mary) | -Called_1am(Fiona).  [resolve(857,e,51,b)].
+860 Called_12am(Edna) | Called_12am(Fiona) | Called_12am(Barbara) | Called_12am(Mary).  [resolve(859,e,854,c),merge(e),merge(f),merge(g),merge(h)].
+868 Called_12am(Fiona) | Called_12am(Barbara) | Called_12am(Mary) | Called_3am(Barbara) | Called_3am(Fiona).  [resolve(860,a,177,c)].
+869 Called_12am(Fiona) | Called_12am(Barbara) | Called_12am(Mary) | Called_4am(Barbara).  [resolve(860,a,173,b)].
+870 Called_12am(Fiona) | Called_12am(Barbara) | Called_12am(Mary) | Called_2am(Barbara) | Called_2am(Fiona) | Called_2am(Mary).  [resolve(860,a,125,a)].
+871 Called_12am(Fiona) | Called_12am(Barbara) | Called_12am(Mary) | -Called_3am(Barbara).  [resolve(869,d,56,b)].
+872 Called_12am(Fiona) | Called_12am(Barbara) | Called_12am(Mary) | -Called_2am(Barbara).  [resolve(869,d,55,b)].
+879 Called_12am(Fiona) | Called_12am(Barbara) | Called_12am(Mary) | Called_3am(Fiona).  [resolve(868,d,871,d),merge(e),merge(f),merge(g)].
+883 Called_12am(Fiona) | Called_12am(Barbara) | Called_12am(Mary) | -Called_2am(Fiona).  [resolve(879,d,54,b)].
+889 Called_12am(Fiona) | Called_12am(Barbara) | Called_12am(Mary) | Called_2am(Fiona) | Called_2am(Mary).  [resolve(870,d,872,d),merge(f),merge(g),merge(h)].
+890 Called_12am(Fiona) | Called_12am(Barbara) | Called_12am(Mary) | Called_2am(Mary).  [resolve(889,d,883,d),merge(e),merge(f),merge(g)].
+891 Called_12am(Fiona) | Called_12am(Barbara) | Called_12am(Mary) | -Called_1am(Mary).  [resolve(890,d,51,b)].
+892 Called_12am(Fiona) | Called_12am(Barbara) | Called_12am(Mary).  [resolve(891,d,702,c),merge(d),merge(e),merge(f)].
+893 Called_12am(Fiona) | Called_12am(Mary) | Called_1am(Mary) | Called_3am(Barbara) | Called_1am(Fiona).  [resolve(892,b,525,f),merge(c),merge(f)].
+896 Called_12am(Fiona) | Called_12am(Mary) | Called_2am(Barbara) | Called_3am(Barbara) | Called_2am(Mary).  [resolve(892,b,480,f),merge(c),merge(f)].
+898 Called_12am(Fiona) | Called_12am(Mary) | Called_1am(Barbara) | Called_1am(Fiona) | Called_1am(Mary).  [resolve(892,b,209,d)].
+900 Called_12am(Fiona) | Called_12am(Mary) | Called_3am(Barbara) | Called_3am(Fiona).  [resolve(892,b,183,c)].
+903 Called_12am(Fiona) | Called_12am(Mary) | Called_3am(Fiona) | -Called_12am(Barbara).  [resolve(900,c,49,b)].
+905 Called_12am(Fiona) | Called_12am(Mary) | Called_3am(Fiona).  [resolve(903,d,892,b),merge(d),merge(e)].
+907 Called_12am(Fiona) | Called_12am(Mary) | -Called_1am(Fiona).  [resolve(905,c,52,b)].
+909 Called_12am(Fiona) | Called_12am(Mary) | Called_1am(Mary) | Called_1am(Fiona) | -Called_1am(Barbara).  [resolve(893,d,52,b)].
+912 Called_12am(Fiona) | Called_12am(Mary) | Called_2am(Barbara) | Called_2am(Mary) | -Called_12am(Barbara).  [resolve(896,d,49,b)].
+917 Called_12am(Fiona) | Called_12am(Mary) | Called_1am(Mary) | Called_1am(Fiona).  [resolve(909,e,898,c),merge(e),merge(f),merge(g),merge(h)].
+918 Called_12am(Fiona) | Called_12am(Mary) | Called_1am(Mary).  [resolve(917,d,907,c),merge(d),merge(e)].
+919 Called_12am(Fiona) | Called_12am(Mary) | Called_2am(Barbara) | Called_2am(Mary).  [resolve(912,e,892,b),merge(e),merge(f)].
+921 Called_12am(Fiona) | Called_12am(Mary) | Called_2am(Mary) | -Called_12am(Barbara).  [resolve(919,c,48,b)].
+922 Called_12am(Fiona) | Called_12am(Mary) | Called_2am(Mary).  [resolve(921,d,892,b),merge(d),merge(e)].
+923 Called_12am(Fiona) | Called_12am(Mary) | -Called_1am(Mary).  [resolve(922,c,51,b)].
+924 Called_12am(Fiona) | Called_12am(Mary).  [resolve(923,c,918,c),merge(c),merge(d)].
+925 Called_12am(Mary) | Called_2am(Fiona).  [resolve(924,a,392,c),merge(b)].
+928 Called_12am(Mary) | -Called_12am(Fiona).  [resolve(925,b,48,b)].
+929 Called_12am(Mary).  [resolve(928,b,924,a),merge(b)].
+932 Called_1am(Barbara) | Called_1am(Fiona) | Called_1am(Mary).  [back_unit_del(324),unit_del(d,929)].
+933 -Called_2am(Mary).  [ur(48,a,929,a)].
+934 -Called_1am(Mary).  [ur(47,a,929,a)].
+993 Called_2am(Barbara) | Called_2am(Fiona) | -Called_1am(Fiona).  [back_unit_del(257),unit_del(c,933)].
+996 Called_2am(Barbara) | Called_2am(Fiona) | -Called_1am(Barbara).  [back_unit_del(205),unit_del(c,933)].
+1002 Called_1am(Barbara) | Called_1am(Fiona).  [back_unit_del(932),unit_del(c,934)].
+1004 Called_1am(Fiona) | Called_3am(Barbara) | Called_3am(Fiona).  [resolve(1002,a,182,c)].
+1007 Called_2am(Barbara) | Called_2am(Fiona) | Called_1am(Fiona).  [resolve(996,c,1002,a)].
+1011 Called_1am(Fiona) | Called_3am(Fiona) | -Called_1am(Barbara).  [resolve(1004,b,52,b)].
+1012 Called_2am(Fiona) | Called_1am(Fiona) | -Called_1am(Barbara).  [resolve(1007,a,51,b)].
+1013 Called_1am(Fiona) | Called_3am(Fiona).  [resolve(1011,c,1002,a),merge(c)].
+1014 Called_1am(Fiona) | -Called_2am(Fiona).  [resolve(1013,b,54,b)].
+1016 Called_2am(Fiona) | Called_1am(Fiona).  [resolve(1012,c,1002,a),merge(c)].
+1017 Called_1am(Fiona).  [resolve(1016,a,1014,b),merge(b)].
+1018 Called_2am(Barbara) | Called_2am(Fiona).  [back_unit_del(993),unit_del(c,1017)].
+1022 -Called_3am(Fiona).  [ur(52,a,1017,a)].
+1023 -Called_2am(Fiona).  [ur(51,a,1017,a)].
+1043 Called_3am(Barbara) | -Called_2am(Barbara).  [back_unit_del(181),unit_del(b,1022)].
+1054 Called_2am(Barbara).  [back_unit_del(1018),unit_del(b,1023)].
+1055 Called_3am(Barbara).  [back_unit_del(1043),unit_del(b,1054)].
+1059 $F.  [ur(54,a,1054,a),unit_del(a,1055)].
+
+============================== end of proof ==========================
+
+============================== STATISTICS ============================
+
+Given=674. Generated=4227. Kept=1036. proofs=1.
+Usable=107. Sos=18. Demods=5. Limbo=3, Disabled=1006. Hints=0.
+Weight_deleted=0. Literals_deleted=0.
+Forward_subsumed=3190. Back_subsumed=739.
+Sos_limit_deleted=0. Sos_displaced=0. Sos_removed=0.
+New_demodulators=5 (0 lex), Back_demodulated=0. Back_unit_deleted=169.
+Demod_attempts=90578. Demod_rewrites=0.
+Res_instance_prunes=0. Para_instance_prunes=0. Basic_paramod_prunes=0.
+Nonunit_fsub_feature_tests=9211. Nonunit_bsub_feature_tests=2776.
+Megabytes=0.86.
+User_CPU=0.23, System_CPU=0.11, Wall_clock=0.
+
+============================== end of statistics =====================
+
+============================== end of search =========================
+
+THEOREM PROVED
+
+Exiting with 1 proof.
+
+Process 13896 exit (max_proofs) Thu Nov 25 11:57:54 2021

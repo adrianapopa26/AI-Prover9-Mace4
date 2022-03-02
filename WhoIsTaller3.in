@@ -1,0 +1,50 @@
+assign(report_stderr, 2).
+set(ignore_option_dependencies). % GUI handles dependencies
+
+if(Prover9). % Options for Prover9
+  assign(max_seconds, 60).
+end_if.
+
+if(Mace4).   % Options for Mace4
+  assign(domain_size, 5).
+  assign(start_size, 5).
+  assign(end_size, 5).
+  assign(max_models, -1).
+  assign(max_seconds, 60).
+end_if.
+
+formulas(assumptions).
+
+Joy = 0.
+Cassie = 1.
+Brian = 2.
+Geoff = 3.
+Val = 4.
+
+Short(Joy) | Short(Cassie) | Short(Brian) | Short(Geoff) | Short(Val).
+Shorter(x,y) & Shorter(y,z) -> Shorter(x,z).
+Shorter(x,y) -> -Short(y).
+
+%Joy is taller than Cassie
+Shorter(Cassie,Joy).
+
+%Joy is taller than Brian who is taller than Cassie and Geoff
+Shorter(Brian,Joy).
+Shorter(Cassie,Brian).
+Shorter(Geoff,Brian).
+
+%Geoff is shorter than Val who is shorter than Cassie.
+Shorter(Geoff,Val).
+Shorter(Val,Cassie).
+
+end_of_list.
+
+formulas(goals).
+
+%Is Val the shortest?
+
+-Short(Val). %No
+%Short(Geoff). %Geoff is the shortest
+
+end_of_list.
+

@@ -1,0 +1,51 @@
+formulas(assumptions).
+
+Chris != Ruth.
+Chris != Sam.
+Chris != Stephanie.
+Chris != Curtis.
+Chris != Brian.
+
+Ruth != Sam.
+Ruth != Curtis.
+Ruth != Stephanie.
+Ruth != Brian.
+
+Sam != Curtis.
+Sam != Stephanie.
+Sam != Brian.
+
+Stephanie != Curtis.
+Stephanie != Brian.
+
+Curtis != Brian.
+
+
+Old(Chris) | Old(Ruth) | Old(Sam) | Old(Stephanie) | Old(Curtis) | Old(Brian).
+Older(x,y) -> -Old(y).
+Older(x,y) & Older(y,z) -> Older(x,z).
+
+
+%Chris is younger than Ruth and Sam, but older than Stephanie.
+Older(Ruth, Chris).
+Older(Sam, Chris).
+Older(Chris, Stephanie).
+
+%Ruth is older than Stephanie and younger than Curtis.
+Older(Ruth, Stephanie).
+Older(Curtis, Ruth).
+
+%Curtis is younger than Sam and older than Chris. 
+Older(Sam, Curtis).
+Older(Curtis, Chris).
+
+%Brian who's younger than Stephanie
+Older(Stephanie, Brian).
+
+%Sam
+
+end_of_list.
+
+formulas(goals).
+
+end_of_list.

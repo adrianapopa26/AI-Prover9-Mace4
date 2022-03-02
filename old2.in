@@ -1,0 +1,43 @@
+formulas(assumptions).
+
+Ontario != Waryn.
+Ontario != Anastasia.
+Ontario != Desmond.
+Ontario != Alonso.
+
+Waryn != Anastasia.
+Waryn != Desmond.
+Waryn != Alonso.
+
+Anastasia != Desmond.
+Anastasia != Alonso.
+
+Desmond != Alonso.
+
+Old(Ontario) | Old(Waryn) | Old(Anastasia) | Old(Desmond) | Old(Alonso).
+Older(x,y) -> -Old(y).
+Older(x,y) & Older(y,z) -> Older(x,z).
+
+
+%Ontario is older than Waryn. 
+Older(Ontario, Waryn).
+
+%Waryn is younger than Anastasia and younger than Desmond.
+Older(Anastasia, Waryn).
+Older(Desmond, Waryn).
+
+%Desmond is older than Ontario and Alonso, who are older than Anastasia.
+Older(Desmond, Ontario).
+Older(Desmond, Alonso).
+Older(Ontario, Anastasia).
+Older(Alonso, Anastasia).
+
+%Alonso and Ontario are twins
+-Older(Alonso, Ontario) & -Older(Ontario, Alonso).
+
+
+end_of_list.
+
+formulas(goals).
+
+end_of_list.

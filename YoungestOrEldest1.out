@@ -1,0 +1,228 @@
+============================== Prover9 ===============================
+Prover9 (32) version Dec-2007, Dec 2007.
+Process 18048 was started by popaa on DESKTOP-1LD5VI6,
+Sat Nov 27 01:03:15 2021
+The command was "/cygdrive/c/Program Files (x86)/Prover9-Mace4/bin-win32/prover9".
+============================== end of head ===========================
+
+============================== INPUT =================================
+assign(report_stderr,2).
+set(ignore_option_dependencies).
+if(Prover9).
+% Conditional input included.
+assign(max_seconds,60).
+end_if.
+if(Mace4).
+% Conditional input omitted.
+end_if.
+
+formulas(assumptions).
+Harmony = 0.
+Connor = 1.
+Maranda = 2.
+Isabelle = 3.
+Edwardo = 4.
+Youngest(Harmony) | Youngest(Connor) | Youngest(Maranda) | Youngest(Isabelle) | Youngest(Edwardo).
+Younger(x,y) -> -Youngest(y).
+Younger(x,y) & Younger(y,z) -> Younger(x,z).
+Younger(Connor,Harmony).
+Younger(Harmony,Maranda).
+Younger(Isabelle,Edwardo).
+Younger(Isabelle,Maranda).
+Younger(Maranda,Edwardo).
+Younger(Connor,Isabelle).
+Younger(Isabelle,Maranda).
+Younger(Harmony,Edwardo).
+Younger(Harmony,Maranda).
+end_of_list.
+
+formulas(goals).
+Youngest(Connor).
+end_of_list.
+
+============================== end of input ==========================
+
+% Enabling option dependencies (ignore applies only on input).
+
+============================== PROCESS NON-CLAUSAL FORMULAS ==========
+
+% Formulas that are not ordinary clauses:
+1 Younger(x,y) -> -Youngest(y) # label(non_clause).  [assumption].
+2 Younger(x,y) & Younger(y,z) -> Younger(x,z) # label(non_clause).  [assumption].
+3 Youngest(Connor) # label(non_clause) # label(goal).  [goal].
+
+============================== end of process non-clausal formulas ===
+
+============================== PROCESS INITIAL CLAUSES ===============
+
+% Clauses before input processing:
+
+formulas(usable).
+end_of_list.
+
+formulas(sos).
+Harmony = 0.  [assumption].
+Connor = 1.  [assumption].
+Maranda = 2.  [assumption].
+Isabelle = 3.  [assumption].
+Edwardo = 4.  [assumption].
+Youngest(Harmony) | Youngest(Connor) | Youngest(Maranda) | Youngest(Isabelle) | Youngest(Edwardo).  [assumption].
+-Younger(x,y) | -Youngest(y).  [clausify(1)].
+-Younger(x,y) | -Younger(y,z) | Younger(x,z).  [clausify(2)].
+Younger(Connor,Harmony).  [assumption].
+Younger(Harmony,Maranda).  [assumption].
+Younger(Isabelle,Edwardo).  [assumption].
+Younger(Isabelle,Maranda).  [assumption].
+Younger(Maranda,Edwardo).  [assumption].
+Younger(Connor,Isabelle).  [assumption].
+Younger(Isabelle,Maranda).  [assumption].
+Younger(Harmony,Edwardo).  [assumption].
+Younger(Harmony,Maranda).  [assumption].
+-Youngest(Connor).  [deny(3)].
+end_of_list.
+
+formulas(demodulators).
+end_of_list.
+
+============================== PREDICATE ELIMINATION =================
+
+No predicates eliminated.
+
+============================== end predicate elimination =============
+
+Auto_denials:  (non-Horn, no changes).
+
+Term ordering decisions:
+Predicate symbol precedence:  predicate_order([ =, Youngest, Younger ]).
+Function symbol precedence:  function_order([ Maranda, Harmony, Isabelle, Edwardo, Connor, 0, 1, 2, 3, 4 ]).
+After inverse_order:  (no changes).
+Unfolding symbols: (none).
+
+Auto_inference settings:
+  % set(paramodulation).  % (positive equality literals)
+  % set(binary_resolution).  % (non-Horn)
+  % set(neg_ur_resolution).  % (non-Horn, less than 100 clauses)
+
+Auto_process settings:
+  % set(factor).  % (non-Horn)
+  % set(unit_deletion).  % (non-Horn)
+
+============================== end of process initial clauses ========
+
+============================== CLAUSES FOR SEARCH ====================
+
+% Clauses after input processing:
+
+formulas(usable).
+end_of_list.
+
+formulas(sos).
+5 0 = Harmony.  [copy(4),flip(a)].
+7 1 = Connor.  [copy(6),flip(a)].
+9 2 = Maranda.  [copy(8),flip(a)].
+11 3 = Isabelle.  [copy(10),flip(a)].
+13 4 = Edwardo.  [copy(12),flip(a)].
+15 -Younger(x,y) | -Youngest(y).  [clausify(1)].
+16 -Younger(x,y) | -Younger(y,z) | Younger(x,z).  [clausify(2)].
+17 Younger(Connor,Harmony).  [assumption].
+18 Younger(Harmony,Maranda).  [assumption].
+19 Younger(Isabelle,Edwardo).  [assumption].
+20 Younger(Isabelle,Maranda).  [assumption].
+21 Younger(Maranda,Edwardo).  [assumption].
+22 Younger(Connor,Isabelle).  [assumption].
+23 Younger(Harmony,Edwardo).  [assumption].
+24 -Youngest(Connor).  [deny(3)].
+25 Youngest(Harmony) | Youngest(Maranda) | Youngest(Isabelle) | Youngest(Edwardo).  [back_unit_del(14),unit_del(b,24)].
+end_of_list.
+
+formulas(demodulators).
+5 0 = Harmony.  [copy(4),flip(a)].
+7 1 = Connor.  [copy(6),flip(a)].
+9 2 = Maranda.  [copy(8),flip(a)].
+11 3 = Isabelle.  [copy(10),flip(a)].
+13 4 = Edwardo.  [copy(12),flip(a)].
+end_of_list.
+
+============================== end of clauses for search =============
+
+============================== SEARCH ================================
+
+% Starting search at 0.00 seconds.
+
+given #1 (I,wt=3): 5 0 = Harmony.  [copy(4),flip(a)].
+
+given #2 (I,wt=3): 7 1 = Connor.  [copy(6),flip(a)].
+
+given #3 (I,wt=3): 9 2 = Maranda.  [copy(8),flip(a)].
+
+given #4 (I,wt=3): 11 3 = Isabelle.  [copy(10),flip(a)].
+
+given #5 (I,wt=3): 13 4 = Edwardo.  [copy(12),flip(a)].
+
+given #6 (I,wt=5): 15 -Younger(x,y) | -Youngest(y).  [clausify(1)].
+
+given #7 (I,wt=9): 16 -Younger(x,y) | -Younger(y,z) | Younger(x,z).  [clausify(2)].
+
+given #8 (I,wt=3): 17 Younger(Connor,Harmony).  [assumption].
+
+given #9 (I,wt=3): 18 Younger(Harmony,Maranda).  [assumption].
+
+given #10 (I,wt=3): 19 Younger(Isabelle,Edwardo).  [assumption].
+
+given #11 (I,wt=3): 20 Younger(Isabelle,Maranda).  [assumption].
+
+given #12 (I,wt=3): 21 Younger(Maranda,Edwardo).  [assumption].
+
+given #13 (I,wt=3): 22 Younger(Connor,Isabelle).  [assumption].
+
+============================== PROOF =================================
+
+% Proof 1 at 0.00 (+ 0.05) seconds.
+% Length of proof is 17.
+% Level of proof is 6.
+% Maximum clause weight is 10.
+% Given clauses 13.
+
+1 Younger(x,y) -> -Youngest(y) # label(non_clause).  [assumption].
+3 Youngest(Connor) # label(non_clause) # label(goal).  [goal].
+14 Youngest(Harmony) | Youngest(Connor) | Youngest(Maranda) | Youngest(Isabelle) | Youngest(Edwardo).  [assumption].
+15 -Younger(x,y) | -Youngest(y).  [clausify(1)].
+17 Younger(Connor,Harmony).  [assumption].
+18 Younger(Harmony,Maranda).  [assumption].
+19 Younger(Isabelle,Edwardo).  [assumption].
+22 Younger(Connor,Isabelle).  [assumption].
+24 -Youngest(Connor).  [deny(3)].
+25 Youngest(Harmony) | Youngest(Maranda) | Youngest(Isabelle) | Youngest(Edwardo).  [back_unit_del(14),unit_del(b,24)].
+28 -Youngest(Harmony).  [resolve(17,a,15,a)].
+29 Youngest(Maranda) | Youngest(Isabelle) | Youngest(Edwardo).  [back_unit_del(25),unit_del(a,28)].
+32 -Youngest(Maranda).  [resolve(18,a,15,a)].
+33 Youngest(Isabelle) | Youngest(Edwardo).  [back_unit_del(29),unit_del(a,32)].
+36 -Youngest(Edwardo).  [resolve(19,a,15,a)].
+37 Youngest(Isabelle).  [back_unit_del(33),unit_del(b,36)].
+44 $F.  [resolve(22,a,15,a),unit_del(a,37)].
+
+============================== end of proof ==========================
+
+============================== STATISTICS ============================
+
+Given=13. Generated=51. Kept=35. proofs=1.
+Usable=13. Sos=16. Demods=5. Limbo=2, Disabled=22. Hints=0.
+Weight_deleted=0. Literals_deleted=0.
+Forward_subsumed=15. Back_subsumed=0.
+Sos_limit_deleted=0. Sos_displaced=0. Sos_removed=0.
+New_demodulators=5 (0 lex), Back_demodulated=0. Back_unit_deleted=4.
+Demod_attempts=227. Demod_rewrites=0.
+Res_instance_prunes=0. Para_instance_prunes=0. Basic_paramod_prunes=0.
+Nonunit_fsub_feature_tests=0. Nonunit_bsub_feature_tests=16.
+Megabytes=0.04.
+User_CPU=0.00, System_CPU=0.05, Wall_clock=0.
+
+============================== end of statistics =====================
+
+============================== end of search =========================
+
+THEOREM PROVED
+
+Exiting with 1 proof.
+
+Process 18048 exit (max_proofs) Sat Nov 27 01:03:15 2021

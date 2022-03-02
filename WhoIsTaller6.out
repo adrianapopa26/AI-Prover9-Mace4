@@ -1,0 +1,186 @@
+============================== Prover9 ===============================
+Prover9 (32) version Dec-2007, Dec 2007.
+Process 13616 was started by popaa on DESKTOP-1LD5VI6,
+Wed Nov 24 19:30:09 2021
+The command was "/cygdrive/c/Program Files (x86)/Prover9-Mace4/bin-win32/prover9".
+============================== end of head ===========================
+
+============================== INPUT =================================
+assign(report_stderr,2).
+set(ignore_option_dependencies).
+if(Prover9).
+% Conditional input included.
+assign(max_seconds,60).
+end_if.
+if(Mace4).
+% Conditional input omitted.
+end_if.
+
+formulas(assumptions).
+Danny = 0.
+Lisa = 1.
+Elise = 2.
+Short(Danny) | Short(Lisa) | Short(Elise).
+Shorter(x,y) & Shorter(y,z) -> Shorter(x,z).
+Shorter(x,y) -> -Short(y).
+Shorter(Lisa,Danny).
+Shorter(Lisa,Elise).
+Shorter(Elise,Danny).
+end_of_list.
+
+formulas(goals).
+Short(Lisa).
+end_of_list.
+
+============================== end of input ==========================
+
+% Enabling option dependencies (ignore applies only on input).
+
+============================== PROCESS NON-CLAUSAL FORMULAS ==========
+
+% Formulas that are not ordinary clauses:
+1 Shorter(x,y) & Shorter(y,z) -> Shorter(x,z) # label(non_clause).  [assumption].
+2 Shorter(x,y) -> -Short(y) # label(non_clause).  [assumption].
+3 Short(Lisa) # label(non_clause) # label(goal).  [goal].
+
+============================== end of process non-clausal formulas ===
+
+============================== PROCESS INITIAL CLAUSES ===============
+
+% Clauses before input processing:
+
+formulas(usable).
+end_of_list.
+
+formulas(sos).
+Danny = 0.  [assumption].
+Lisa = 1.  [assumption].
+Elise = 2.  [assumption].
+Short(Danny) | Short(Lisa) | Short(Elise).  [assumption].
+-Shorter(x,y) | -Shorter(y,z) | Shorter(x,z).  [clausify(1)].
+-Shorter(x,y) | -Short(y).  [clausify(2)].
+Shorter(Lisa,Danny).  [assumption].
+Shorter(Lisa,Elise).  [assumption].
+Shorter(Elise,Danny).  [assumption].
+-Short(Lisa).  [deny(3)].
+end_of_list.
+
+formulas(demodulators).
+end_of_list.
+
+============================== PREDICATE ELIMINATION =================
+
+No predicates eliminated.
+
+============================== end predicate elimination =============
+
+Auto_denials:  (non-Horn, no changes).
+
+Term ordering decisions:
+Predicate symbol precedence:  predicate_order([ =, Short, Shorter ]).
+Function symbol precedence:  function_order([ Danny, Elise, Lisa, 0, 1, 2 ]).
+After inverse_order:  (no changes).
+Unfolding symbols: (none).
+
+Auto_inference settings:
+  % set(paramodulation).  % (positive equality literals)
+  % set(binary_resolution).  % (non-Horn)
+  % set(neg_ur_resolution).  % (non-Horn, less than 100 clauses)
+
+Auto_process settings:
+  % set(factor).  % (non-Horn)
+  % set(unit_deletion).  % (non-Horn)
+
+============================== end of process initial clauses ========
+
+============================== CLAUSES FOR SEARCH ====================
+
+% Clauses after input processing:
+
+formulas(usable).
+end_of_list.
+
+formulas(sos).
+5 0 = Danny.  [copy(4),flip(a)].
+7 1 = Lisa.  [copy(6),flip(a)].
+9 2 = Elise.  [copy(8),flip(a)].
+11 -Shorter(x,y) | -Shorter(y,z) | Shorter(x,z).  [clausify(1)].
+12 -Shorter(x,y) | -Short(y).  [clausify(2)].
+13 Shorter(Lisa,Danny).  [assumption].
+14 Shorter(Lisa,Elise).  [assumption].
+15 Shorter(Elise,Danny).  [assumption].
+16 -Short(Lisa).  [deny(3)].
+17 Short(Danny) | Short(Elise).  [back_unit_del(10),unit_del(b,16)].
+end_of_list.
+
+formulas(demodulators).
+5 0 = Danny.  [copy(4),flip(a)].
+7 1 = Lisa.  [copy(6),flip(a)].
+9 2 = Elise.  [copy(8),flip(a)].
+end_of_list.
+
+============================== end of clauses for search =============
+
+============================== SEARCH ================================
+
+% Starting search at 0.01 seconds.
+
+given #1 (I,wt=3): 5 0 = Danny.  [copy(4),flip(a)].
+
+given #2 (I,wt=3): 7 1 = Lisa.  [copy(6),flip(a)].
+
+given #3 (I,wt=3): 9 2 = Elise.  [copy(8),flip(a)].
+
+given #4 (I,wt=9): 11 -Shorter(x,y) | -Shorter(y,z) | Shorter(x,z).  [clausify(1)].
+
+given #5 (I,wt=5): 12 -Shorter(x,y) | -Short(y).  [clausify(2)].
+
+given #6 (I,wt=3): 13 Shorter(Lisa,Danny).  [assumption].
+
+given #7 (I,wt=3): 14 Shorter(Lisa,Elise).  [assumption].
+
+============================== PROOF =================================
+
+% Proof 1 at 0.01 (+ 0.06) seconds.
+% Length of proof is 11.
+% Level of proof is 4.
+% Maximum clause weight is 6.
+% Given clauses 7.
+
+2 Shorter(x,y) -> -Short(y) # label(non_clause).  [assumption].
+3 Short(Lisa) # label(non_clause) # label(goal).  [goal].
+10 Short(Danny) | Short(Lisa) | Short(Elise).  [assumption].
+12 -Shorter(x,y) | -Short(y).  [clausify(2)].
+13 Shorter(Lisa,Danny).  [assumption].
+14 Shorter(Lisa,Elise).  [assumption].
+16 -Short(Lisa).  [deny(3)].
+17 Short(Danny) | Short(Elise).  [back_unit_del(10),unit_del(b,16)].
+18 -Short(Danny).  [resolve(13,a,12,a)].
+21 Short(Elise).  [back_unit_del(17),unit_del(a,18)].
+22 $F.  [resolve(14,a,12,a),unit_del(a,21)].
+
+============================== end of proof ==========================
+
+============================== STATISTICS ============================
+
+Given=7. Generated=21. Kept=15. proofs=1.
+Usable=7. Sos=6. Demods=3. Limbo=0, Disabled=12. Hints=0.
+Weight_deleted=0. Literals_deleted=0.
+Forward_subsumed=5. Back_subsumed=0.
+Sos_limit_deleted=0. Sos_displaced=0. Sos_removed=0.
+New_demodulators=3 (0 lex), Back_demodulated=0. Back_unit_deleted=2.
+Demod_attempts=91. Demod_rewrites=0.
+Res_instance_prunes=0. Para_instance_prunes=0. Basic_paramod_prunes=0.
+Nonunit_fsub_feature_tests=0. Nonunit_bsub_feature_tests=6.
+Megabytes=0.02.
+User_CPU=0.01, System_CPU=0.06, Wall_clock=0.
+
+============================== end of statistics =====================
+
+============================== end of search =========================
+
+THEOREM PROVED
+
+Exiting with 1 proof.
+
+Process 13616 exit (max_proofs) Wed Nov 24 19:30:09 2021

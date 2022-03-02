@@ -1,0 +1,56 @@
+assign(report_stderr, 2).
+set(ignore_option_dependencies). % GUI handles dependencies
+
+if(Prover9). % Options for Prover9
+  assign(max_seconds, 60).
+end_if.
+
+if(Mace4).   % Options for Mace4
+  assign(domain_size, 6).
+  assign(start_size, 6).
+  assign(end_size, 6).
+  assign(max_models, -1).
+  assign(max_seconds, 60).
+end_if.
+
+formulas(assumptions).
+
+Elysha = 0.
+Logan = 1.
+Edward = 2.
+Jo = 3.
+Michael = 4.
+Edy = 5.
+
+Youngest(Elysha) | Youngest(Logan) | Youngest(Edward) | Youngest(Jo) | Youngest(Edy) | Youngest(Michael).
+Younger(x,y) -> -Youngest(y).
+Younger(x,y) & Younger(y,z) -> Younger(x,z).
+
+%Elysha is older than Logan and younger than Edward.
+Younger(Logan,Elysha).
+Younger(Elysha,Edward).
+
+%Jo is older than Michael.
+Younger(Michael,Jo).
+
+%Edy is older than Michael and younger than Jo.
+Younger(Michael,Edy).
+Younger(Edy,Jo).
+
+%Michael is older than Edward and Elysha. 
+Younger(Edward,Michael).
+Younger(Elysha,Michael).
+
+%If Edward and Elysha are brother and sister, and Edy is their father,
+Younger(Edward,Edy).
+Younger(Elysha,Edy).
+
+end_of_list.
+
+formulas(goals).
+
+% who's youngest?
+Youngest(Logan).
+
+end_of_list.
+

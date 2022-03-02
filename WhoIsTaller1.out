@@ -1,0 +1,221 @@
+============================== Prover9 ===============================
+Prover9 (32) version Dec-2007, Dec 2007.
+Process 1172 was started by popaa on DESKTOP-1LD5VI6,
+Wed Nov 24 18:52:30 2021
+The command was "/cygdrive/c/Program Files (x86)/Prover9-Mace4/bin-win32/prover9".
+============================== end of head ===========================
+
+============================== INPUT =================================
+assign(report_stderr,2).
+set(ignore_option_dependencies).
+if(Prover9).
+% Conditional input included.
+assign(max_seconds,60).
+end_if.
+if(Mace4).
+% Conditional input omitted.
+end_if.
+
+formulas(assumptions).
+James = 0.
+Kate = 1.
+Carly = 2.
+Sammy = 3.
+Natalie = 4.
+Short(James) | Short(Kate) | Short(Carly) | Short(Sammy) | Short(Natalie).
+Shorter(x,y) -> -Short(y).
+Shorter(x,y) & Shorter(y,z) -> Shorter(x,z).
+Shorter(Kate,James).
+Shorter(Carly,James).
+Shorter(Sammy,Kate).
+Shorter(Natalie,Kate).
+Shorter(Natalie,Sammy).
+Shorter(Sammy,Carly).
+end_of_list.
+
+formulas(goals).
+Short(Natalie).
+end_of_list.
+
+============================== end of input ==========================
+
+% Enabling option dependencies (ignore applies only on input).
+
+============================== PROCESS NON-CLAUSAL FORMULAS ==========
+
+% Formulas that are not ordinary clauses:
+1 Shorter(x,y) -> -Short(y) # label(non_clause).  [assumption].
+2 Shorter(x,y) & Shorter(y,z) -> Shorter(x,z) # label(non_clause).  [assumption].
+3 Short(Natalie) # label(non_clause) # label(goal).  [goal].
+
+============================== end of process non-clausal formulas ===
+
+============================== PROCESS INITIAL CLAUSES ===============
+
+% Clauses before input processing:
+
+formulas(usable).
+end_of_list.
+
+formulas(sos).
+James = 0.  [assumption].
+Kate = 1.  [assumption].
+Carly = 2.  [assumption].
+Sammy = 3.  [assumption].
+Natalie = 4.  [assumption].
+Short(James) | Short(Kate) | Short(Carly) | Short(Sammy) | Short(Natalie).  [assumption].
+-Shorter(x,y) | -Short(y).  [clausify(1)].
+-Shorter(x,y) | -Shorter(y,z) | Shorter(x,z).  [clausify(2)].
+Shorter(Kate,James).  [assumption].
+Shorter(Carly,James).  [assumption].
+Shorter(Sammy,Kate).  [assumption].
+Shorter(Natalie,Kate).  [assumption].
+Shorter(Natalie,Sammy).  [assumption].
+Shorter(Sammy,Carly).  [assumption].
+-Short(Natalie).  [deny(3)].
+end_of_list.
+
+formulas(demodulators).
+end_of_list.
+
+============================== PREDICATE ELIMINATION =================
+
+No predicates eliminated.
+
+============================== end predicate elimination =============
+
+Auto_denials:  (non-Horn, no changes).
+
+Term ordering decisions:
+Predicate symbol precedence:  predicate_order([ =, Short, Shorter ]).
+Function symbol precedence:  function_order([ Kate, Sammy, Carly, James, Natalie, 0, 1, 2, 3, 4 ]).
+After inverse_order:  (no changes).
+Unfolding symbols: (none).
+
+Auto_inference settings:
+  % set(paramodulation).  % (positive equality literals)
+  % set(binary_resolution).  % (non-Horn)
+  % set(neg_ur_resolution).  % (non-Horn, less than 100 clauses)
+
+Auto_process settings:
+  % set(factor).  % (non-Horn)
+  % set(unit_deletion).  % (non-Horn)
+
+============================== end of process initial clauses ========
+
+============================== CLAUSES FOR SEARCH ====================
+
+% Clauses after input processing:
+
+formulas(usable).
+end_of_list.
+
+formulas(sos).
+5 0 = James.  [copy(4),flip(a)].
+7 1 = Kate.  [copy(6),flip(a)].
+9 2 = Carly.  [copy(8),flip(a)].
+11 3 = Sammy.  [copy(10),flip(a)].
+13 4 = Natalie.  [copy(12),flip(a)].
+15 -Shorter(x,y) | -Short(y).  [clausify(1)].
+16 -Shorter(x,y) | -Shorter(y,z) | Shorter(x,z).  [clausify(2)].
+17 Shorter(Kate,James).  [assumption].
+18 Shorter(Carly,James).  [assumption].
+19 Shorter(Sammy,Kate).  [assumption].
+20 Shorter(Natalie,Kate).  [assumption].
+21 Shorter(Natalie,Sammy).  [assumption].
+22 Shorter(Sammy,Carly).  [assumption].
+23 -Short(Natalie).  [deny(3)].
+24 Short(James) | Short(Kate) | Short(Carly) | Short(Sammy).  [back_unit_del(14),unit_del(e,23)].
+end_of_list.
+
+formulas(demodulators).
+5 0 = James.  [copy(4),flip(a)].
+7 1 = Kate.  [copy(6),flip(a)].
+9 2 = Carly.  [copy(8),flip(a)].
+11 3 = Sammy.  [copy(10),flip(a)].
+13 4 = Natalie.  [copy(12),flip(a)].
+end_of_list.
+
+============================== end of clauses for search =============
+
+============================== SEARCH ================================
+
+% Starting search at 0.01 seconds.
+
+given #1 (I,wt=3): 5 0 = James.  [copy(4),flip(a)].
+
+given #2 (I,wt=3): 7 1 = Kate.  [copy(6),flip(a)].
+
+given #3 (I,wt=3): 9 2 = Carly.  [copy(8),flip(a)].
+
+given #4 (I,wt=3): 11 3 = Sammy.  [copy(10),flip(a)].
+
+given #5 (I,wt=3): 13 4 = Natalie.  [copy(12),flip(a)].
+
+given #6 (I,wt=5): 15 -Shorter(x,y) | -Short(y).  [clausify(1)].
+
+given #7 (I,wt=9): 16 -Shorter(x,y) | -Shorter(y,z) | Shorter(x,z).  [clausify(2)].
+
+given #8 (I,wt=3): 17 Shorter(Kate,James).  [assumption].
+
+given #9 (I,wt=3): 18 Shorter(Carly,James).  [assumption].
+
+given #10 (I,wt=3): 19 Shorter(Sammy,Kate).  [assumption].
+
+given #11 (I,wt=3): 20 Shorter(Natalie,Kate).  [assumption].
+
+given #12 (I,wt=3): 21 Shorter(Natalie,Sammy).  [assumption].
+
+given #13 (I,wt=3): 22 Shorter(Sammy,Carly).  [assumption].
+
+============================== PROOF =================================
+
+% Proof 1 at 0.01 (+ 0.01) seconds.
+% Length of proof is 17.
+% Level of proof is 6.
+% Maximum clause weight is 10.
+% Given clauses 13.
+
+1 Shorter(x,y) -> -Short(y) # label(non_clause).  [assumption].
+3 Short(Natalie) # label(non_clause) # label(goal).  [goal].
+14 Short(James) | Short(Kate) | Short(Carly) | Short(Sammy) | Short(Natalie).  [assumption].
+15 -Shorter(x,y) | -Short(y).  [clausify(1)].
+17 Shorter(Kate,James).  [assumption].
+19 Shorter(Sammy,Kate).  [assumption].
+21 Shorter(Natalie,Sammy).  [assumption].
+22 Shorter(Sammy,Carly).  [assumption].
+23 -Short(Natalie).  [deny(3)].
+24 Short(James) | Short(Kate) | Short(Carly) | Short(Sammy).  [back_unit_del(14),unit_del(e,23)].
+27 -Short(James).  [resolve(17,a,15,a)].
+28 Short(Kate) | Short(Carly) | Short(Sammy).  [back_unit_del(24),unit_del(a,27)].
+33 -Short(Kate).  [resolve(19,a,15,a)].
+34 Short(Carly) | Short(Sammy).  [back_unit_del(28),unit_del(a,33)].
+39 -Short(Sammy).  [resolve(21,a,15,a)].
+40 Short(Carly).  [back_unit_del(34),unit_del(b,39)].
+43 $F.  [resolve(22,a,15,a),unit_del(a,40)].
+
+============================== end of proof ==========================
+
+============================== STATISTICS ============================
+
+Given=13. Generated=48. Kept=34. proofs=1.
+Usable=13. Sos=15. Demods=5. Limbo=2, Disabled=19. Hints=0.
+Weight_deleted=0. Literals_deleted=0.
+Forward_subsumed=13. Back_subsumed=0.
+Sos_limit_deleted=0. Sos_displaced=0. Sos_removed=0.
+New_demodulators=5 (0 lex), Back_demodulated=0. Back_unit_deleted=4.
+Demod_attempts=209. Demod_rewrites=0.
+Res_instance_prunes=0. Para_instance_prunes=0. Basic_paramod_prunes=0.
+Nonunit_fsub_feature_tests=0. Nonunit_bsub_feature_tests=16.
+Megabytes=0.04.
+User_CPU=0.01, System_CPU=0.01, Wall_clock=0.
+
+============================== end of statistics =====================
+
+============================== end of search =========================
+
+THEOREM PROVED
+
+Exiting with 1 proof.
+
+Process 1172 exit (max_proofs) Wed Nov 24 18:52:30 2021

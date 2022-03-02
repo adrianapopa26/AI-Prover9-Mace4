@@ -1,0 +1,250 @@
+============================== Mace4 =================================
+Mace4 (32) version Dec-2007, Dec 2007.
+Process 10888 was started by popaa on DESKTOP-1LD5VI6,
+Wed Dec  1 11:45:34 2021
+The command was "/cygdrive/c/Program Files (x86)/Prover9-Mace4/bin-win32/mace4 -c".
+============================== end of head ===========================
+
+============================== INPUT =================================
+assign(report_stderr,2).
+set(ignore_option_dependencies).
+if(Prover9).
+% Conditional input omitted.
+end_if.
+if(Mace4).
+% Conditional input included.
+assign(max_seconds,60).
+end_if.
+
+formulas(assumptions).
+Rachel != Jessica.
+Rachel != John.
+Rachel != Maria.
+Rachel != Lara.
+Rachel != Sally.
+Jessica != John.
+Jessica != Maria.
+Jessica != Lara.
+Jessica != Sally.
+John != Maria.
+John != Lara.
+John != Sally.
+Maria != Lara.
+Maria != Sally.
+Lara != Sally.
+Tall(Rachel) | Tall(Jessica) | Tall(John) | Tall(Maria) | Tall(Lara) | Tall(Sally).
+Taller(x,y) -> -Tall(y).
+Taller(x,y) & Taller(y,z) -> Taller(x,z).
+Taller(Rachel,John).
+Taller(Jessica,John).
+Taller(Lara,Maria).
+Taller(Lara,Sally).
+Taller(John,Lara).
+m1 | m2 | m3 | m4.
+m1 <-> Taller(John,Maria) & Taller(John,Lara) & Taller(John,Sally).
+m2 <-> Taller(Maria,John) & Taller(Maria,Lara) & Taller(Maria,Sally).
+m3 <-> Taller(Lara,John) & Taller(Lara,Maria) & Taller(Lara,Sally).
+m4 <-> Taller(Sally,John) & Taller(Sally,Maria) & Taller(Sally,Lara).
+m1 -> -m2 & -m3 & -m4.
+m2 -> -m1 & -m3 & -m4.
+m3 -> -m1 & -m2 & -m4.
+m4 -> -m1 & -m2 & -m3.
+end_of_list.
+
+formulas(goals).
+end_of_list.
+
+============================== end of input ==========================
+
+% Enabling option dependencies (ignore applies only on input).
+
+============================== PROCESS NON-CLAUSAL FORMULAS ==========
+
+% Formulas that are not ordinary clauses:
+1 Taller(x,y) -> -Tall(y) # label(non_clause).  [assumption].
+2 Taller(x,y) & Taller(y,z) -> Taller(x,z) # label(non_clause).  [assumption].
+3 m1 <-> Taller(John,Maria) & Taller(John,Lara) & Taller(John,Sally) # label(non_clause).  [assumption].
+4 m2 <-> Taller(Maria,John) & Taller(Maria,Lara) & Taller(Maria,Sally) # label(non_clause).  [assumption].
+5 m3 <-> Taller(Lara,John) & Taller(Lara,Maria) & Taller(Lara,Sally) # label(non_clause).  [assumption].
+6 m4 <-> Taller(Sally,John) & Taller(Sally,Maria) & Taller(Sally,Lara) # label(non_clause).  [assumption].
+7 m1 -> -m2 & -m3 & -m4 # label(non_clause).  [assumption].
+8 m2 -> -m1 & -m3 & -m4 # label(non_clause).  [assumption].
+9 m3 -> -m1 & -m2 & -m4 # label(non_clause).  [assumption].
+10 m4 -> -m1 & -m2 & -m3 # label(non_clause).  [assumption].
+
+============================== end of process non-clausal formulas ===
+
+============================== CLAUSES FOR SEARCH ====================
+
+formulas(mace4_clauses).
+Rachel != Jessica.
+Rachel != John.
+Rachel != Maria.
+Rachel != Lara.
+Rachel != Sally.
+Jessica != John.
+Jessica != Maria.
+Jessica != Lara.
+Jessica != Sally.
+John != Maria.
+John != Lara.
+John != Sally.
+Maria != Lara.
+Maria != Sally.
+Lara != Sally.
+Tall(Rachel) | Tall(Jessica) | Tall(John) | Tall(Maria) | Tall(Lara) | Tall(Sally).
+-Taller(x,y) | -Tall(y).
+-Taller(x,y) | -Taller(y,z) | Taller(x,z).
+Taller(Rachel,John).
+Taller(Jessica,John).
+Taller(Lara,Maria).
+Taller(Lara,Sally).
+Taller(John,Lara).
+m1 | m2 | m3 | m4.
+-m1 | Taller(John,Maria).
+-m1 | Taller(John,Lara).
+-m1 | Taller(John,Sally).
+m1 | -Taller(John,Maria) | -Taller(John,Lara) | -Taller(John,Sally).
+-m2 | Taller(Maria,John).
+-m2 | Taller(Maria,Lara).
+-m2 | Taller(Maria,Sally).
+m2 | -Taller(Maria,John) | -Taller(Maria,Lara) | -Taller(Maria,Sally).
+-m3 | Taller(Lara,John).
+-m3 | Taller(Lara,Maria).
+-m3 | Taller(Lara,Sally).
+m3 | -Taller(Lara,John) | -Taller(Lara,Maria) | -Taller(Lara,Sally).
+-m4 | Taller(Sally,John).
+-m4 | Taller(Sally,Maria).
+-m4 | Taller(Sally,Lara).
+m4 | -Taller(Sally,John) | -Taller(Sally,Maria) | -Taller(Sally,Lara).
+-m1 | -m2.
+-m1 | -m3.
+-m1 | -m4.
+-m2 | -m1.
+-m2 | -m3.
+-m2 | -m4.
+-m3 | -m1.
+-m3 | -m2.
+-m3 | -m4.
+-m4 | -m1.
+-m4 | -m2.
+-m4 | -m3.
+end_of_list.
+
+============================== end of clauses for search =============
+
+% There are no domain elements in the input.
+
+============================== DOMAIN SIZE 2 =========================
+
+============================== STATISTICS ============================
+
+For domain size 2.
+
+Current CPU time: 0.00 seconds (total CPU time: 0.01 seconds).
+Ground clauses: seen=62, kept=62.
+Selections=1, assignments=1, propagations=5, current_models=0.
+Rewrite_terms=10, rewrite_bools=0, indexes=2.
+Rules_from_neg_clauses=5, cross_offs=5.
+
+============================== end of statistics =====================
+
+============================== DOMAIN SIZE 3 =========================
+
+============================== STATISTICS ============================
+
+For domain size 3.
+
+Current CPU time: 0.00 seconds (total CPU time: 0.01 seconds).
+Ground clauses: seen=86, kept=86.
+Selections=2, assignments=3, propagations=7, current_models=0.
+Rewrite_terms=51, rewrite_bools=2, indexes=7.
+Rules_from_neg_clauses=4, cross_offs=9.
+
+============================== end of statistics =====================
+
+============================== DOMAIN SIZE 4 =========================
+
+============================== STATISTICS ============================
+
+For domain size 4.
+
+Current CPU time: 0.00 seconds (total CPU time: 0.01 seconds).
+Ground clauses: seen=130, kept=130.
+Selections=3, assignments=6, propagations=10, current_models=0.
+Rewrite_terms=111, rewrite_bools=27, indexes=22.
+Rules_from_neg_clauses=3, cross_offs=12.
+
+============================== end of statistics =====================
+
+============================== DOMAIN SIZE 5 =========================
+
+============================== STATISTICS ============================
+
+For domain size 5.
+
+Current CPU time: 0.00 seconds (total CPU time: 0.01 seconds).
+Ground clauses: seen=200, kept=200.
+Selections=4, assignments=10, propagations=15, current_models=0.
+Rewrite_terms=181, rewrite_bools=84, indexes=52.
+Rules_from_neg_clauses=2, cross_offs=14.
+
+============================== end of statistics =====================
+
+============================== DOMAIN SIZE 6 =========================
+
+============================== MODEL =================================
+
+interpretation( 6, [number=1, seconds=0], [
+
+        function(Jessica, [ 0 ]),
+
+        function(John, [ 1 ]),
+
+        function(Lara, [ 2 ]),
+
+        function(Maria, [ 3 ]),
+
+        function(Rachel, [ 4 ]),
+
+        function(Sally, [ 5 ]),
+
+        relation(m1, [ 1 ]),
+
+        relation(m2, [ 0 ]),
+
+        relation(m3, [ 0 ]),
+
+        relation(m4, [ 0 ]),
+
+        relation(Tall(_), [ 0, 0, 0, 0, 1, 0 ]),
+
+        relation(Taller(_,_), [
+			   0, 1, 1, 1, 0, 1,
+			   0, 0, 1, 1, 0, 1,
+			   0, 0, 0, 1, 0, 1,
+			   0, 0, 0, 0, 0, 0,
+			   0, 1, 1, 1, 0, 1,
+			   0, 0, 0, 0, 0, 0 ])
+]).
+
+============================== end of model ==========================
+
+============================== STATISTICS ============================
+
+For domain size 6.
+
+Current CPU time: 0.00 seconds (total CPU time: 0.01 seconds).
+Ground clauses: seen=302, kept=302.
+Selections=14, assignments=24, propagations=47, current_models=1.
+Rewrite_terms=226, rewrite_bools=511, indexes=70.
+Rules_from_neg_clauses=1, cross_offs=15.
+
+============================== end of statistics =====================
+
+User_CPU=0.01, System_CPU=0.03, Wall_clock=0.
+
+Exiting with 1 model.
+
+Process 10888 exit (max_models) Wed Dec  1 11:45:34 2021
+The process finished Wed Dec  1 11:45:34 2021

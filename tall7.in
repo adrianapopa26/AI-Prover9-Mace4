@@ -1,0 +1,28 @@
+formulas(assumptions).
+
+Brett != Shannon.
+Brett != Rene.
+Brett != Mel.
+
+Shannon != Rene.
+Shannon != Mel.
+
+Rene != Mel.
+
+Short(Brett) | Short(Shannon) | Short(Rene) | Short(Mel).
+Shorter(x,y) -> -Short(y).
+Shorter(x,y) & Shorter(y,z) -> Shorter(x,z).
+
+
+%Brett is taller than Shannon who is taller than Rene.
+Shorter(Shannon, Brett).
+Shorter(Rene, Shannon).
+
+%Brett is also taller than Mel.
+Shorter(Mel, Brett).
+s
+end_of_list.
+
+formulas(goals).
+
+end_of_list.

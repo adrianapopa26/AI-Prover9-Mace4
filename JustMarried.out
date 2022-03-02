@@ -1,0 +1,801 @@
+============================== Mace4 =================================
+Mace4 (32) version Dec-2007, Dec 2007.
+Process 3628 was started by popaa on DESKTOP-1LD5VI6,
+Wed Dec  1 11:40:43 2021
+The command was "/cygdrive/c/Program Files (x86)/Prover9-Mace4/bin-win32/mace4 -c".
+============================== end of head ===========================
+
+============================== INPUT =================================
+assign(report_stderr,2).
+set(ignore_option_dependencies).
+if(Prover9).
+% Conditional input omitted.
+end_if.
+if(Mace4).
+% Conditional input included.
+assign(max_seconds,60).
+end_if.
+
+formulas(assumptions).
+Ben != Todd.
+Ben != Brandon.
+Ben != Buddy.
+Ben != Jack.
+Ben != Lucy.
+Ben != Emma.
+Ben != Tabitha.
+Ben != Brandy.
+Ben != Ann.
+Todd != Brandon.
+Todd != Buddy.
+Todd != Jack.
+Todd != Lucy.
+Todd != Emma.
+Todd != Tabitha.
+Todd != Brandy.
+Todd != Ann.
+Brandon != Buddy.
+Brandon != Jack.
+Brandon != Lucy.
+Brandon != Emma.
+Brandon != Tabitha.
+Brandon != Brandy.
+Brandon != Ann.
+Buddy != Jack.
+Buddy != Lucy.
+Buddy != Emma.
+Buddy != Tabitha.
+Buddy != Brandy.
+Buddy != Ann.
+Jack != Lucy.
+Jack != Emma.
+Jack != Tabitha.
+Jack != Brandy.
+Jack != Ann.
+Lucy != Emma.
+Lucy != Tabitha.
+Lucy != Brandy.
+Lucy != Ann.
+Emma != Tabitha.
+Emma != Brandy.
+Emma != Ann.
+Tabitha != Brandy.
+Tabitha != Ann.
+Brandy != Ann.
+Married(Ben,Lucy) | Married(Ben,Emma) | Married(Ben,Tabitha) | Married(Ben,Brandy) | Married(Ben,Ann).
+Married(Todd,Lucy) | Married(Todd,Emma) | Married(Todd,Tabitha) | Married(Todd,Brandy) | Married(Todd,Ann).
+Married(Brandon,Lucy) | Married(Brandon,Emma) | Married(Brandon,Tabitha) | Married(Brandon,Brandy) | Married(Brandon,Ann).
+Married(Buddy,Lucy) | Married(Buddy,Emma) | Married(Buddy,Tabitha) | Married(Buddy,Brandy) | Married(Buddy,Ann).
+Married(Jack,Lucy) | Married(Jack,Emma) | Married(Jack,Tabitha) | Married(Jack,Brandy) | Married(Jack,Ann).
+Married(x,y) -> Married(y,x).
+-Married(x,x).
+Married(Ben,Lucy) -> -Married(Todd,Lucy) & -Married(Brandon,Lucy) & -Married(Buddy,Lucy) & -Married(Jack,Lucy).
+Married(Ben,Emma) -> -Married(Todd,Emma) & -Married(Brandon,Emma) & -Married(Buddy,Emma) & -Married(Jack,Emma).
+Married(Ben,Tabitha) -> -Married(Todd,Tabitha) & -Married(Brandon,Tabitha) & -Married(Buddy,Tabitha) & -Married(Jack,Tabitha).
+Married(Ben,Brandy) -> -Married(Todd,Brandy) & -Married(Brandon,Brandy) & -Married(Buddy,Brandy) & -Married(Jack,Brandy).
+Married(Ben,Ann) -> -Married(Todd,Ann) & -Married(Brandon,Ann) & -Married(Buddy,Ann) & -Married(Jack,Ann).
+Married(Todd,Lucy) -> -Married(Ben,Lucy) & -Married(Brandon,Lucy) & -Married(Buddy,Lucy) & -Married(Jack,Lucy).
+Married(Todd,Emma) -> -Married(Ben,Emma) & -Married(Brandon,Emma) & -Married(Buddy,Emma) & -Married(Jack,Emma).
+Married(Todd,Tabitha) -> -Married(Ben,Tabitha) & -Married(Brandon,Tabitha) & -Married(Buddy,Tabitha) & -Married(Jack,Tabitha).
+Married(Todd,Brandy) -> -Married(Ben,Brandy) & -Married(Brandon,Brandy) & -Married(Buddy,Brandy) & -Married(Jack,Brandy).
+Married(Todd,Ann) -> -Married(Ben,Ann) & -Married(Brandon,Ann) & -Married(Buddy,Ann) & -Married(Jack,Ann).
+Married(Brandon,Lucy) -> -Married(Ben,Lucy) & -Married(Todd,Lucy) & -Married(Buddy,Lucy) & -Married(Jack,Lucy).
+Married(Brandon,Emma) -> -Married(Ben,Emma) & -Married(Todd,Emma) & -Married(Buddy,Emma) & -Married(Jack,Emma).
+Married(Brandon,Tabitha) -> -Married(Ben,Tabitha) & -Married(Todd,Tabitha) & -Married(Buddy,Tabitha) & -Married(Jack,Tabitha).
+Married(Brandon,Brandy) -> -Married(Ben,Brandy) & -Married(Todd,Brandy) & -Married(Buddy,Brandy) & -Married(Jack,Brandy).
+Married(Brandon,Ann) -> -Married(Ben,Ann) & -Married(Todd,Ann) & -Married(Buddy,Ann) & -Married(Jack,Ann).
+Married(Buddy,Lucy) -> -Married(Ben,Lucy) & -Married(Todd,Lucy) & -Married(Brandon,Lucy) & -Married(Jack,Lucy).
+Married(Buddy,Emma) -> -Married(Ben,Emma) & -Married(Todd,Emma) & -Married(Brandon,Emma) & -Married(Jack,Emma).
+Married(Buddy,Tabitha) -> -Married(Ben,Tabitha) & -Married(Todd,Tabitha) & -Married(Brandon,Tabitha) & -Married(Jack,Tabitha).
+Married(Buddy,Brandy) -> -Married(Ben,Brandy) & -Married(Todd,Brandy) & -Married(Brandon,Brandy) & -Married(Jack,Brandy).
+Married(Buddy,Ann) -> -Married(Ben,Ann) & -Married(Todd,Ann) & -Married(Brandon,Ann) & -Married(Jack,Ann).
+Married(Jack,Lucy) -> -Married(Ben,Lucy) & -Married(Todd,Lucy) & -Married(Brandon,Lucy) & -Married(Buddy,Lucy).
+Married(Jack,Emma) -> -Married(Ben,Emma) & -Married(Todd,Emma) & -Married(Brandon,Emma) & -Married(Buddy,Emma).
+Married(Jack,Tabitha) -> -Married(Ben,Tabitha) & -Married(Todd,Tabitha) & -Married(Brandon,Tabitha) & -Married(Buddy,Tabitha).
+Married(Jack,Brandy) -> -Married(Ben,Brandy) & -Married(Todd,Brandy) & -Married(Brandon,Brandy) & -Married(Buddy,Brandy).
+Married(Jack,Ann) -> -Married(Ben,Ann) & -Married(Todd,Ann) & -Married(Brandon,Ann) & -Married(Buddy,Ann).
+-Married(Ben,Todd) & -Married(Ben,Brandon) & -Married(Ben,Buddy) & -Married(Ben,Jack).
+-Married(Todd,Brandon) & -Married(Todd,Buddy) & -Married(Todd,Jack).
+-Married(Brandon,Buddy) & -Married(Brandon,Jack).
+-Married(Buddy,Jack).
+-Married(Lucy,Emma) & -Married(Lucy,Tabitha) & -Married(Lucy,Brandy) & -Married(Lucy,Ann).
+-Married(Emma,Tabitha) & -Married(Emma,Brandy) & -Married(Emma,Ann).
+-Married(Tabitha,Brandy) & -Married(Tabitha,Ann).
+-Married(Brandy,Ann).
+Rome(x) | Munich(x) | London(x) | Madrid(x) | Paris(x).
+Rome(x) -> -Munich(x) & -London(x) & -Madrid(x) & -Paris(x).
+Munich(x) -> -Rome(x) & -London(x) & -Madrid(x) & -Paris(x).
+London(x) -> -Rome(x) & -Munich(x) & -Madrid(x) & -Paris(x).
+Madrid(x) -> -Rome(x) & -Munich(x) & -London(x) & -Paris(x).
+Paris(x) -> -Rome(x) & -Munich(x) & -London(x) & -Madrid(x).
+Rome(x) & Married(x,y) -> Rome(y).
+Munich(x) & Married(x,y) -> Munich(y).
+London(x) & Married(x,y) -> London(y).
+Madrid(x) & Married(x,y) -> Madrid(y).
+Paris(x) & Married(x,y) -> Paris(y).
+Rome(Ben) -> -Rome(Todd) & -Rome(Brandon) & -Rome(Buddy) & -Rome(Jack).
+Rome(Todd) -> -Rome(Ben) & -Rome(Brandon) & -Rome(Buddy) & -Rome(Jack).
+Rome(Brandon) -> -Rome(Todd) & -Rome(Ben) & -Rome(Buddy) & -Rome(Jack).
+Rome(Buddy) -> -Rome(Todd) & -Rome(Brandon) & -Rome(Ben) & -Rome(Jack).
+Rome(Jack) -> -Rome(Todd) & -Rome(Brandon) & -Rome(Buddy) & -Rome(Ben).
+Munich(Ben) -> -Munich(Todd) & -Munich(Brandon) & -Munich(Buddy) & -Munich(Jack).
+Munich(Todd) -> -Munich(Ben) & -Munich(Brandon) & -Munich(Buddy) & -Munich(Jack).
+Munich(Brandon) -> -Munich(Todd) & -Munich(Ben) & -Munich(Buddy) & -Munich(Jack).
+Munich(Buddy) -> -Munich(Todd) & -Munich(Brandon) & -Munich(Ben) & -Munich(Jack).
+Munich(Jack) -> -Munich(Todd) & -Munich(Brandon) & -Munich(Buddy) & -Munich(Ben).
+London(Ben) -> -London(Todd) & -London(Brandon) & -London(Buddy) & -London(Jack).
+London(Todd) -> -London(Ben) & -London(Brandon) & -London(Buddy) & -London(Jack).
+London(Brandon) -> -London(Todd) & -London(Ben) & -London(Buddy) & -London(Jack).
+London(Buddy) -> -London(Todd) & -London(Brandon) & -London(Ben) & -London(Jack).
+London(Jack) -> -London(Todd) & -London(Brandon) & -London(Buddy) & -London(Ben).
+Madrid(Ben) -> -Madrid(Todd) & -Madrid(Brandon) & -Madrid(Buddy) & -Madrid(Jack).
+Madrid(Todd) -> -Madrid(Ben) & -Madrid(Brandon) & -Madrid(Buddy) & -Madrid(Jack).
+Madrid(Brandon) -> -Madrid(Todd) & -Madrid(Ben) & -Madrid(Buddy) & -Madrid(Jack).
+Madrid(Buddy) -> -Madrid(Todd) & -Madrid(Brandon) & -Madrid(Ben) & -Madrid(Jack).
+Madrid(Jack) -> -Madrid(Todd) & -Madrid(Brandon) & -Madrid(Buddy) & -Madrid(Ben).
+Paris(Ben) -> -Paris(Todd) & -Paris(Brandon) & -Paris(Buddy) & -Paris(Jack).
+Paris(Todd) -> -Paris(Ben) & -Paris(Brandon) & -Paris(Buddy) & -Paris(Jack).
+Paris(Brandon) -> -Paris(Todd) & -Paris(Ben) & -Paris(Buddy) & -Paris(Jack).
+Paris(Buddy) -> -Paris(Todd) & -Paris(Brandon) & -Paris(Ben) & -Paris(Jack).
+Paris(Jack) -> -Paris(Todd) & -Paris(Brandon) & -Paris(Buddy) & -Paris(Ben).
+Married(Ben,Lucy) & -Paris(Lucy) | Married(Ben,Emma) & -Paris(Emma) | Married(Ben,Tabitha) & -Paris(Tabitha) | Married(Ben,Brandy) & -Paris(Brandy) | Married(Ben,Ann) & -Paris(Ann).
+-Married(Brandon,Emma) & -London(Emma) & -Rome(Emma).
+Munich(Jack).
+Married(Brandon,Lucy) & London(Lucy) | Married(Brandon,Emma) & London(Emma) | Married(Brandon,Tabitha) & London(Tabitha) | Married(Brandon,Brandy) & London(Brandy) | Married(Brandon,Ann) & London(Ann).
+Married(Todd,Lucy).
+-Married(Jack,Ann) & -Married(Ben,Ann) & -Madrid(Ann).
+-Paris(Ann).
+Married(Buddy,Brandy) & -Rome(Buddy) & -Rome(Brandy) & -Paris(Buddy) & -Paris(Brandy).
+end_of_list.
+
+formulas(goals).
+end_of_list.
+
+============================== end of input ==========================
+
+% Enabling option dependencies (ignore applies only on input).
+
+============================== PROCESS NON-CLAUSAL FORMULAS ==========
+
+% Formulas that are not ordinary clauses:
+1 Married(x,y) -> Married(y,x) # label(non_clause).  [assumption].
+2 Married(Ben,Lucy) -> -Married(Todd,Lucy) & -Married(Brandon,Lucy) & -Married(Buddy,Lucy) & -Married(Jack,Lucy) # label(non_clause).  [assumption].
+3 Married(Ben,Emma) -> -Married(Todd,Emma) & -Married(Brandon,Emma) & -Married(Buddy,Emma) & -Married(Jack,Emma) # label(non_clause).  [assumption].
+4 Married(Ben,Tabitha) -> -Married(Todd,Tabitha) & -Married(Brandon,Tabitha) & -Married(Buddy,Tabitha) & -Married(Jack,Tabitha) # label(non_clause).  [assumption].
+5 Married(Ben,Brandy) -> -Married(Todd,Brandy) & -Married(Brandon,Brandy) & -Married(Buddy,Brandy) & -Married(Jack,Brandy) # label(non_clause).  [assumption].
+6 Married(Ben,Ann) -> -Married(Todd,Ann) & -Married(Brandon,Ann) & -Married(Buddy,Ann) & -Married(Jack,Ann) # label(non_clause).  [assumption].
+7 Married(Todd,Lucy) -> -Married(Ben,Lucy) & -Married(Brandon,Lucy) & -Married(Buddy,Lucy) & -Married(Jack,Lucy) # label(non_clause).  [assumption].
+8 Married(Todd,Emma) -> -Married(Ben,Emma) & -Married(Brandon,Emma) & -Married(Buddy,Emma) & -Married(Jack,Emma) # label(non_clause).  [assumption].
+9 Married(Todd,Tabitha) -> -Married(Ben,Tabitha) & -Married(Brandon,Tabitha) & -Married(Buddy,Tabitha) & -Married(Jack,Tabitha) # label(non_clause).  [assumption].
+10 Married(Todd,Brandy) -> -Married(Ben,Brandy) & -Married(Brandon,Brandy) & -Married(Buddy,Brandy) & -Married(Jack,Brandy) # label(non_clause).  [assumption].
+11 Married(Todd,Ann) -> -Married(Ben,Ann) & -Married(Brandon,Ann) & -Married(Buddy,Ann) & -Married(Jack,Ann) # label(non_clause).  [assumption].
+12 Married(Brandon,Lucy) -> -Married(Ben,Lucy) & -Married(Todd,Lucy) & -Married(Buddy,Lucy) & -Married(Jack,Lucy) # label(non_clause).  [assumption].
+13 Married(Brandon,Emma) -> -Married(Ben,Emma) & -Married(Todd,Emma) & -Married(Buddy,Emma) & -Married(Jack,Emma) # label(non_clause).  [assumption].
+14 Married(Brandon,Tabitha) -> -Married(Ben,Tabitha) & -Married(Todd,Tabitha) & -Married(Buddy,Tabitha) & -Married(Jack,Tabitha) # label(non_clause).  [assumption].
+15 Married(Brandon,Brandy) -> -Married(Ben,Brandy) & -Married(Todd,Brandy) & -Married(Buddy,Brandy) & -Married(Jack,Brandy) # label(non_clause).  [assumption].
+16 Married(Brandon,Ann) -> -Married(Ben,Ann) & -Married(Todd,Ann) & -Married(Buddy,Ann) & -Married(Jack,Ann) # label(non_clause).  [assumption].
+17 Married(Buddy,Lucy) -> -Married(Ben,Lucy) & -Married(Todd,Lucy) & -Married(Brandon,Lucy) & -Married(Jack,Lucy) # label(non_clause).  [assumption].
+18 Married(Buddy,Emma) -> -Married(Ben,Emma) & -Married(Todd,Emma) & -Married(Brandon,Emma) & -Married(Jack,Emma) # label(non_clause).  [assumption].
+19 Married(Buddy,Tabitha) -> -Married(Ben,Tabitha) & -Married(Todd,Tabitha) & -Married(Brandon,Tabitha) & -Married(Jack,Tabitha) # label(non_clause).  [assumption].
+20 Married(Buddy,Brandy) -> -Married(Ben,Brandy) & -Married(Todd,Brandy) & -Married(Brandon,Brandy) & -Married(Jack,Brandy) # label(non_clause).  [assumption].
+21 Married(Buddy,Ann) -> -Married(Ben,Ann) & -Married(Todd,Ann) & -Married(Brandon,Ann) & -Married(Jack,Ann) # label(non_clause).  [assumption].
+22 Married(Jack,Lucy) -> -Married(Ben,Lucy) & -Married(Todd,Lucy) & -Married(Brandon,Lucy) & -Married(Buddy,Lucy) # label(non_clause).  [assumption].
+23 Married(Jack,Emma) -> -Married(Ben,Emma) & -Married(Todd,Emma) & -Married(Brandon,Emma) & -Married(Buddy,Emma) # label(non_clause).  [assumption].
+24 Married(Jack,Tabitha) -> -Married(Ben,Tabitha) & -Married(Todd,Tabitha) & -Married(Brandon,Tabitha) & -Married(Buddy,Tabitha) # label(non_clause).  [assumption].
+25 Married(Jack,Brandy) -> -Married(Ben,Brandy) & -Married(Todd,Brandy) & -Married(Brandon,Brandy) & -Married(Buddy,Brandy) # label(non_clause).  [assumption].
+26 Married(Jack,Ann) -> -Married(Ben,Ann) & -Married(Todd,Ann) & -Married(Brandon,Ann) & -Married(Buddy,Ann) # label(non_clause).  [assumption].
+27 -Married(Ben,Todd) & -Married(Ben,Brandon) & -Married(Ben,Buddy) & -Married(Ben,Jack) # label(non_clause).  [assumption].
+28 -Married(Todd,Brandon) & -Married(Todd,Buddy) & -Married(Todd,Jack) # label(non_clause).  [assumption].
+29 -Married(Brandon,Buddy) & -Married(Brandon,Jack) # label(non_clause).  [assumption].
+30 -Married(Lucy,Emma) & -Married(Lucy,Tabitha) & -Married(Lucy,Brandy) & -Married(Lucy,Ann) # label(non_clause).  [assumption].
+31 -Married(Emma,Tabitha) & -Married(Emma,Brandy) & -Married(Emma,Ann) # label(non_clause).  [assumption].
+32 -Married(Tabitha,Brandy) & -Married(Tabitha,Ann) # label(non_clause).  [assumption].
+33 Rome(x) -> -Munich(x) & -London(x) & -Madrid(x) & -Paris(x) # label(non_clause).  [assumption].
+34 Munich(x) -> -Rome(x) & -London(x) & -Madrid(x) & -Paris(x) # label(non_clause).  [assumption].
+35 London(x) -> -Rome(x) & -Munich(x) & -Madrid(x) & -Paris(x) # label(non_clause).  [assumption].
+36 Madrid(x) -> -Rome(x) & -Munich(x) & -London(x) & -Paris(x) # label(non_clause).  [assumption].
+37 Paris(x) -> -Rome(x) & -Munich(x) & -London(x) & -Madrid(x) # label(non_clause).  [assumption].
+38 Rome(x) & Married(x,y) -> Rome(y) # label(non_clause).  [assumption].
+39 Munich(x) & Married(x,y) -> Munich(y) # label(non_clause).  [assumption].
+40 London(x) & Married(x,y) -> London(y) # label(non_clause).  [assumption].
+41 Madrid(x) & Married(x,y) -> Madrid(y) # label(non_clause).  [assumption].
+42 Paris(x) & Married(x,y) -> Paris(y) # label(non_clause).  [assumption].
+43 Rome(Ben) -> -Rome(Todd) & -Rome(Brandon) & -Rome(Buddy) & -Rome(Jack) # label(non_clause).  [assumption].
+44 Rome(Todd) -> -Rome(Ben) & -Rome(Brandon) & -Rome(Buddy) & -Rome(Jack) # label(non_clause).  [assumption].
+45 Rome(Brandon) -> -Rome(Todd) & -Rome(Ben) & -Rome(Buddy) & -Rome(Jack) # label(non_clause).  [assumption].
+46 Rome(Buddy) -> -Rome(Todd) & -Rome(Brandon) & -Rome(Ben) & -Rome(Jack) # label(non_clause).  [assumption].
+47 Rome(Jack) -> -Rome(Todd) & -Rome(Brandon) & -Rome(Buddy) & -Rome(Ben) # label(non_clause).  [assumption].
+48 Munich(Ben) -> -Munich(Todd) & -Munich(Brandon) & -Munich(Buddy) & -Munich(Jack) # label(non_clause).  [assumption].
+49 Munich(Todd) -> -Munich(Ben) & -Munich(Brandon) & -Munich(Buddy) & -Munich(Jack) # label(non_clause).  [assumption].
+50 Munich(Brandon) -> -Munich(Todd) & -Munich(Ben) & -Munich(Buddy) & -Munich(Jack) # label(non_clause).  [assumption].
+51 Munich(Buddy) -> -Munich(Todd) & -Munich(Brandon) & -Munich(Ben) & -Munich(Jack) # label(non_clause).  [assumption].
+52 Munich(Jack) -> -Munich(Todd) & -Munich(Brandon) & -Munich(Buddy) & -Munich(Ben) # label(non_clause).  [assumption].
+53 London(Ben) -> -London(Todd) & -London(Brandon) & -London(Buddy) & -London(Jack) # label(non_clause).  [assumption].
+54 London(Todd) -> -London(Ben) & -London(Brandon) & -London(Buddy) & -London(Jack) # label(non_clause).  [assumption].
+55 London(Brandon) -> -London(Todd) & -London(Ben) & -London(Buddy) & -London(Jack) # label(non_clause).  [assumption].
+56 London(Buddy) -> -London(Todd) & -London(Brandon) & -London(Ben) & -London(Jack) # label(non_clause).  [assumption].
+57 London(Jack) -> -London(Todd) & -London(Brandon) & -London(Buddy) & -London(Ben) # label(non_clause).  [assumption].
+58 Madrid(Ben) -> -Madrid(Todd) & -Madrid(Brandon) & -Madrid(Buddy) & -Madrid(Jack) # label(non_clause).  [assumption].
+59 Madrid(Todd) -> -Madrid(Ben) & -Madrid(Brandon) & -Madrid(Buddy) & -Madrid(Jack) # label(non_clause).  [assumption].
+60 Madrid(Brandon) -> -Madrid(Todd) & -Madrid(Ben) & -Madrid(Buddy) & -Madrid(Jack) # label(non_clause).  [assumption].
+61 Madrid(Buddy) -> -Madrid(Todd) & -Madrid(Brandon) & -Madrid(Ben) & -Madrid(Jack) # label(non_clause).  [assumption].
+62 Madrid(Jack) -> -Madrid(Todd) & -Madrid(Brandon) & -Madrid(Buddy) & -Madrid(Ben) # label(non_clause).  [assumption].
+63 Paris(Ben) -> -Paris(Todd) & -Paris(Brandon) & -Paris(Buddy) & -Paris(Jack) # label(non_clause).  [assumption].
+64 Paris(Todd) -> -Paris(Ben) & -Paris(Brandon) & -Paris(Buddy) & -Paris(Jack) # label(non_clause).  [assumption].
+65 Paris(Brandon) -> -Paris(Todd) & -Paris(Ben) & -Paris(Buddy) & -Paris(Jack) # label(non_clause).  [assumption].
+66 Paris(Buddy) -> -Paris(Todd) & -Paris(Brandon) & -Paris(Ben) & -Paris(Jack) # label(non_clause).  [assumption].
+67 Paris(Jack) -> -Paris(Todd) & -Paris(Brandon) & -Paris(Buddy) & -Paris(Ben) # label(non_clause).  [assumption].
+68 Married(Ben,Lucy) & -Paris(Lucy) | Married(Ben,Emma) & -Paris(Emma) | Married(Ben,Tabitha) & -Paris(Tabitha) | Married(Ben,Brandy) & -Paris(Brandy) | Married(Ben,Ann) & -Paris(Ann) # label(non_clause).  [assumption].
+69 -Married(Brandon,Emma) & -London(Emma) & -Rome(Emma) # label(non_clause).  [assumption].
+70 Married(Brandon,Lucy) & London(Lucy) | Married(Brandon,Emma) & London(Emma) | Married(Brandon,Tabitha) & London(Tabitha) | Married(Brandon,Brandy) & London(Brandy) | Married(Brandon,Ann) & London(Ann) # label(non_clause).  [assumption].
+71 -Married(Jack,Ann) & -Married(Ben,Ann) & -Madrid(Ann) # label(non_clause).  [assumption].
+72 Married(Buddy,Brandy) & -Rome(Buddy) & -Rome(Brandy) & -Paris(Buddy) & -Paris(Brandy) # label(non_clause).  [assumption].
+
+============================== end of process non-clausal formulas ===
+
+============================== CLAUSES FOR SEARCH ====================
+
+formulas(mace4_clauses).
+Ben != Todd.
+Ben != Brandon.
+Ben != Buddy.
+Ben != Jack.
+Ben != Lucy.
+Ben != Emma.
+Ben != Tabitha.
+Ben != Brandy.
+Ben != Ann.
+Todd != Brandon.
+Todd != Buddy.
+Todd != Jack.
+Todd != Lucy.
+Todd != Emma.
+Todd != Tabitha.
+Todd != Brandy.
+Todd != Ann.
+Brandon != Buddy.
+Brandon != Jack.
+Brandon != Lucy.
+Brandon != Emma.
+Brandon != Tabitha.
+Brandon != Brandy.
+Brandon != Ann.
+Buddy != Jack.
+Buddy != Lucy.
+Buddy != Emma.
+Buddy != Tabitha.
+Buddy != Brandy.
+Buddy != Ann.
+Jack != Lucy.
+Jack != Emma.
+Jack != Tabitha.
+Jack != Brandy.
+Jack != Ann.
+Lucy != Emma.
+Lucy != Tabitha.
+Lucy != Brandy.
+Lucy != Ann.
+Emma != Tabitha.
+Emma != Brandy.
+Emma != Ann.
+Tabitha != Brandy.
+Tabitha != Ann.
+Brandy != Ann.
+Married(Ben,Lucy) | Married(Ben,Emma) | Married(Ben,Tabitha) | Married(Ben,Brandy) | Married(Ben,Ann).
+Married(Todd,Lucy) | Married(Todd,Emma) | Married(Todd,Tabitha) | Married(Todd,Brandy) | Married(Todd,Ann).
+Married(Brandon,Lucy) | Married(Brandon,Emma) | Married(Brandon,Tabitha) | Married(Brandon,Brandy) | Married(Brandon,Ann).
+Married(Buddy,Lucy) | Married(Buddy,Emma) | Married(Buddy,Tabitha) | Married(Buddy,Brandy) | Married(Buddy,Ann).
+Married(Jack,Lucy) | Married(Jack,Emma) | Married(Jack,Tabitha) | Married(Jack,Brandy) | Married(Jack,Ann).
+-Married(x,y) | Married(y,x).
+-Married(x,x).
+-Married(Ben,Lucy) | -Married(Todd,Lucy).
+-Married(Ben,Lucy) | -Married(Brandon,Lucy).
+-Married(Ben,Lucy) | -Married(Buddy,Lucy).
+-Married(Ben,Lucy) | -Married(Jack,Lucy).
+-Married(Ben,Emma) | -Married(Todd,Emma).
+-Married(Ben,Emma) | -Married(Brandon,Emma).
+-Married(Ben,Emma) | -Married(Buddy,Emma).
+-Married(Ben,Emma) | -Married(Jack,Emma).
+-Married(Ben,Tabitha) | -Married(Todd,Tabitha).
+-Married(Ben,Tabitha) | -Married(Brandon,Tabitha).
+-Married(Ben,Tabitha) | -Married(Buddy,Tabitha).
+-Married(Ben,Tabitha) | -Married(Jack,Tabitha).
+-Married(Ben,Brandy) | -Married(Todd,Brandy).
+-Married(Ben,Brandy) | -Married(Brandon,Brandy).
+-Married(Ben,Brandy) | -Married(Buddy,Brandy).
+-Married(Ben,Brandy) | -Married(Jack,Brandy).
+-Married(Ben,Ann) | -Married(Todd,Ann).
+-Married(Ben,Ann) | -Married(Brandon,Ann).
+-Married(Ben,Ann) | -Married(Buddy,Ann).
+-Married(Ben,Ann) | -Married(Jack,Ann).
+-Married(Todd,Lucy) | -Married(Ben,Lucy).
+-Married(Todd,Lucy) | -Married(Brandon,Lucy).
+-Married(Todd,Lucy) | -Married(Buddy,Lucy).
+-Married(Todd,Lucy) | -Married(Jack,Lucy).
+-Married(Todd,Emma) | -Married(Ben,Emma).
+-Married(Todd,Emma) | -Married(Brandon,Emma).
+-Married(Todd,Emma) | -Married(Buddy,Emma).
+-Married(Todd,Emma) | -Married(Jack,Emma).
+-Married(Todd,Tabitha) | -Married(Ben,Tabitha).
+-Married(Todd,Tabitha) | -Married(Brandon,Tabitha).
+-Married(Todd,Tabitha) | -Married(Buddy,Tabitha).
+-Married(Todd,Tabitha) | -Married(Jack,Tabitha).
+-Married(Todd,Brandy) | -Married(Ben,Brandy).
+-Married(Todd,Brandy) | -Married(Brandon,Brandy).
+-Married(Todd,Brandy) | -Married(Buddy,Brandy).
+-Married(Todd,Brandy) | -Married(Jack,Brandy).
+-Married(Todd,Ann) | -Married(Ben,Ann).
+-Married(Todd,Ann) | -Married(Brandon,Ann).
+-Married(Todd,Ann) | -Married(Buddy,Ann).
+-Married(Todd,Ann) | -Married(Jack,Ann).
+-Married(Brandon,Lucy) | -Married(Ben,Lucy).
+-Married(Brandon,Lucy) | -Married(Todd,Lucy).
+-Married(Brandon,Lucy) | -Married(Buddy,Lucy).
+-Married(Brandon,Lucy) | -Married(Jack,Lucy).
+-Married(Brandon,Emma) | -Married(Ben,Emma).
+-Married(Brandon,Emma) | -Married(Todd,Emma).
+-Married(Brandon,Emma) | -Married(Buddy,Emma).
+-Married(Brandon,Emma) | -Married(Jack,Emma).
+-Married(Brandon,Tabitha) | -Married(Ben,Tabitha).
+-Married(Brandon,Tabitha) | -Married(Todd,Tabitha).
+-Married(Brandon,Tabitha) | -Married(Buddy,Tabitha).
+-Married(Brandon,Tabitha) | -Married(Jack,Tabitha).
+-Married(Brandon,Brandy) | -Married(Ben,Brandy).
+-Married(Brandon,Brandy) | -Married(Todd,Brandy).
+-Married(Brandon,Brandy) | -Married(Buddy,Brandy).
+-Married(Brandon,Brandy) | -Married(Jack,Brandy).
+-Married(Brandon,Ann) | -Married(Ben,Ann).
+-Married(Brandon,Ann) | -Married(Todd,Ann).
+-Married(Brandon,Ann) | -Married(Buddy,Ann).
+-Married(Brandon,Ann) | -Married(Jack,Ann).
+-Married(Buddy,Lucy) | -Married(Ben,Lucy).
+-Married(Buddy,Lucy) | -Married(Todd,Lucy).
+-Married(Buddy,Lucy) | -Married(Brandon,Lucy).
+-Married(Buddy,Lucy) | -Married(Jack,Lucy).
+-Married(Buddy,Emma) | -Married(Ben,Emma).
+-Married(Buddy,Emma) | -Married(Todd,Emma).
+-Married(Buddy,Emma) | -Married(Brandon,Emma).
+-Married(Buddy,Emma) | -Married(Jack,Emma).
+-Married(Buddy,Tabitha) | -Married(Ben,Tabitha).
+-Married(Buddy,Tabitha) | -Married(Todd,Tabitha).
+-Married(Buddy,Tabitha) | -Married(Brandon,Tabitha).
+-Married(Buddy,Tabitha) | -Married(Jack,Tabitha).
+-Married(Buddy,Brandy) | -Married(Ben,Brandy).
+-Married(Buddy,Brandy) | -Married(Todd,Brandy).
+-Married(Buddy,Brandy) | -Married(Brandon,Brandy).
+-Married(Buddy,Brandy) | -Married(Jack,Brandy).
+-Married(Buddy,Ann) | -Married(Ben,Ann).
+-Married(Buddy,Ann) | -Married(Todd,Ann).
+-Married(Buddy,Ann) | -Married(Brandon,Ann).
+-Married(Buddy,Ann) | -Married(Jack,Ann).
+-Married(Jack,Lucy) | -Married(Ben,Lucy).
+-Married(Jack,Lucy) | -Married(Todd,Lucy).
+-Married(Jack,Lucy) | -Married(Brandon,Lucy).
+-Married(Jack,Lucy) | -Married(Buddy,Lucy).
+-Married(Jack,Emma) | -Married(Ben,Emma).
+-Married(Jack,Emma) | -Married(Todd,Emma).
+-Married(Jack,Emma) | -Married(Brandon,Emma).
+-Married(Jack,Emma) | -Married(Buddy,Emma).
+-Married(Jack,Tabitha) | -Married(Ben,Tabitha).
+-Married(Jack,Tabitha) | -Married(Todd,Tabitha).
+-Married(Jack,Tabitha) | -Married(Brandon,Tabitha).
+-Married(Jack,Tabitha) | -Married(Buddy,Tabitha).
+-Married(Jack,Brandy) | -Married(Ben,Brandy).
+-Married(Jack,Brandy) | -Married(Todd,Brandy).
+-Married(Jack,Brandy) | -Married(Brandon,Brandy).
+-Married(Jack,Brandy) | -Married(Buddy,Brandy).
+-Married(Jack,Ann) | -Married(Ben,Ann).
+-Married(Jack,Ann) | -Married(Todd,Ann).
+-Married(Jack,Ann) | -Married(Brandon,Ann).
+-Married(Jack,Ann) | -Married(Buddy,Ann).
+-Married(Ben,Todd).
+-Married(Ben,Brandon).
+-Married(Ben,Buddy).
+-Married(Ben,Jack).
+-Married(Todd,Brandon).
+-Married(Todd,Buddy).
+-Married(Todd,Jack).
+-Married(Brandon,Buddy).
+-Married(Brandon,Jack).
+-Married(Buddy,Jack).
+-Married(Lucy,Emma).
+-Married(Lucy,Tabitha).
+-Married(Lucy,Brandy).
+-Married(Lucy,Ann).
+-Married(Emma,Tabitha).
+-Married(Emma,Brandy).
+-Married(Emma,Ann).
+-Married(Tabitha,Brandy).
+-Married(Tabitha,Ann).
+-Married(Brandy,Ann).
+Rome(x) | Munich(x) | London(x) | Madrid(x) | Paris(x).
+-Rome(x) | -Munich(x).
+-Rome(x) | -London(x).
+-Rome(x) | -Madrid(x).
+-Rome(x) | -Paris(x).
+-Munich(x) | -Rome(x).
+-Munich(x) | -London(x).
+-Munich(x) | -Madrid(x).
+-Munich(x) | -Paris(x).
+-London(x) | -Rome(x).
+-London(x) | -Munich(x).
+-London(x) | -Madrid(x).
+-London(x) | -Paris(x).
+-Madrid(x) | -Rome(x).
+-Madrid(x) | -Munich(x).
+-Madrid(x) | -London(x).
+-Madrid(x) | -Paris(x).
+-Paris(x) | -Rome(x).
+-Paris(x) | -Munich(x).
+-Paris(x) | -London(x).
+-Paris(x) | -Madrid(x).
+-Rome(x) | -Married(x,y) | Rome(y).
+-Munich(x) | -Married(x,y) | Munich(y).
+-London(x) | -Married(x,y) | London(y).
+-Madrid(x) | -Married(x,y) | Madrid(y).
+-Paris(x) | -Married(x,y) | Paris(y).
+-Rome(Ben) | -Rome(Todd).
+-Rome(Ben) | -Rome(Brandon).
+-Rome(Ben) | -Rome(Buddy).
+-Rome(Ben) | -Rome(Jack).
+-Rome(Todd) | -Rome(Ben).
+-Rome(Todd) | -Rome(Brandon).
+-Rome(Todd) | -Rome(Buddy).
+-Rome(Todd) | -Rome(Jack).
+-Rome(Brandon) | -Rome(Todd).
+-Rome(Brandon) | -Rome(Ben).
+-Rome(Brandon) | -Rome(Buddy).
+-Rome(Brandon) | -Rome(Jack).
+-Rome(Buddy) | -Rome(Todd).
+-Rome(Buddy) | -Rome(Brandon).
+-Rome(Buddy) | -Rome(Ben).
+-Rome(Buddy) | -Rome(Jack).
+-Rome(Jack) | -Rome(Todd).
+-Rome(Jack) | -Rome(Brandon).
+-Rome(Jack) | -Rome(Buddy).
+-Rome(Jack) | -Rome(Ben).
+-Munich(Ben) | -Munich(Todd).
+-Munich(Ben) | -Munich(Brandon).
+-Munich(Ben) | -Munich(Buddy).
+-Munich(Ben) | -Munich(Jack).
+-Munich(Todd) | -Munich(Ben).
+-Munich(Todd) | -Munich(Brandon).
+-Munich(Todd) | -Munich(Buddy).
+-Munich(Todd) | -Munich(Jack).
+-Munich(Brandon) | -Munich(Todd).
+-Munich(Brandon) | -Munich(Ben).
+-Munich(Brandon) | -Munich(Buddy).
+-Munich(Brandon) | -Munich(Jack).
+-Munich(Buddy) | -Munich(Todd).
+-Munich(Buddy) | -Munich(Brandon).
+-Munich(Buddy) | -Munich(Ben).
+-Munich(Buddy) | -Munich(Jack).
+-Munich(Jack) | -Munich(Todd).
+-Munich(Jack) | -Munich(Brandon).
+-Munich(Jack) | -Munich(Buddy).
+-Munich(Jack) | -Munich(Ben).
+-London(Ben) | -London(Todd).
+-London(Ben) | -London(Brandon).
+-London(Ben) | -London(Buddy).
+-London(Ben) | -London(Jack).
+-London(Todd) | -London(Ben).
+-London(Todd) | -London(Brandon).
+-London(Todd) | -London(Buddy).
+-London(Todd) | -London(Jack).
+-London(Brandon) | -London(Todd).
+-London(Brandon) | -London(Ben).
+-London(Brandon) | -London(Buddy).
+-London(Brandon) | -London(Jack).
+-London(Buddy) | -London(Todd).
+-London(Buddy) | -London(Brandon).
+-London(Buddy) | -London(Ben).
+-London(Buddy) | -London(Jack).
+-London(Jack) | -London(Todd).
+-London(Jack) | -London(Brandon).
+-London(Jack) | -London(Buddy).
+-London(Jack) | -London(Ben).
+-Madrid(Ben) | -Madrid(Todd).
+-Madrid(Ben) | -Madrid(Brandon).
+-Madrid(Ben) | -Madrid(Buddy).
+-Madrid(Ben) | -Madrid(Jack).
+-Madrid(Todd) | -Madrid(Ben).
+-Madrid(Todd) | -Madrid(Brandon).
+-Madrid(Todd) | -Madrid(Buddy).
+-Madrid(Todd) | -Madrid(Jack).
+-Madrid(Brandon) | -Madrid(Todd).
+-Madrid(Brandon) | -Madrid(Ben).
+-Madrid(Brandon) | -Madrid(Buddy).
+-Madrid(Brandon) | -Madrid(Jack).
+-Madrid(Buddy) | -Madrid(Todd).
+-Madrid(Buddy) | -Madrid(Brandon).
+-Madrid(Buddy) | -Madrid(Ben).
+-Madrid(Buddy) | -Madrid(Jack).
+-Madrid(Jack) | -Madrid(Todd).
+-Madrid(Jack) | -Madrid(Brandon).
+-Madrid(Jack) | -Madrid(Buddy).
+-Madrid(Jack) | -Madrid(Ben).
+-Paris(Ben) | -Paris(Todd).
+-Paris(Ben) | -Paris(Brandon).
+-Paris(Ben) | -Paris(Buddy).
+-Paris(Ben) | -Paris(Jack).
+-Paris(Todd) | -Paris(Ben).
+-Paris(Todd) | -Paris(Brandon).
+-Paris(Todd) | -Paris(Buddy).
+-Paris(Todd) | -Paris(Jack).
+-Paris(Brandon) | -Paris(Todd).
+-Paris(Brandon) | -Paris(Ben).
+-Paris(Brandon) | -Paris(Buddy).
+-Paris(Brandon) | -Paris(Jack).
+-Paris(Buddy) | -Paris(Todd).
+-Paris(Buddy) | -Paris(Brandon).
+-Paris(Buddy) | -Paris(Ben).
+-Paris(Buddy) | -Paris(Jack).
+-Paris(Jack) | -Paris(Todd).
+-Paris(Jack) | -Paris(Brandon).
+-Paris(Jack) | -Paris(Buddy).
+-Paris(Jack) | -Paris(Ben).
+Married(Ben,Lucy) | Married(Ben,Emma) | Married(Ben,Tabitha) | Married(Ben,Brandy) | Married(Ben,Ann).
+Married(Ben,Lucy) | Married(Ben,Emma) | Married(Ben,Tabitha) | Married(Ben,Brandy) | -Paris(Ann).
+Married(Ben,Lucy) | Married(Ben,Emma) | Married(Ben,Tabitha) | -Paris(Brandy) | Married(Ben,Ann).
+Married(Ben,Lucy) | Married(Ben,Emma) | Married(Ben,Tabitha) | -Paris(Brandy) | -Paris(Ann).
+Married(Ben,Lucy) | Married(Ben,Emma) | -Paris(Tabitha) | Married(Ben,Brandy) | Married(Ben,Ann).
+Married(Ben,Lucy) | Married(Ben,Emma) | -Paris(Tabitha) | Married(Ben,Brandy) | -Paris(Ann).
+Married(Ben,Lucy) | Married(Ben,Emma) | -Paris(Tabitha) | -Paris(Brandy) | Married(Ben,Ann).
+Married(Ben,Lucy) | Married(Ben,Emma) | -Paris(Tabitha) | -Paris(Brandy) | -Paris(Ann).
+Married(Ben,Lucy) | -Paris(Emma) | Married(Ben,Tabitha) | Married(Ben,Brandy) | Married(Ben,Ann).
+Married(Ben,Lucy) | -Paris(Emma) | Married(Ben,Tabitha) | Married(Ben,Brandy) | -Paris(Ann).
+Married(Ben,Lucy) | -Paris(Emma) | Married(Ben,Tabitha) | -Paris(Brandy) | Married(Ben,Ann).
+Married(Ben,Lucy) | -Paris(Emma) | Married(Ben,Tabitha) | -Paris(Brandy) | -Paris(Ann).
+Married(Ben,Lucy) | -Paris(Emma) | -Paris(Tabitha) | Married(Ben,Brandy) | Married(Ben,Ann).
+Married(Ben,Lucy) | -Paris(Emma) | -Paris(Tabitha) | Married(Ben,Brandy) | -Paris(Ann).
+Married(Ben,Lucy) | -Paris(Emma) | -Paris(Tabitha) | -Paris(Brandy) | Married(Ben,Ann).
+Married(Ben,Lucy) | -Paris(Emma) | -Paris(Tabitha) | -Paris(Brandy) | -Paris(Ann).
+-Paris(Lucy) | Married(Ben,Emma) | Married(Ben,Tabitha) | Married(Ben,Brandy) | Married(Ben,Ann).
+-Paris(Lucy) | Married(Ben,Emma) | Married(Ben,Tabitha) | Married(Ben,Brandy) | -Paris(Ann).
+-Paris(Lucy) | Married(Ben,Emma) | Married(Ben,Tabitha) | -Paris(Brandy) | Married(Ben,Ann).
+-Paris(Lucy) | Married(Ben,Emma) | Married(Ben,Tabitha) | -Paris(Brandy) | -Paris(Ann).
+-Paris(Lucy) | Married(Ben,Emma) | -Paris(Tabitha) | Married(Ben,Brandy) | Married(Ben,Ann).
+-Paris(Lucy) | Married(Ben,Emma) | -Paris(Tabitha) | Married(Ben,Brandy) | -Paris(Ann).
+-Paris(Lucy) | Married(Ben,Emma) | -Paris(Tabitha) | -Paris(Brandy) | Married(Ben,Ann).
+-Paris(Lucy) | Married(Ben,Emma) | -Paris(Tabitha) | -Paris(Brandy) | -Paris(Ann).
+-Paris(Lucy) | -Paris(Emma) | Married(Ben,Tabitha) | Married(Ben,Brandy) | Married(Ben,Ann).
+-Paris(Lucy) | -Paris(Emma) | Married(Ben,Tabitha) | Married(Ben,Brandy) | -Paris(Ann).
+-Paris(Lucy) | -Paris(Emma) | Married(Ben,Tabitha) | -Paris(Brandy) | Married(Ben,Ann).
+-Paris(Lucy) | -Paris(Emma) | Married(Ben,Tabitha) | -Paris(Brandy) | -Paris(Ann).
+-Paris(Lucy) | -Paris(Emma) | -Paris(Tabitha) | Married(Ben,Brandy) | Married(Ben,Ann).
+-Paris(Lucy) | -Paris(Emma) | -Paris(Tabitha) | Married(Ben,Brandy) | -Paris(Ann).
+-Paris(Lucy) | -Paris(Emma) | -Paris(Tabitha) | -Paris(Brandy) | Married(Ben,Ann).
+-Paris(Lucy) | -Paris(Emma) | -Paris(Tabitha) | -Paris(Brandy) | -Paris(Ann).
+-Married(Brandon,Emma).
+-London(Emma).
+-Rome(Emma).
+Munich(Jack).
+Married(Brandon,Lucy) | Married(Brandon,Emma) | Married(Brandon,Tabitha) | Married(Brandon,Brandy) | Married(Brandon,Ann).
+Married(Brandon,Lucy) | Married(Brandon,Emma) | Married(Brandon,Tabitha) | Married(Brandon,Brandy) | London(Ann).
+Married(Brandon,Lucy) | Married(Brandon,Emma) | Married(Brandon,Tabitha) | London(Brandy) | Married(Brandon,Ann).
+Married(Brandon,Lucy) | Married(Brandon,Emma) | Married(Brandon,Tabitha) | London(Brandy) | London(Ann).
+Married(Brandon,Lucy) | Married(Brandon,Emma) | London(Tabitha) | Married(Brandon,Brandy) | Married(Brandon,Ann).
+Married(Brandon,Lucy) | Married(Brandon,Emma) | London(Tabitha) | Married(Brandon,Brandy) | London(Ann).
+Married(Brandon,Lucy) | Married(Brandon,Emma) | London(Tabitha) | London(Brandy) | Married(Brandon,Ann).
+Married(Brandon,Lucy) | Married(Brandon,Emma) | London(Tabitha) | London(Brandy) | London(Ann).
+Married(Brandon,Lucy) | London(Emma) | Married(Brandon,Tabitha) | Married(Brandon,Brandy) | Married(Brandon,Ann).
+Married(Brandon,Lucy) | London(Emma) | Married(Brandon,Tabitha) | Married(Brandon,Brandy) | London(Ann).
+Married(Brandon,Lucy) | London(Emma) | Married(Brandon,Tabitha) | London(Brandy) | Married(Brandon,Ann).
+Married(Brandon,Lucy) | London(Emma) | Married(Brandon,Tabitha) | London(Brandy) | London(Ann).
+Married(Brandon,Lucy) | London(Emma) | London(Tabitha) | Married(Brandon,Brandy) | Married(Brandon,Ann).
+Married(Brandon,Lucy) | London(Emma) | London(Tabitha) | Married(Brandon,Brandy) | London(Ann).
+Married(Brandon,Lucy) | London(Emma) | London(Tabitha) | London(Brandy) | Married(Brandon,Ann).
+Married(Brandon,Lucy) | London(Emma) | London(Tabitha) | London(Brandy) | London(Ann).
+London(Lucy) | Married(Brandon,Emma) | Married(Brandon,Tabitha) | Married(Brandon,Brandy) | Married(Brandon,Ann).
+London(Lucy) | Married(Brandon,Emma) | Married(Brandon,Tabitha) | Married(Brandon,Brandy) | London(Ann).
+London(Lucy) | Married(Brandon,Emma) | Married(Brandon,Tabitha) | London(Brandy) | Married(Brandon,Ann).
+London(Lucy) | Married(Brandon,Emma) | Married(Brandon,Tabitha) | London(Brandy) | London(Ann).
+London(Lucy) | Married(Brandon,Emma) | London(Tabitha) | Married(Brandon,Brandy) | Married(Brandon,Ann).
+London(Lucy) | Married(Brandon,Emma) | London(Tabitha) | Married(Brandon,Brandy) | London(Ann).
+London(Lucy) | Married(Brandon,Emma) | London(Tabitha) | London(Brandy) | Married(Brandon,Ann).
+London(Lucy) | Married(Brandon,Emma) | London(Tabitha) | London(Brandy) | London(Ann).
+London(Lucy) | London(Emma) | Married(Brandon,Tabitha) | Married(Brandon,Brandy) | Married(Brandon,Ann).
+London(Lucy) | London(Emma) | Married(Brandon,Tabitha) | Married(Brandon,Brandy) | London(Ann).
+London(Lucy) | London(Emma) | Married(Brandon,Tabitha) | London(Brandy) | Married(Brandon,Ann).
+London(Lucy) | London(Emma) | Married(Brandon,Tabitha) | London(Brandy) | London(Ann).
+London(Lucy) | London(Emma) | London(Tabitha) | Married(Brandon,Brandy) | Married(Brandon,Ann).
+London(Lucy) | London(Emma) | London(Tabitha) | Married(Brandon,Brandy) | London(Ann).
+London(Lucy) | London(Emma) | London(Tabitha) | London(Brandy) | Married(Brandon,Ann).
+London(Lucy) | London(Emma) | London(Tabitha) | London(Brandy) | London(Ann).
+Married(Todd,Lucy).
+-Married(Jack,Ann).
+-Married(Ben,Ann).
+-Madrid(Ann).
+-Paris(Ann).
+Married(Buddy,Brandy).
+-Rome(Buddy).
+-Rome(Brandy).
+-Paris(Buddy).
+-Paris(Brandy).
+end_of_list.
+
+============================== end of clauses for search =============
+
+% There are no domain elements in the input.
+
+============================== DOMAIN SIZE 2 =========================
+
+============================== STATISTICS ============================
+
+For domain size 2.
+
+Current CPU time: 0.00 seconds (total CPU time: 0.05 seconds).
+Ground clauses: seen=416, kept=406.
+Selections=1, assignments=1, propagations=14, current_models=0.
+Rewrite_terms=298, rewrite_bools=48, indexes=59.
+Rules_from_neg_clauses=9, cross_offs=9.
+
+============================== end of statistics =====================
+
+============================== DOMAIN SIZE 3 =========================
+
+============================== STATISTICS ============================
+
+For domain size 3.
+
+Current CPU time: 0.00 seconds (total CPU time: 0.05 seconds).
+Ground clauses: seen=468, kept=453.
+Selections=2, assignments=3, propagations=15, current_models=0.
+Rewrite_terms=568, rewrite_bools=121, indexes=133.
+Rules_from_neg_clauses=8, cross_offs=17.
+
+============================== end of statistics =====================
+
+============================== DOMAIN SIZE 4 =========================
+
+============================== STATISTICS ============================
+
+For domain size 4.
+
+Current CPU time: 0.00 seconds (total CPU time: 0.05 seconds).
+Ground clauses: seen=532, kept=512.
+Selections=3, assignments=6, propagations=18, current_models=0.
+Rewrite_terms=1097, rewrite_bools=209, indexes=264.
+Rules_from_neg_clauses=7, cross_offs=24.
+
+============================== end of statistics =====================
+
+============================== DOMAIN SIZE 5 =========================
+
+============================== STATISTICS ============================
+
+For domain size 5.
+
+Current CPU time: 0.00 seconds (total CPU time: 0.05 seconds).
+Ground clauses: seen=608, kept=583.
+Selections=4, assignments=10, propagations=28, current_models=0.
+Rewrite_terms=1588, rewrite_bools=372, indexes=421.
+Rules_from_neg_clauses=6, cross_offs=30.
+
+============================== end of statistics =====================
+
+============================== DOMAIN SIZE 6 =========================
+
+============================== STATISTICS ============================
+
+For domain size 6.
+
+Current CPU time: 0.00 seconds (total CPU time: 0.05 seconds).
+Ground clauses: seen=696, kept=666.
+Selections=5, assignments=15, propagations=46, current_models=0.
+Rewrite_terms=1813, rewrite_bools=514, indexes=513.
+Rules_from_neg_clauses=5, cross_offs=35.
+
+============================== end of statistics =====================
+
+============================== DOMAIN SIZE 7 =========================
+
+============================== STATISTICS ============================
+
+For domain size 7.
+
+Current CPU time: 0.00 seconds (total CPU time: 0.05 seconds).
+Ground clauses: seen=796, kept=761.
+Selections=6, assignments=21, propagations=67, current_models=0.
+Rewrite_terms=2490, rewrite_bools=868, indexes=757.
+Rules_from_neg_clauses=4, cross_offs=39.
+
+============================== end of statistics =====================
+
+============================== DOMAIN SIZE 8 =========================
+
+============================== STATISTICS ============================
+
+For domain size 8.
+
+Current CPU time: 0.00 seconds (total CPU time: 0.06 seconds).
+Ground clauses: seen=908, kept=868.
+Selections=7, assignments=28, propagations=105, current_models=0.
+Rewrite_terms=2904, rewrite_bools=1142, indexes=922.
+Rules_from_neg_clauses=3, cross_offs=42.
+
+============================== end of statistics =====================
+
+============================== DOMAIN SIZE 9 =========================
+
+============================== STATISTICS ============================
+
+For domain size 9.
+
+Current CPU time: 0.00 seconds (total CPU time: 0.06 seconds).
+Ground clauses: seen=1032, kept=987.
+Selections=8, assignments=36, propagations=127, current_models=0.
+Rewrite_terms=3806, rewrite_bools=1724, indexes=1235.
+Rules_from_neg_clauses=2, cross_offs=44.
+
+============================== end of statistics =====================
+
+============================== DOMAIN SIZE 10 ========================
+
+============================== MODEL =================================
+
+interpretation( 10, [number=1, seconds=0], [
+
+        function(Ann, [ 0 ]),
+
+        function(Ben, [ 1 ]),
+
+        function(Brandon, [ 2 ]),
+
+        function(Brandy, [ 3 ]),
+
+        function(Buddy, [ 4 ]),
+
+        function(Emma, [ 5 ]),
+
+        function(Jack, [ 6 ]),
+
+        function(Lucy, [ 7 ]),
+
+        function(Tabitha, [ 8 ]),
+
+        function(Todd, [ 9 ]),
+
+        relation(London(_), [ 1, 0, 1, 0, 0, 0, 0, 0, 0, 0 ]),
+
+        relation(Madrid(_), [ 0, 0, 0, 1, 1, 0, 0, 0, 0, 0 ]),
+
+        relation(Munich(_), [ 0, 0, 0, 0, 0, 1, 1, 0, 0, 0 ]),
+
+        relation(Paris(_), [ 0, 0, 0, 0, 0, 0, 0, 1, 0, 1 ]),
+
+        relation(Rome(_), [ 0, 1, 0, 0, 0, 0, 0, 0, 1, 0 ]),
+
+        relation(Married(_,_), [
+			   0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 1, 0,
+			   1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 1, 0, 0, 0, 0, 0,
+			   0, 0, 0, 1, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 1, 0, 0, 0,
+			   0, 0, 0, 0, 0, 1, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+			   0, 1, 0, 0, 0, 0, 0, 0, 0, 0,
+			   0, 0, 0, 0, 0, 0, 0, 1, 0, 0 ])
+]).
+
+============================== end of model ==========================
+
+============================== STATISTICS ============================
+
+For domain size 10.
+
+Current CPU time: 0.00 seconds (total CPU time: 0.06 seconds).
+Ground clauses: seen=1168, kept=1118.
+Selections=13, assignments=50, propagations=228, current_models=1.
+Rewrite_terms=4822, rewrite_bools=3032, indexes=1660.
+Rules_from_neg_clauses=1, cross_offs=45.
+
+============================== end of statistics =====================
+
+User_CPU=0.06, System_CPU=0.03, Wall_clock=0.
+
+Exiting with 1 model.
+
+Process 3628 exit (max_models) Wed Dec  1 11:40:43 2021
+The process finished Wed Dec  1 11:40:43 2021

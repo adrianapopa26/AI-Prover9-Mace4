@@ -1,0 +1,39 @@
+formulas(assumptions).
+
+Robert != Jordan.
+Robert != Lorraine.
+Robert != Peter. 
+Robert != Kylie.
+
+Jordan != Lorraine.
+Jordan != Peter.
+Jordan != Kylie.
+
+Lorraine != Peter.
+Lorraine != Kylie.
+
+Peter != Kylie.
+
+Tall(Robert) | Tall(Jordan) | Tall(Lorraine) | Tall(Peter) | Tall(Kylie).
+Taller(x,y) -> -Tall(y).
+Taller(x,y) & Taller(y,z) -> Taller(x,z).
+
+%Robert is taller than Jordan
+Taller(Robert, Jordan).
+
+%Robert and Jordan are shorter than Lorraine.
+Taller(Lorraine, Robert).
+Taller(Lorraine, Jordan).
+
+%Robert is taller than Peter who is taller than Kylie.
+Taller(Robert, Peter).
+Taller(Peter, Kylie).
+
+%Jordan is taller than Peter.
+Taller(Jordan, Peter).
+
+end_of_list.
+
+formulas(goals).
+
+end_of_list.

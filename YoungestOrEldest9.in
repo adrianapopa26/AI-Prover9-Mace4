@@ -1,0 +1,49 @@
+assign(report_stderr, 2).
+set(ignore_option_dependencies). % GUI handles dependencies
+
+if(Prover9). % Options for Prover9
+  assign(max_seconds, 60).
+end_if.
+
+if(Mace4).   % Options for Mace4
+  assign(domain_size, 5).
+  assign(start_size, 5).
+  assign(end_size, 5).
+  assign(max_models, -1).
+  assign(max_seconds, 60).
+end_if.
+
+formulas(assumptions).
+
+Roshontia = 0.
+Eric = 1.
+Justine = 2.
+Jadira = 3.
+Colleen = 4.
+
+Oldest(Roshontia) | Oldest(Eric) | Oldest(Justine) | Oldest(Jadira) | Oldest(Colleen).
+Older(x,y) -> -Oldest(y).
+Older(x,y) & Older(y,z) -> Older(x,z).
+
+%Roshontia and Eric are older than Justine.
+Older(Roshontia,Justine).
+Older(Eric,Justine).
+
+%Jadira is older than Colleen and Roshontia.
+Older(Jadira,Colleen).
+Older(Jadira,Roshontia).
+
+%If Justine is older than Colleen,
+Older(Justine,colleen).
+
+%that makes her oldest.
+-Oldest(Justine).
+%There are still valid models even if Justine is not the oldest, so she may not be the oldest.
+%additional information is needed to prove who is the oldest.
+
+end_of_list.
+
+formulas(goals).
+
+end_of_list.
+

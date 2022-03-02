@@ -1,0 +1,171 @@
+============================== Mace4 =================================
+Mace4 (32) version Dec-2007, Dec 2007.
+Process 11056 was started by popaa on DESKTOP-1LD5VI6,
+Wed Dec  1 11:48:46 2021
+The command was "/cygdrive/c/Program Files (x86)/Prover9-Mace4/bin-win32/mace4 -c".
+============================== end of head ===========================
+
+============================== INPUT =================================
+assign(report_stderr,2).
+set(ignore_option_dependencies).
+if(Prover9).
+% Conditional input omitted.
+end_if.
+if(Mace4).
+% Conditional input included.
+assign(max_seconds,60).
+end_if.
+
+formulas(assumptions).
+Robert != Jordan.
+Robert != Lorraine.
+Robert != Peter.
+Robert != Kylie.
+Jordan != Lorraine.
+Jordan != Peter.
+Jordan != Kylie.
+Lorraine != Peter.
+Lorraine != Kylie.
+Peter != Kylie.
+Tall(Robert) | Tall(Jordan) | Tall(Lorraine) | Tall(Peter) | Tall(Kylie).
+Taller(x,y) -> -Tall(y).
+Taller(x,y) & Taller(y,z) -> Taller(x,z).
+Taller(Robert,Jordan).
+Taller(Lorraine,Robert).
+Taller(Lorraine,Jordan).
+Taller(Robert,Peter).
+Taller(Peter,Kylie).
+Taller(Jordan,Peter).
+end_of_list.
+
+formulas(goals).
+end_of_list.
+
+============================== end of input ==========================
+
+% Enabling option dependencies (ignore applies only on input).
+
+============================== PROCESS NON-CLAUSAL FORMULAS ==========
+
+% Formulas that are not ordinary clauses:
+1 Taller(x,y) -> -Tall(y) # label(non_clause).  [assumption].
+2 Taller(x,y) & Taller(y,z) -> Taller(x,z) # label(non_clause).  [assumption].
+
+============================== end of process non-clausal formulas ===
+
+============================== CLAUSES FOR SEARCH ====================
+
+formulas(mace4_clauses).
+Robert != Jordan.
+Robert != Lorraine.
+Robert != Peter.
+Robert != Kylie.
+Jordan != Lorraine.
+Jordan != Peter.
+Jordan != Kylie.
+Lorraine != Peter.
+Lorraine != Kylie.
+Peter != Kylie.
+Tall(Robert) | Tall(Jordan) | Tall(Lorraine) | Tall(Peter) | Tall(Kylie).
+-Taller(x,y) | -Tall(y).
+-Taller(x,y) | -Taller(y,z) | Taller(x,z).
+Taller(Robert,Jordan).
+Taller(Lorraine,Robert).
+Taller(Lorraine,Jordan).
+Taller(Robert,Peter).
+Taller(Peter,Kylie).
+Taller(Jordan,Peter).
+end_of_list.
+
+============================== end of clauses for search =============
+
+% There are no domain elements in the input.
+
+============================== DOMAIN SIZE 2 =========================
+
+============================== STATISTICS ============================
+
+For domain size 2.
+
+Current CPU time: 0.00 seconds (total CPU time: 0.01 seconds).
+Ground clauses: seen=29, kept=29.
+Selections=1, assignments=1, propagations=5, current_models=0.
+Rewrite_terms=13, rewrite_bools=0, indexes=3.
+Rules_from_neg_clauses=4, cross_offs=4.
+
+============================== end of statistics =====================
+
+============================== DOMAIN SIZE 3 =========================
+
+============================== STATISTICS ============================
+
+For domain size 3.
+
+Current CPU time: 0.00 seconds (total CPU time: 0.01 seconds).
+Ground clauses: seen=53, kept=53.
+Selections=2, assignments=3, propagations=4, current_models=0.
+Rewrite_terms=25, rewrite_bools=3, indexes=5.
+Rules_from_neg_clauses=3, cross_offs=7.
+
+============================== end of statistics =====================
+
+============================== DOMAIN SIZE 4 =========================
+
+============================== STATISTICS ============================
+
+For domain size 4.
+
+Current CPU time: 0.00 seconds (total CPU time: 0.01 seconds).
+Ground clauses: seen=97, kept=97.
+Selections=3, assignments=6, propagations=7, current_models=0.
+Rewrite_terms=42, rewrite_bools=8, indexes=12.
+Rules_from_neg_clauses=2, cross_offs=9.
+
+============================== end of statistics =====================
+
+============================== DOMAIN SIZE 5 =========================
+
+============================== MODEL =================================
+
+interpretation( 5, [number=1, seconds=0], [
+
+        function(Jordan, [ 0 ]),
+
+        function(Kylie, [ 1 ]),
+
+        function(Lorraine, [ 2 ]),
+
+        function(Peter, [ 3 ]),
+
+        function(Robert, [ 4 ]),
+
+        relation(Tall(_), [ 0, 0, 1, 0, 0 ]),
+
+        relation(Taller(_,_), [
+			   0, 1, 0, 1, 0,
+			   0, 0, 0, 0, 0,
+			   1, 1, 0, 1, 1,
+			   0, 1, 0, 0, 0,
+			   1, 1, 0, 1, 0 ])
+]).
+
+============================== end of model ==========================
+
+============================== STATISTICS ============================
+
+For domain size 5.
+
+Current CPU time: 0.00 seconds (total CPU time: 0.01 seconds).
+Ground clauses: seen=167, kept=167.
+Selections=8, assignments=14, propagations=35, current_models=1.
+Rewrite_terms=70, rewrite_bools=279, indexes=24.
+Rules_from_neg_clauses=1, cross_offs=10.
+
+============================== end of statistics =====================
+
+User_CPU=0.01, System_CPU=0.03, Wall_clock=0.
+
+Exiting with 1 model.
+
+Process 11056 exit (max_models) Wed Dec  1 11:48:46 2021
+The process finished Wed Dec  1 11:48:46 2021

@@ -1,0 +1,60 @@
+formulas(assumptions).
+
+Rachel != Jessica.
+Rachel != John.
+Rachel != Maria.
+Rachel != Lara.
+Rachel != Sally.
+
+Jessica != John.
+Jessica != Maria.
+Jessica != Lara.
+Jessica != Sally.
+
+John != Maria.
+John != Lara.
+John != Sally.
+
+Maria != Lara.
+Maria != Sally.
+
+Lara != Sally.
+
+Tall(Rachel) | Tall(Jessica) | Tall(John) | Tall(Maria) | Tall(Lara) | Tall(Sally).
+Taller(x,y) -> -Tall(y).
+Taller(x,y) & Taller(y,z) -> Taller(x,z).
+
+%Rachel and Jessica are taller than John
+Taller(Rachel, John).
+Taller(Jessica, John).
+
+
+%Maria is shorter than Lara and Lara is taller than Sally.
+Taller(Lara, Maria).
+Taller(Lara, Sally).
+
+
+%John is taller than Lara
+Taller(John, Lara).
+
+
+
+m1 | m2 | m3 | m4.
+
+m1 <-> Taller(John, Maria) & Taller(John, Lara) & Taller(John, Sally).
+m2 <-> Taller(Maria, John) & Taller(Maria, Lara) & Taller(Maria, Sally).
+m3 <-> Taller(Lara, John) & Taller(Lara, Maria) & Taller(Lara, Sally).
+m4 <-> Taller(Sally, John) & Taller(Sally, Maria) & Taller(Sally, Lara).
+
+
+m1 -> -m2 & -m3 & -m4.
+m2 -> -m1 & -m3 & -m4.
+m3 -> -m1 & -m2 & -m4.
+m4 -> -m1 & -m2 & -m3.
+
+
+end_of_list.
+
+formulas(goals).
+
+end_of_list.

@@ -1,0 +1,221 @@
+============================== Prover9 ===============================
+Prover9 (32) version Dec-2007, Dec 2007.
+Process 4980 was started by popaa on DESKTOP-1LD5VI6,
+Wed Nov 24 19:35:53 2021
+The command was "/cygdrive/c/Program Files (x86)/Prover9-Mace4/bin-win32/prover9".
+============================== end of head ===========================
+
+============================== INPUT =================================
+assign(report_stderr,2).
+set(ignore_option_dependencies).
+if(Prover9).
+% Conditional input included.
+assign(max_seconds,60).
+end_if.
+if(Mace4).
+% Conditional input omitted.
+end_if.
+
+formulas(assumptions).
+Jen = 0.
+Sue = 1.
+Dick = 2.
+Alan = 3.
+Betty = 4.
+Tall(Jen) | Tall(Sue) | Tall(Dick) | Tall(Alan) | Tall(Betty).
+Taller(x,y) & Taller(y,z) -> Taller(x,z).
+Taller(x,y) -> -Tall(y).
+Taller(Jen,Sue).
+Taller(Sue,Dick).
+Taller(Alan,Dick).
+Taller(Alan,Jen).
+Taller(Alan,Sue).
+Taller(Dick,Betty).
+end_of_list.
+
+formulas(goals).
+Tall(Alan).
+end_of_list.
+
+============================== end of input ==========================
+
+% Enabling option dependencies (ignore applies only on input).
+
+============================== PROCESS NON-CLAUSAL FORMULAS ==========
+
+% Formulas that are not ordinary clauses:
+1 Taller(x,y) & Taller(y,z) -> Taller(x,z) # label(non_clause).  [assumption].
+2 Taller(x,y) -> -Tall(y) # label(non_clause).  [assumption].
+3 Tall(Alan) # label(non_clause) # label(goal).  [goal].
+
+============================== end of process non-clausal formulas ===
+
+============================== PROCESS INITIAL CLAUSES ===============
+
+% Clauses before input processing:
+
+formulas(usable).
+end_of_list.
+
+formulas(sos).
+Jen = 0.  [assumption].
+Sue = 1.  [assumption].
+Dick = 2.  [assumption].
+Alan = 3.  [assumption].
+Betty = 4.  [assumption].
+Tall(Jen) | Tall(Sue) | Tall(Dick) | Tall(Alan) | Tall(Betty).  [assumption].
+-Taller(x,y) | -Taller(y,z) | Taller(x,z).  [clausify(1)].
+-Taller(x,y) | -Tall(y).  [clausify(2)].
+Taller(Jen,Sue).  [assumption].
+Taller(Sue,Dick).  [assumption].
+Taller(Alan,Dick).  [assumption].
+Taller(Alan,Jen).  [assumption].
+Taller(Alan,Sue).  [assumption].
+Taller(Dick,Betty).  [assumption].
+-Tall(Alan).  [deny(3)].
+end_of_list.
+
+formulas(demodulators).
+end_of_list.
+
+============================== PREDICATE ELIMINATION =================
+
+No predicates eliminated.
+
+============================== end predicate elimination =============
+
+Auto_denials:  (non-Horn, no changes).
+
+Term ordering decisions:
+Predicate symbol precedence:  predicate_order([ =, Tall, Taller ]).
+Function symbol precedence:  function_order([ Alan, Dick, Sue, Jen, Betty, 0, 1, 2, 3, 4 ]).
+After inverse_order:  (no changes).
+Unfolding symbols: (none).
+
+Auto_inference settings:
+  % set(paramodulation).  % (positive equality literals)
+  % set(binary_resolution).  % (non-Horn)
+  % set(neg_ur_resolution).  % (non-Horn, less than 100 clauses)
+
+Auto_process settings:
+  % set(factor).  % (non-Horn)
+  % set(unit_deletion).  % (non-Horn)
+
+============================== end of process initial clauses ========
+
+============================== CLAUSES FOR SEARCH ====================
+
+% Clauses after input processing:
+
+formulas(usable).
+end_of_list.
+
+formulas(sos).
+5 0 = Jen.  [copy(4),flip(a)].
+7 1 = Sue.  [copy(6),flip(a)].
+9 2 = Dick.  [copy(8),flip(a)].
+11 3 = Alan.  [copy(10),flip(a)].
+13 4 = Betty.  [copy(12),flip(a)].
+15 -Taller(x,y) | -Taller(y,z) | Taller(x,z).  [clausify(1)].
+16 -Taller(x,y) | -Tall(y).  [clausify(2)].
+17 Taller(Jen,Sue).  [assumption].
+18 Taller(Sue,Dick).  [assumption].
+19 Taller(Alan,Dick).  [assumption].
+20 Taller(Alan,Jen).  [assumption].
+21 Taller(Alan,Sue).  [assumption].
+22 Taller(Dick,Betty).  [assumption].
+23 -Tall(Alan).  [deny(3)].
+24 Tall(Jen) | Tall(Sue) | Tall(Dick) | Tall(Betty).  [back_unit_del(14),unit_del(d,23)].
+end_of_list.
+
+formulas(demodulators).
+5 0 = Jen.  [copy(4),flip(a)].
+7 1 = Sue.  [copy(6),flip(a)].
+9 2 = Dick.  [copy(8),flip(a)].
+11 3 = Alan.  [copy(10),flip(a)].
+13 4 = Betty.  [copy(12),flip(a)].
+end_of_list.
+
+============================== end of clauses for search =============
+
+============================== SEARCH ================================
+
+% Starting search at 0.03 seconds.
+
+given #1 (I,wt=3): 5 0 = Jen.  [copy(4),flip(a)].
+
+given #2 (I,wt=3): 7 1 = Sue.  [copy(6),flip(a)].
+
+given #3 (I,wt=3): 9 2 = Dick.  [copy(8),flip(a)].
+
+given #4 (I,wt=3): 11 3 = Alan.  [copy(10),flip(a)].
+
+given #5 (I,wt=3): 13 4 = Betty.  [copy(12),flip(a)].
+
+given #6 (I,wt=9): 15 -Taller(x,y) | -Taller(y,z) | Taller(x,z).  [clausify(1)].
+
+given #7 (I,wt=5): 16 -Taller(x,y) | -Tall(y).  [clausify(2)].
+
+given #8 (I,wt=3): 17 Taller(Jen,Sue).  [assumption].
+
+given #9 (I,wt=3): 18 Taller(Sue,Dick).  [assumption].
+
+given #10 (I,wt=3): 19 Taller(Alan,Dick).  [assumption].
+
+given #11 (I,wt=3): 20 Taller(Alan,Jen).  [assumption].
+
+given #12 (I,wt=3): 21 Taller(Alan,Sue).  [assumption].
+
+given #13 (I,wt=3): 22 Taller(Dick,Betty).  [assumption].
+
+============================== PROOF =================================
+
+% Proof 1 at 0.03 (+ 0.01) seconds.
+% Length of proof is 17.
+% Level of proof is 6.
+% Maximum clause weight is 10.
+% Given clauses 13.
+
+2 Taller(x,y) -> -Tall(y) # label(non_clause).  [assumption].
+3 Tall(Alan) # label(non_clause) # label(goal).  [goal].
+14 Tall(Jen) | Tall(Sue) | Tall(Dick) | Tall(Alan) | Tall(Betty).  [assumption].
+16 -Taller(x,y) | -Tall(y).  [clausify(2)].
+17 Taller(Jen,Sue).  [assumption].
+18 Taller(Sue,Dick).  [assumption].
+20 Taller(Alan,Jen).  [assumption].
+22 Taller(Dick,Betty).  [assumption].
+23 -Tall(Alan).  [deny(3)].
+24 Tall(Jen) | Tall(Sue) | Tall(Dick) | Tall(Betty).  [back_unit_del(14),unit_del(d,23)].
+25 -Tall(Sue).  [resolve(17,a,16,a)].
+28 Tall(Jen) | Tall(Dick) | Tall(Betty).  [back_unit_del(24),unit_del(b,25)].
+29 -Tall(Dick).  [resolve(18,a,16,a)].
+32 Tall(Jen) | Tall(Betty).  [back_unit_del(28),unit_del(b,29)].
+35 -Tall(Jen).  [resolve(20,a,16,a)].
+38 Tall(Betty).  [back_unit_del(32),unit_del(a,35)].
+41 $F.  [resolve(22,a,16,a),unit_del(a,38)].
+
+============================== end of proof ==========================
+
+============================== STATISTICS ============================
+
+Given=13. Generated=46. Kept=32. proofs=1.
+Usable=13. Sos=15. Demods=5. Limbo=0, Disabled=19. Hints=0.
+Weight_deleted=0. Literals_deleted=0.
+Forward_subsumed=13. Back_subsumed=0.
+Sos_limit_deleted=0. Sos_displaced=0. Sos_removed=0.
+New_demodulators=5 (0 lex), Back_demodulated=0. Back_unit_deleted=4.
+Demod_attempts=201. Demod_rewrites=0.
+Res_instance_prunes=0. Para_instance_prunes=0. Basic_paramod_prunes=0.
+Nonunit_fsub_feature_tests=0. Nonunit_bsub_feature_tests=16.
+Megabytes=0.04.
+User_CPU=0.03, System_CPU=0.01, Wall_clock=0.
+
+============================== end of statistics =====================
+
+============================== end of search =========================
+
+THEOREM PROVED
+
+Exiting with 1 proof.
+
+Process 4980 exit (max_proofs) Wed Nov 24 19:35:53 2021

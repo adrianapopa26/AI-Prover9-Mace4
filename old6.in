@@ -1,0 +1,45 @@
+formulas(assumptions).
+
+Minnie != Justin.
+Minnie != Tiffany.
+Minnie != Jaymee.
+Minnie != Georgette.
+
+Justin != Tiffany.
+Justin != Jaymee.
+Justin != Georgette.
+
+Tiffany != Jaymee.
+Tiffany != Georgette.
+
+Jaymee != Georgette.
+
+
+
+Old(Minnie) | Old(Justin) | Old(Tiffany) | Old(Jaymee) | Old(Georgette).
+Older(x,y) -> -Old(y).
+Older(x,y) & Older(y,z) -> Older(x,z).
+
+
+%Minnie is older than Justin and Tiffany.
+Older(Minnie, Justin).
+Older(Minnie, Tiffany).
+
+%Jaymee is younger than Justin and older than Tiffany. 
+Older(Justin, Jaymee).
+Older(Jaymee, Tiffany).
+
+%Georgette is younger than Minnie and older than Tiffany.
+Older(Minnie, Georgette).
+Older(Georgette, Tiffany).
+
+%Jaymee and Georgette are the same age
+-Older(Jaymee, Georgette) & -Older(Georgette, Jaymee).
+
+%Minnie
+
+end_of_list.
+
+formulas(goals).
+
+end_of_list.

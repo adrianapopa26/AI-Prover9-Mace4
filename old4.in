@@ -1,0 +1,39 @@
+formulas(assumptions).
+
+Brendyn != Liam.
+Brendyn != Fergus.
+Brendyn != Marcell.
+Brendyn != Lucian.
+
+Liam != Fergus.
+Liam != Marcell.
+Liam != Lucian.
+
+Fergus != Desmond.
+Fergus != Lucian.
+
+Marcell != Lucian.
+
+
+Young(Brendyn) | Young(Liam) | Young(Fergus) | Young(Marcell) | Young(Lucian).
+Younger(x,y) -> -Young(y).
+Younger(x,y) & Younger(y,z) -> Younger(x,z).
+
+
+%Brendyn is older than Liam and Fergus.
+Younger(Liam, Brendyn).
+Younger(Fergus, Brendyn).
+
+%Marcell is older than Fergus and younger than Liam.
+Younger(Fergus, Marcell).
+Younger(Marcell, Liam).
+
+%Liam has a brother named Lucian
+Younger(Brendyn, Lucian).
+
+
+end_of_list.
+
+formulas(goals).
+
+end_of_list.

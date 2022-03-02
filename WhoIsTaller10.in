@@ -1,0 +1,49 @@
+assign(report_stderr, 2).
+set(ignore_option_dependencies). % GUI handles dependencies
+
+if(Prover9). % Options for Prover9
+  assign(max_seconds, 60).
+end_if.
+
+if(Mace4).   % Options for Mace4
+  assign(domain_size, 5).
+  assign(start_size, 5).
+  assign(end_size, 5).
+  assign(max_seconds, 60).
+end_if.
+
+formulas(assumptions).
+
+Jen = 0.
+Sue = 1.
+Dick = 2.
+Alan = 3.
+Betty = 4.
+
+Tall(Jen) | Tall(Sue) | Tall(Dick) | Tall(Alan) | Tall(Betty).
+Taller(x,y) & Taller(y,z) -> Taller(x,z).
+Taller(x,y) -> -Tall(y).
+
+% Jen is taller than Sue who is taller than Dick.
+Taller(Jen,Sue).
+Taller(Sue,Dick).
+
+% Alan is taller than Dick.
+Taller(Alan,Dick).
+
+% Jen and Sue are shorter than Alan.
+Taller(Alan,Jen).
+Taller(Alan,Sue).
+
+% Betty is shorter than Dick.
+Taller(Dick,Betty).
+
+end_of_list.
+
+formulas(goals).
+
+% Who is the tallest?
+Tall(Alan).
+
+end_of_list.
+

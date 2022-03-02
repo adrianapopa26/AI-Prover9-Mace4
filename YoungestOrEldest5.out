@@ -1,0 +1,234 @@
+============================== Prover9 ===============================
+Prover9 (32) version Dec-2007, Dec 2007.
+Process 18144 was started by popaa on DESKTOP-1LD5VI6,
+Sat Nov 27 01:21:23 2021
+The command was "/cygdrive/c/Program Files (x86)/Prover9-Mace4/bin-win32/prover9".
+============================== end of head ===========================
+
+============================== INPUT =================================
+assign(report_stderr,2).
+set(ignore_option_dependencies).
+if(Prover9).
+% Conditional input included.
+assign(max_seconds,60).
+end_if.
+if(Mace4).
+% Conditional input omitted.
+end_if.
+
+formulas(assumptions).
+Cheveyo = 0.
+Ethan = 1.
+Devlyn = 2.
+Victoria = 3.
+Maria = 4.
+Youngest(Cheveyo) | Youngest(Ethan) | Youngest(Devlyn) | Youngest(Victoria) | Youngest(Maria).
+Younger(x,y) -> -Youngest(y).
+Younger(x,y) & Younger(y,z) -> Younger(x,z).
+Younger(Cheveyo,Devlyn).
+Younger(Victoria,Devlyn).
+Younger(Cheveyo,Ethan).
+Younger(Victoria,Ethan).
+Younger(Victoria,Maria).
+Younger(Ethan,Maria).
+Younger(Devlyn,Maria).
+Younger(Maria,Cheveyo).
+Younger(Ethan,Cheveyo).
+end_of_list.
+
+formulas(goals).
+Youngest(Victoria).
+end_of_list.
+
+============================== end of input ==========================
+
+% Enabling option dependencies (ignore applies only on input).
+
+============================== PROCESS NON-CLAUSAL FORMULAS ==========
+
+% Formulas that are not ordinary clauses:
+1 Younger(x,y) -> -Youngest(y) # label(non_clause).  [assumption].
+2 Younger(x,y) & Younger(y,z) -> Younger(x,z) # label(non_clause).  [assumption].
+3 Youngest(Victoria) # label(non_clause) # label(goal).  [goal].
+
+============================== end of process non-clausal formulas ===
+
+============================== PROCESS INITIAL CLAUSES ===============
+
+% Clauses before input processing:
+
+formulas(usable).
+end_of_list.
+
+formulas(sos).
+Cheveyo = 0.  [assumption].
+Ethan = 1.  [assumption].
+Devlyn = 2.  [assumption].
+Victoria = 3.  [assumption].
+Maria = 4.  [assumption].
+Youngest(Cheveyo) | Youngest(Ethan) | Youngest(Devlyn) | Youngest(Victoria) | Youngest(Maria).  [assumption].
+-Younger(x,y) | -Youngest(y).  [clausify(1)].
+-Younger(x,y) | -Younger(y,z) | Younger(x,z).  [clausify(2)].
+Younger(Cheveyo,Devlyn).  [assumption].
+Younger(Victoria,Devlyn).  [assumption].
+Younger(Cheveyo,Ethan).  [assumption].
+Younger(Victoria,Ethan).  [assumption].
+Younger(Victoria,Maria).  [assumption].
+Younger(Ethan,Maria).  [assumption].
+Younger(Devlyn,Maria).  [assumption].
+Younger(Maria,Cheveyo).  [assumption].
+Younger(Ethan,Cheveyo).  [assumption].
+-Youngest(Victoria).  [deny(3)].
+end_of_list.
+
+formulas(demodulators).
+end_of_list.
+
+============================== PREDICATE ELIMINATION =================
+
+No predicates eliminated.
+
+============================== end predicate elimination =============
+
+Auto_denials:  (non-Horn, no changes).
+
+Term ordering decisions:
+Predicate symbol precedence:  predicate_order([ =, Youngest, Younger ]).
+Function symbol precedence:  function_order([ Cheveyo, Ethan, Maria, Devlyn, Victoria, 0, 1, 2, 3, 4 ]).
+After inverse_order:  (no changes).
+Unfolding symbols: (none).
+
+Auto_inference settings:
+  % set(paramodulation).  % (positive equality literals)
+  % set(binary_resolution).  % (non-Horn)
+  % set(neg_ur_resolution).  % (non-Horn, less than 100 clauses)
+
+Auto_process settings:
+  % set(factor).  % (non-Horn)
+  % set(unit_deletion).  % (non-Horn)
+
+============================== end of process initial clauses ========
+
+============================== CLAUSES FOR SEARCH ====================
+
+% Clauses after input processing:
+
+formulas(usable).
+end_of_list.
+
+formulas(sos).
+5 0 = Cheveyo.  [copy(4),flip(a)].
+7 1 = Ethan.  [copy(6),flip(a)].
+9 2 = Devlyn.  [copy(8),flip(a)].
+11 3 = Victoria.  [copy(10),flip(a)].
+13 4 = Maria.  [copy(12),flip(a)].
+15 -Younger(x,y) | -Youngest(y).  [clausify(1)].
+16 -Younger(x,y) | -Younger(y,z) | Younger(x,z).  [clausify(2)].
+17 Younger(Cheveyo,Devlyn).  [assumption].
+18 Younger(Victoria,Devlyn).  [assumption].
+19 Younger(Cheveyo,Ethan).  [assumption].
+20 Younger(Victoria,Ethan).  [assumption].
+21 Younger(Victoria,Maria).  [assumption].
+22 Younger(Ethan,Maria).  [assumption].
+23 Younger(Devlyn,Maria).  [assumption].
+24 Younger(Maria,Cheveyo).  [assumption].
+25 Younger(Ethan,Cheveyo).  [assumption].
+26 -Youngest(Victoria).  [deny(3)].
+27 Youngest(Cheveyo) | Youngest(Ethan) | Youngest(Devlyn) | Youngest(Maria).  [back_unit_del(14),unit_del(d,26)].
+end_of_list.
+
+formulas(demodulators).
+5 0 = Cheveyo.  [copy(4),flip(a)].
+7 1 = Ethan.  [copy(6),flip(a)].
+9 2 = Devlyn.  [copy(8),flip(a)].
+11 3 = Victoria.  [copy(10),flip(a)].
+13 4 = Maria.  [copy(12),flip(a)].
+end_of_list.
+
+============================== end of clauses for search =============
+
+============================== SEARCH ================================
+
+% Starting search at 0.00 seconds.
+
+given #1 (I,wt=3): 5 0 = Cheveyo.  [copy(4),flip(a)].
+
+given #2 (I,wt=3): 7 1 = Ethan.  [copy(6),flip(a)].
+
+given #3 (I,wt=3): 9 2 = Devlyn.  [copy(8),flip(a)].
+
+given #4 (I,wt=3): 11 3 = Victoria.  [copy(10),flip(a)].
+
+given #5 (I,wt=3): 13 4 = Maria.  [copy(12),flip(a)].
+
+given #6 (I,wt=5): 15 -Younger(x,y) | -Youngest(y).  [clausify(1)].
+
+given #7 (I,wt=9): 16 -Younger(x,y) | -Younger(y,z) | Younger(x,z).  [clausify(2)].
+
+given #8 (I,wt=3): 17 Younger(Cheveyo,Devlyn).  [assumption].
+
+given #9 (I,wt=3): 18 Younger(Victoria,Devlyn).  [assumption].
+
+given #10 (I,wt=3): 19 Younger(Cheveyo,Ethan).  [assumption].
+
+given #11 (I,wt=3): 20 Younger(Victoria,Ethan).  [assumption].
+
+given #12 (I,wt=3): 21 Younger(Victoria,Maria).  [assumption].
+
+given #13 (I,wt=3): 22 Younger(Ethan,Maria).  [assumption].
+
+given #14 (I,wt=3): 23 Younger(Devlyn,Maria).  [assumption].
+
+given #15 (I,wt=3): 24 Younger(Maria,Cheveyo).  [assumption].
+
+============================== PROOF =================================
+
+% Proof 1 at 0.00 (+ 0.08) seconds.
+% Length of proof is 17.
+% Level of proof is 6.
+% Maximum clause weight is 10.
+% Given clauses 15.
+
+1 Younger(x,y) -> -Youngest(y) # label(non_clause).  [assumption].
+3 Youngest(Victoria) # label(non_clause) # label(goal).  [goal].
+14 Youngest(Cheveyo) | Youngest(Ethan) | Youngest(Devlyn) | Youngest(Victoria) | Youngest(Maria).  [assumption].
+15 -Younger(x,y) | -Youngest(y).  [clausify(1)].
+17 Younger(Cheveyo,Devlyn).  [assumption].
+19 Younger(Cheveyo,Ethan).  [assumption].
+21 Younger(Victoria,Maria).  [assumption].
+24 Younger(Maria,Cheveyo).  [assumption].
+26 -Youngest(Victoria).  [deny(3)].
+27 Youngest(Cheveyo) | Youngest(Ethan) | Youngest(Devlyn) | Youngest(Maria).  [back_unit_del(14),unit_del(d,26)].
+30 -Youngest(Devlyn).  [resolve(17,a,15,a)].
+31 Youngest(Cheveyo) | Youngest(Ethan) | Youngest(Maria).  [back_unit_del(27),unit_del(c,30)].
+36 -Youngest(Ethan).  [resolve(19,a,15,a)].
+37 Youngest(Cheveyo) | Youngest(Maria).  [back_unit_del(31),unit_del(b,36)].
+42 -Youngest(Maria).  [resolve(21,a,15,a)].
+43 Youngest(Cheveyo).  [back_unit_del(37),unit_del(b,42)].
+50 $F.  [resolve(24,a,15,a),unit_del(a,43)].
+
+============================== end of proof ==========================
+
+============================== STATISTICS ============================
+
+Given=15. Generated=59. Kept=41. proofs=1.
+Usable=15. Sos=20. Demods=5. Limbo=2, Disabled=22. Hints=0.
+Weight_deleted=0. Literals_deleted=0.
+Forward_subsumed=17. Back_subsumed=0.
+Sos_limit_deleted=0. Sos_displaced=0. Sos_removed=0.
+New_demodulators=5 (0 lex), Back_demodulated=0. Back_unit_deleted=4.
+Demod_attempts=251. Demod_rewrites=0.
+Res_instance_prunes=0. Para_instance_prunes=0. Basic_paramod_prunes=0.
+Nonunit_fsub_feature_tests=0. Nonunit_bsub_feature_tests=20.
+Megabytes=0.04.
+User_CPU=0.00, System_CPU=0.08, Wall_clock=0.
+
+============================== end of statistics =====================
+
+============================== end of search =========================
+
+THEOREM PROVED
+
+Exiting with 1 proof.
+
+Process 18144 exit (max_proofs) Sat Nov 27 01:21:23 2021

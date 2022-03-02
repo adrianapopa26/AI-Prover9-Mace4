@@ -1,0 +1,185 @@
+formulas(assumptions).
+
+
+Ben != Todd.
+Ben != Brandon.
+Ben != Buddy.
+Ben != Jack.
+Ben != Lucy.
+Ben != Emma.
+Ben != Tabitha.
+Ben != Brandy.
+Ben != Ann.
+
+Todd != Brandon.
+Todd != Buddy.
+Todd != Jack.
+Todd != Lucy.
+Todd != Emma.
+Todd != Tabitha.
+Todd != Brandy.
+Todd != Ann.
+
+Brandon != Buddy.
+Brandon != Jack.
+Brandon != Lucy.
+Brandon != Emma.
+Brandon != Tabitha.
+Brandon != Brandy.
+Brandon != Ann.
+
+Buddy != Jack.
+Buddy != Lucy.
+Buddy != Emma.
+Buddy != Tabitha.
+Buddy != Brandy.
+Buddy != Ann.
+
+Jack != Lucy.
+Jack != Emma.
+Jack != Tabitha.
+Jack != Brandy.
+Jack != Ann.
+
+Lucy != Emma.
+Lucy != Tabitha.
+Lucy != Brandy.
+Lucy != Ann.
+
+Emma != Tabitha.
+Emma != Brandy.
+Emma != Ann.
+
+Tabitha != Brandy.
+Tabitha != Ann.
+
+Brandy != Ann.
+
+
+Married(Ben, Lucy) | Married(Ben, Emma) | Married(Ben, Tabitha) | Married(Ben, Brandy) | Married(Ben, Ann).
+Married(Todd, Lucy) | Married(Todd, Emma) | Married(Todd, Tabitha) | Married(Todd, Brandy) | Married(Todd, Ann).
+Married(Brandon, Lucy) | Married(Brandon, Emma) | Married(Brandon, Tabitha) | Married(Brandon, Brandy) | Married(Brandon, Ann).
+Married(Buddy, Lucy) | Married(Buddy, Emma) | Married(Buddy, Tabitha) | Married(Buddy, Brandy) | Married(Buddy, Ann).
+Married(Jack, Lucy) | Married(Jack, Emma) | Married(Jack, Tabitha) | Married(Jack, Brandy) | Married(Jack, Ann).
+
+Married(x,y) -> Married(y,x).
+-Married(x,x).
+
+Married(Ben, Lucy) -> -Married(Todd, Lucy) & -Married(Brandon, Lucy) & -Married(Buddy, Lucy) & -Married(Jack, Lucy).
+Married(Ben, Emma) -> -Married(Todd, Emma) & -Married(Brandon, Emma) & -Married(Buddy, Emma) & -Married(Jack, Emma).
+Married(Ben, Tabitha) -> -Married(Todd, Tabitha) & -Married(Brandon, Tabitha) & -Married(Buddy, Tabitha) & -Married(Jack, Tabitha).
+Married(Ben, Brandy) -> -Married(Todd, Brandy) & -Married(Brandon, Brandy) & -Married(Buddy, Brandy) & -Married(Jack, Brandy).
+Married(Ben, Ann) -> -Married(Todd, Ann) & -Married(Brandon, Ann) & -Married(Buddy, Ann) & -Married(Jack, Ann).
+
+Married(Todd, Lucy) -> -Married(Ben, Lucy) & -Married(Brandon, Lucy) & -Married(Buddy, Lucy) & -Married(Jack, Lucy).
+Married(Todd, Emma) -> -Married(Ben, Emma) & -Married(Brandon, Emma) & -Married(Buddy, Emma) & -Married(Jack, Emma).
+Married(Todd, Tabitha) -> -Married(Ben, Tabitha) & -Married(Brandon, Tabitha) & -Married(Buddy, Tabitha) & -Married(Jack, Tabitha).
+Married(Todd, Brandy) -> -Married(Ben, Brandy) & -Married(Brandon, Brandy) & -Married(Buddy, Brandy) & -Married(Jack, Brandy).
+Married(Todd, Ann) -> -Married(Ben, Ann) & -Married(Brandon, Ann) & -Married(Buddy, Ann) & -Married(Jack, Ann).
+
+Married(Brandon, Lucy) -> -Married(Ben, Lucy) & -Married(Todd, Lucy) & -Married(Buddy, Lucy) & -Married(Jack, Lucy).
+Married(Brandon, Emma) -> -Married(Ben, Emma) & -Married(Todd, Emma) & -Married(Buddy, Emma) & -Married(Jack, Emma).
+Married(Brandon, Tabitha) -> -Married(Ben, Tabitha) & -Married(Todd, Tabitha) & -Married(Buddy, Tabitha) & -Married(Jack, Tabitha).
+Married(Brandon, Brandy) -> -Married(Ben, Brandy) & -Married(Todd, Brandy) & -Married(Buddy, Brandy) & -Married(Jack, Brandy).
+Married(Brandon, Ann) -> -Married(Ben, Ann) & -Married(Todd, Ann) & -Married(Buddy, Ann) & -Married(Jack, Ann).
+
+Married(Buddy, Lucy) -> -Married(Ben, Lucy) & -Married(Todd, Lucy) & -Married(Brandon, Lucy) & -Married(Jack, Lucy).
+Married(Buddy, Emma) -> -Married(Ben, Emma) & -Married(Todd, Emma) & -Married(Brandon, Emma) & -Married(Jack, Emma).
+Married(Buddy, Tabitha) -> -Married(Ben, Tabitha) & -Married(Todd, Tabitha) & -Married(Brandon, Tabitha) & -Married(Jack, Tabitha).
+Married(Buddy, Brandy) -> -Married(Ben, Brandy) & -Married(Todd, Brandy) & -Married(Brandon, Brandy) & -Married(Jack, Brandy).
+Married(Buddy, Ann) -> -Married(Ben, Ann) & -Married(Todd, Ann) & -Married(Brandon, Ann) & -Married(Jack, Ann).
+
+Married(Jack, Lucy) -> -Married(Ben, Lucy) & -Married(Todd, Lucy) & -Married(Brandon, Lucy) & -Married(Buddy, Lucy).
+Married(Jack, Emma) -> -Married(Ben, Emma) & -Married(Todd, Emma) & -Married(Brandon, Emma) & -Married(Buddy, Emma).
+Married(Jack, Tabitha) -> -Married(Ben, Tabitha) & -Married(Todd, Tabitha) & -Married(Brandon, Tabitha) & -Married(Buddy, Tabitha).
+Married(Jack, Brandy) -> -Married(Ben, Brandy) & -Married(Todd, Brandy) & -Married(Brandon, Brandy) & -Married(Buddy, Brandy).
+Married(Jack, Ann) -> -Married(Ben, Ann) & -Married(Todd, Ann) & -Married(Brandon, Ann) & -Married(Buddy, Ann).
+
+
+-Married(Ben, Todd) & -Married(Ben, Brandon) & -Married(Ben, Buddy) & -Married(Ben, Jack).
+-Married(Todd, Brandon) & -Married(Todd, Buddy) & -Married(Todd, Jack).
+-Married(Brandon, Buddy) & -Married(Brandon, Jack).
+-Married(Buddy, Jack).
+
+-Married(Lucy, Emma) & -Married(Lucy, Tabitha) & -Married(Lucy, Brandy) & -Married(Lucy, Ann).
+-Married(Emma, Tabitha) & -Married(Emma, Brandy) & -Married(Emma, Ann).
+-Married(Tabitha, Brandy) & -Married(Tabitha, Ann).
+-Married(Brandy, Ann).
+
+
+Rome(x) | Munich(x) | London(x) | Madrid(x) | Paris(x).
+
+Rome(x) -> -Munich(x) & -London(x) & -Madrid(x) & -Paris(x).
+Munich(x) -> -Rome(x) & -London(x) & -Madrid(x) & -Paris(x).
+London(x) -> -Rome(x) & -Munich(x) & -Madrid(x) & -Paris(x).
+Madrid(x) -> -Rome(x) & -Munich(x) & -London(x) & -Paris(x).
+Paris(x) -> -Rome(x) & -Munich(x) & -London(x) & -Madrid(x).
+
+Rome(x) & Married(x,y) -> Rome(y).
+Munich(x) & Married(x,y) -> Munich(y).
+London(x) & Married(x,y) -> London(y).
+Madrid(x) & Married(x,y) -> Madrid(y).
+Paris(x) & Married(x,y) -> Paris(y).
+
+Rome(Ben) -> -Rome(Todd) & -Rome(Brandon) & -Rome(Buddy) & -Rome(Jack).
+Rome(Todd) -> -Rome(Ben) & -Rome(Brandon) & -Rome(Buddy) & -Rome(Jack).
+Rome(Brandon) -> -Rome(Todd) & -Rome(Ben) & -Rome(Buddy) & -Rome(Jack).
+Rome(Buddy) -> -Rome(Todd) & -Rome(Brandon) & -Rome(Ben) & -Rome(Jack).
+Rome(Jack) -> -Rome(Todd) & -Rome(Brandon) & -Rome(Buddy) & -Rome(Ben).
+
+Munich(Ben) -> -Munich(Todd) & -Munich(Brandon) & -Munich(Buddy) & -Munich(Jack).
+Munich(Todd) -> -Munich(Ben) & -Munich(Brandon) & -Munich(Buddy) & -Munich(Jack).
+Munich(Brandon) -> -Munich(Todd) & -Munich(Ben) & -Munich(Buddy) & -Munich(Jack).
+Munich(Buddy) -> -Munich(Todd) & -Munich(Brandon) & -Munich(Ben) & -Munich(Jack).
+Munich(Jack) -> -Munich(Todd) & -Munich(Brandon) & -Munich(Buddy) & -Munich(Ben).
+
+London(Ben) -> -London(Todd) & -London(Brandon) & -London(Buddy) & -London(Jack).
+London(Todd) -> -London(Ben) & -London(Brandon) & -London(Buddy) & -London(Jack).
+London(Brandon) -> -London(Todd) & -London(Ben) & -London(Buddy) & -London(Jack).
+London(Buddy) -> -London(Todd) & -London(Brandon) & -London(Ben) & -London(Jack).
+London(Jack) -> -London(Todd) & -London(Brandon) & -London(Buddy) & -London(Ben).
+
+Madrid(Ben) -> -Madrid(Todd) & -Madrid(Brandon) & -Madrid(Buddy) & -Madrid(Jack).
+Madrid(Todd) -> -Madrid(Ben) & -Madrid(Brandon) & -Madrid(Buddy) & -Madrid(Jack).
+Madrid(Brandon) -> -Madrid(Todd) & -Madrid(Ben) & -Madrid(Buddy) & -Madrid(Jack).
+Madrid(Buddy) -> -Madrid(Todd) & -Madrid(Brandon) & -Madrid(Ben) & -Madrid(Jack).
+Madrid(Jack) -> -Madrid(Todd) & -Madrid(Brandon) & -Madrid(Buddy) & -Madrid(Ben).
+
+Paris(Ben) -> -Paris(Todd) & -Paris(Brandon) & -Paris(Buddy) & -Paris(Jack).
+Paris(Todd) -> -Paris(Ben) & -Paris(Brandon) & -Paris(Buddy) & -Paris(Jack).
+Paris(Brandon) -> -Paris(Todd) & -Paris(Ben) & -Paris(Buddy) & -Paris(Jack).
+Paris(Buddy) -> -Paris(Todd) & -Paris(Brandon) & -Paris(Ben) & -Paris(Jack).
+Paris(Jack) -> -Paris(Todd) & -Paris(Brandon) & -Paris(Buddy) & -Paris(Ben).
+
+
+%1. Ben's spouse did not go to Paris
+(Married(Ben, Lucy) & -Paris(Lucy)) | (Married(Ben, Emma) & -Paris(Emma)) | (Married(Ben, Tabitha) & -Paris(Tabitha)) | (Married(Ben, Brandy) & -Paris(Brandy)) | (Married(Ben, Ann) & -Paris(Ann)).
+
+
+%2. Emma is not married to Brandon and did not travel to London or Rome
+-Married(Brandon, Emma) & -London(Emma) & -Rome(Emma).
+
+%3. Jack visited Munich
+Munich(Jack).
+
+%4. Brandon and his new bride visited London
+(Married(Brandon, Lucy) & London(Lucy)) | (Married(Brandon, Emma) & London(Emma)) | (Married(Brandon, Tabitha) & London(Tabitha)) | (Married(Brandon, Brandy) & London(Brandy)) | (Married(Brandon, Ann) & London(Ann)).
+
+%5. Todd is married to Lucy
+Married(Todd, Lucy).
+
+%6. Ann is not married to Jack or Ben and did not go to Madrid
+-Married(Jack, Ann) & -Married(Ben, Ann) & -Madrid(Ann).
+
+%7. The new bride with the shortest name did not go to Paris
+-Paris(Ann).
+
+%8. Buddy is married to Brandy, they did not go to Rome or Paris
+Married(Buddy, Brandy) & -Rome(Buddy) & -Rome(Brandy) & -Paris(Buddy) & -Paris(Brandy).
+
+
+end_of_list.
+
+formulas(goals).
+
+end_of_list.

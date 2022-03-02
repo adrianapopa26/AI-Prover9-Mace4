@@ -1,0 +1,239 @@
+============================== Mace4 =================================
+Mace4 (32) version Dec-2007, Dec 2007.
+Process 11792 was started by popaa on DESKTOP-1LD5VI6,
+Wed Dec  1 11:45:00 2021
+The command was "/cygdrive/c/Program Files (x86)/Prover9-Mace4/bin-win32/mace4 -c".
+============================== end of head ===========================
+
+============================== INPUT =================================
+assign(report_stderr,2).
+set(ignore_option_dependencies).
+if(Prover9).
+% Conditional input omitted.
+end_if.
+if(Mace4).
+% Conditional input included.
+assign(max_seconds,60).
+end_if.
+
+formulas(assumptions).
+Preston != Corissa.
+Preston != Pedro.
+Preston != Andrea.
+Preston != Madison.
+Preston != Chloe.
+Preston != Caspian.
+Corissa != Pedro.
+Corissa != Andrea.
+Corissa != Madison.
+Corissa != Chloe.
+Corissa != Caspian.
+Pedro != Andrea.
+Pedro != Madison.
+Pedro != Chloe.
+Pedro != Caspian.
+Andrea != Madison.
+Andrea != Chloe.
+Andrea != Caspian.
+Madison != Chloe.
+Madison != Caspian.
+Chloe != Caspian.
+Young(Preston) | Young(Corissa) | Young(Pedro) | Young(Andrea) | Young(Madison) | Young(Chloe) | Young(Caspian).
+Younger(x,y) -> -Young(y).
+Younger(x,y) & Younger(y,z) -> Younger(x,z).
+Younger(Corissa,Preston).
+Younger(Preston,Pedro).
+Younger(Andrea,Corissa).
+Younger(Madison,Corissa).
+Younger(Chloe,Andrea).
+Younger(Chloe,Madison).
+Younger(Andrea,Caspian).
+Younger(Madison,Andrea).
+Younger(Corissa,Pedro).
+Younger(Madison,Pedro).
+Younger(Pedro,Caspian).
+Younger(Preston,Caspian).
+end_of_list.
+
+formulas(goals).
+end_of_list.
+
+============================== end of input ==========================
+
+% Enabling option dependencies (ignore applies only on input).
+
+============================== PROCESS NON-CLAUSAL FORMULAS ==========
+
+% Formulas that are not ordinary clauses:
+1 Younger(x,y) -> -Young(y) # label(non_clause).  [assumption].
+2 Younger(x,y) & Younger(y,z) -> Younger(x,z) # label(non_clause).  [assumption].
+
+============================== end of process non-clausal formulas ===
+
+============================== CLAUSES FOR SEARCH ====================
+
+formulas(mace4_clauses).
+Preston != Corissa.
+Preston != Pedro.
+Preston != Andrea.
+Preston != Madison.
+Preston != Chloe.
+Preston != Caspian.
+Corissa != Pedro.
+Corissa != Andrea.
+Corissa != Madison.
+Corissa != Chloe.
+Corissa != Caspian.
+Pedro != Andrea.
+Pedro != Madison.
+Pedro != Chloe.
+Pedro != Caspian.
+Andrea != Madison.
+Andrea != Chloe.
+Andrea != Caspian.
+Madison != Chloe.
+Madison != Caspian.
+Chloe != Caspian.
+Young(Preston) | Young(Corissa) | Young(Pedro) | Young(Andrea) | Young(Madison) | Young(Chloe) | Young(Caspian).
+-Younger(x,y) | -Young(y).
+-Younger(x,y) | -Younger(y,z) | Younger(x,z).
+Younger(Corissa,Preston).
+Younger(Preston,Pedro).
+Younger(Andrea,Corissa).
+Younger(Madison,Corissa).
+Younger(Chloe,Andrea).
+Younger(Chloe,Madison).
+Younger(Andrea,Caspian).
+Younger(Madison,Andrea).
+Younger(Corissa,Pedro).
+Younger(Madison,Pedro).
+Younger(Pedro,Caspian).
+Younger(Preston,Caspian).
+end_of_list.
+
+============================== end of clauses for search =============
+
+% There are no domain elements in the input.
+
+============================== DOMAIN SIZE 2 =========================
+
+============================== STATISTICS ============================
+
+For domain size 2.
+
+Current CPU time: 0.00 seconds (total CPU time: 0.01 seconds).
+Ground clauses: seen=46, kept=46.
+Selections=1, assignments=1, propagations=6, current_models=0.
+Rewrite_terms=16, rewrite_bools=0, indexes=2.
+Rules_from_neg_clauses=6, cross_offs=6.
+
+============================== end of statistics =====================
+
+============================== DOMAIN SIZE 3 =========================
+
+============================== STATISTICS ============================
+
+For domain size 3.
+
+Current CPU time: 0.00 seconds (total CPU time: 0.01 seconds).
+Ground clauses: seen=70, kept=70.
+Selections=2, assignments=3, propagations=8, current_models=0.
+Rewrite_terms=34, rewrite_bools=3, indexes=7.
+Rules_from_neg_clauses=5, cross_offs=11.
+
+============================== end of statistics =====================
+
+============================== DOMAIN SIZE 4 =========================
+
+============================== STATISTICS ============================
+
+For domain size 4.
+
+Current CPU time: 0.00 seconds (total CPU time: 0.01 seconds).
+Ground clauses: seen=114, kept=114.
+Selections=3, assignments=6, propagations=11, current_models=0.
+Rewrite_terms=54, rewrite_bools=27, indexes=12.
+Rules_from_neg_clauses=4, cross_offs=15.
+
+============================== end of statistics =====================
+
+============================== DOMAIN SIZE 5 =========================
+
+============================== STATISTICS ============================
+
+For domain size 5.
+
+Current CPU time: 0.00 seconds (total CPU time: 0.03 seconds).
+Ground clauses: seen=184, kept=184.
+Selections=4, assignments=10, propagations=16, current_models=0.
+Rewrite_terms=87, rewrite_bools=75, indexes=18.
+Rules_from_neg_clauses=3, cross_offs=18.
+
+============================== end of statistics =====================
+
+============================== DOMAIN SIZE 6 =========================
+
+============================== STATISTICS ============================
+
+For domain size 6.
+
+Current CPU time: 0.00 seconds (total CPU time: 0.03 seconds).
+Ground clauses: seen=286, kept=286.
+Selections=5, assignments=15, propagations=26, current_models=0.
+Rewrite_terms=131, rewrite_bools=148, indexes=29.
+Rules_from_neg_clauses=2, cross_offs=20.
+
+============================== end of statistics =====================
+
+============================== DOMAIN SIZE 7 =========================
+
+============================== MODEL =================================
+
+interpretation( 7, [number=1, seconds=0], [
+
+        function(Andrea, [ 0 ]),
+
+        function(Caspian, [ 1 ]),
+
+        function(Chloe, [ 2 ]),
+
+        function(Corissa, [ 3 ]),
+
+        function(Madison, [ 4 ]),
+
+        function(Pedro, [ 5 ]),
+
+        function(Preston, [ 6 ]),
+
+        relation(Young(_), [ 0, 0, 1, 0, 0, 0, 0 ]),
+
+        relation(Younger(_,_), [
+			   0, 1, 0, 1, 0, 1, 1,
+			   0, 0, 0, 0, 0, 0, 0,
+			   1, 1, 0, 1, 1, 1, 1,
+			   0, 1, 0, 0, 0, 1, 1,
+			   1, 1, 0, 1, 0, 1, 1,
+			   0, 1, 0, 0, 0, 0, 0,
+			   0, 1, 0, 0, 0, 1, 0 ])
+]).
+
+============================== end of model ==========================
+
+============================== STATISTICS ============================
+
+For domain size 7.
+
+Current CPU time: 0.00 seconds (total CPU time: 0.03 seconds).
+Ground clauses: seen=426, kept=426.
+Selections=12, assignments=27, propagations=71, current_models=1.
+Rewrite_terms=183, rewrite_bools=758, indexes=44.
+Rules_from_neg_clauses=1, cross_offs=21.
+
+============================== end of statistics =====================
+
+User_CPU=0.03, System_CPU=0.01, Wall_clock=0.
+
+Exiting with 1 model.
+
+Process 11792 exit (max_models) Wed Dec  1 11:45:00 2021
+The process finished Wed Dec  1 11:45:00 2021

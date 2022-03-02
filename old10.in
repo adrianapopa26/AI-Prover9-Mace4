@@ -1,0 +1,68 @@
+formulas(assumptions).
+
+Preston != Corissa.
+Preston != Pedro.
+Preston != Andrea.
+Preston != Madison.
+Preston != Chloe.
+Preston != Caspian.
+
+Corissa != Pedro.
+Corissa != Andrea.
+Corissa != Madison.
+Corissa != Chloe.
+Corissa != Caspian.
+
+Pedro != Andrea.
+Pedro != Madison.
+Pedro != Chloe.
+Pedro != Caspian.
+
+Andrea != Madison.
+Andrea != Chloe.
+Andrea != Caspian.
+
+Madison != Chloe.
+Madison != Caspian. 
+
+Chloe != Caspian.
+
+
+
+Young(Preston) | Young(Corissa) | Young(Pedro) | Young(Andrea) | Young(Madison) | Young(Chloe) | Young(Caspian).
+Younger(x,y) -> -Young(y).
+Younger(x,y) & Younger(y,z) -> Younger(x,z).
+
+
+%Preston is older than Corissa and younger than Pedro.
+Younger(Corissa, Preston).
+Younger(Preston, Pedro).
+
+% Corissa is older than Andrea and Madison.
+Younger(Andrea, Corissa).
+Younger(Madison, Corissa).
+
+%Andrea and Madison are older than Chloe.
+Younger(Chloe, Andrea).
+Younger(Chloe, Madison).
+
+%Andrea is younger than Caspian and older than Madison. 
+Younger(Andrea, Caspian).
+Younger(Madison, Andrea).
+
+%Pedro is older than Corissa and Madison, but younger than Caspian.
+Younger(Corissa, Pedro).
+Younger(Madison, Pedro).
+Younger(Pedro, Caspian).
+
+%Preston is Caspian's son
+Younger(Preston, Caspian).
+
+%Chloe.
+
+
+end_of_list.
+
+formulas(goals).
+
+end_of_list.

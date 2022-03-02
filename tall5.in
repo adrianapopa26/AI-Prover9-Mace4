@@ -1,0 +1,28 @@
+formulas(assumptions).
+
+Luke != Bianca.
+Luke != Nathan.
+Luke != Cathy.
+
+Bianca != Nathan.
+Bianca != Cathy.
+
+Nathan != Cathy.
+
+Short(Luke) | Short(Bianca) | Short(Nathan) | Short(Cathy).
+Shorter(x,y) -> -Short(y).
+Shorter(x,y) & Shorter(y,z) -> Shorter(x,z).
+
+%Luke is taller than Bianca who is taller than Nathan.
+Shorter(Bianca, Luke).
+Shorter(Nathan, Bianca).
+
+%Nathan is shorter than Cathy who is shorter than Bianca. 
+Shorter(Nathan, Cathy).
+Shorter(Cathy, Bianca).
+
+end_of_list.
+
+formulas(goals).
+
+end_of_list.

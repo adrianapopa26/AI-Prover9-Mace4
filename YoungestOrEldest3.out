@@ -1,0 +1,207 @@
+============================== Prover9 ===============================
+Prover9 (32) version Dec-2007, Dec 2007.
+Process 15192 was started by popaa on DESKTOP-1LD5VI6,
+Sat Nov 27 01:11:10 2021
+The command was "/cygdrive/c/Program Files (x86)/Prover9-Mace4/bin-win32/prover9".
+============================== end of head ===========================
+
+============================== INPUT =================================
+assign(report_stderr,2).
+set(ignore_option_dependencies).
+if(Prover9).
+% Conditional input included.
+assign(max_seconds,60).
+end_if.
+if(Mace4).
+% Conditional input omitted.
+end_if.
+
+formulas(assumptions).
+Quentyn = 0.
+Porfirio = 1.
+Caitlyn = 2.
+Joslyn = 3.
+Oldest(Quentyn) | Oldest(Porfirio) | Oldest(Caitlyn) | Oldest(Joslyn).
+Older(x,y) -> -Oldest(y).
+Older(x,y) & Older(y,z) -> Older(x,z).
+Older(Quentyn,Porfirio).
+Older(Caitlyn,Quentyn).
+Older(Joslyn,Porfirio).
+Older(Caitlyn,Porfirio).
+Older(Quentyn,Joslyn).
+end_of_list.
+
+formulas(goals).
+Oldest(Caitlyn).
+end_of_list.
+
+============================== end of input ==========================
+
+% Enabling option dependencies (ignore applies only on input).
+
+============================== PROCESS NON-CLAUSAL FORMULAS ==========
+
+% Formulas that are not ordinary clauses:
+1 Older(x,y) -> -Oldest(y) # label(non_clause).  [assumption].
+2 Older(x,y) & Older(y,z) -> Older(x,z) # label(non_clause).  [assumption].
+3 Oldest(Caitlyn) # label(non_clause) # label(goal).  [goal].
+
+============================== end of process non-clausal formulas ===
+
+============================== PROCESS INITIAL CLAUSES ===============
+
+% Clauses before input processing:
+
+formulas(usable).
+end_of_list.
+
+formulas(sos).
+Quentyn = 0.  [assumption].
+Porfirio = 1.  [assumption].
+Caitlyn = 2.  [assumption].
+Joslyn = 3.  [assumption].
+Oldest(Quentyn) | Oldest(Porfirio) | Oldest(Caitlyn) | Oldest(Joslyn).  [assumption].
+-Older(x,y) | -Oldest(y).  [clausify(1)].
+-Older(x,y) | -Older(y,z) | Older(x,z).  [clausify(2)].
+Older(Quentyn,Porfirio).  [assumption].
+Older(Caitlyn,Quentyn).  [assumption].
+Older(Joslyn,Porfirio).  [assumption].
+Older(Caitlyn,Porfirio).  [assumption].
+Older(Quentyn,Joslyn).  [assumption].
+-Oldest(Caitlyn).  [deny(3)].
+end_of_list.
+
+formulas(demodulators).
+end_of_list.
+
+============================== PREDICATE ELIMINATION =================
+
+No predicates eliminated.
+
+============================== end predicate elimination =============
+
+Auto_denials:  (non-Horn, no changes).
+
+Term ordering decisions:
+Predicate symbol precedence:  predicate_order([ =, Oldest, Older ]).
+Function symbol precedence:  function_order([ Porfirio, Quentyn, Caitlyn, Joslyn, 0, 1, 2, 3 ]).
+After inverse_order:  (no changes).
+Unfolding symbols: (none).
+
+Auto_inference settings:
+  % set(paramodulation).  % (positive equality literals)
+  % set(binary_resolution).  % (non-Horn)
+  % set(neg_ur_resolution).  % (non-Horn, less than 100 clauses)
+
+Auto_process settings:
+  % set(factor).  % (non-Horn)
+  % set(unit_deletion).  % (non-Horn)
+
+============================== end of process initial clauses ========
+
+============================== CLAUSES FOR SEARCH ====================
+
+% Clauses after input processing:
+
+formulas(usable).
+end_of_list.
+
+formulas(sos).
+5 0 = Quentyn.  [copy(4),flip(a)].
+7 1 = Porfirio.  [copy(6),flip(a)].
+9 2 = Caitlyn.  [copy(8),flip(a)].
+11 3 = Joslyn.  [copy(10),flip(a)].
+13 -Older(x,y) | -Oldest(y).  [clausify(1)].
+14 -Older(x,y) | -Older(y,z) | Older(x,z).  [clausify(2)].
+15 Older(Quentyn,Porfirio).  [assumption].
+16 Older(Caitlyn,Quentyn).  [assumption].
+17 Older(Joslyn,Porfirio).  [assumption].
+18 Older(Caitlyn,Porfirio).  [assumption].
+19 Older(Quentyn,Joslyn).  [assumption].
+20 -Oldest(Caitlyn).  [deny(3)].
+21 Oldest(Quentyn) | Oldest(Porfirio) | Oldest(Joslyn).  [back_unit_del(12),unit_del(c,20)].
+end_of_list.
+
+formulas(demodulators).
+5 0 = Quentyn.  [copy(4),flip(a)].
+7 1 = Porfirio.  [copy(6),flip(a)].
+9 2 = Caitlyn.  [copy(8),flip(a)].
+11 3 = Joslyn.  [copy(10),flip(a)].
+end_of_list.
+
+============================== end of clauses for search =============
+
+============================== SEARCH ================================
+
+% Starting search at 0.00 seconds.
+
+given #1 (I,wt=3): 5 0 = Quentyn.  [copy(4),flip(a)].
+
+given #2 (I,wt=3): 7 1 = Porfirio.  [copy(6),flip(a)].
+
+given #3 (I,wt=3): 9 2 = Caitlyn.  [copy(8),flip(a)].
+
+given #4 (I,wt=3): 11 3 = Joslyn.  [copy(10),flip(a)].
+
+given #5 (I,wt=5): 13 -Older(x,y) | -Oldest(y).  [clausify(1)].
+
+given #6 (I,wt=9): 14 -Older(x,y) | -Older(y,z) | Older(x,z).  [clausify(2)].
+
+given #7 (I,wt=3): 15 Older(Quentyn,Porfirio).  [assumption].
+
+given #8 (I,wt=3): 16 Older(Caitlyn,Quentyn).  [assumption].
+
+given #9 (I,wt=3): 17 Older(Joslyn,Porfirio).  [assumption].
+
+given #10 (I,wt=3): 18 Older(Caitlyn,Porfirio).  [assumption].
+
+given #11 (I,wt=3): 19 Older(Quentyn,Joslyn).  [assumption].
+
+============================== PROOF =================================
+
+% Proof 1 at 0.00 (+ 0.06) seconds.
+% Length of proof is 14.
+% Level of proof is 5.
+% Maximum clause weight is 8.
+% Given clauses 11.
+
+1 Older(x,y) -> -Oldest(y) # label(non_clause).  [assumption].
+3 Oldest(Caitlyn) # label(non_clause) # label(goal).  [goal].
+12 Oldest(Quentyn) | Oldest(Porfirio) | Oldest(Caitlyn) | Oldest(Joslyn).  [assumption].
+13 -Older(x,y) | -Oldest(y).  [clausify(1)].
+15 Older(Quentyn,Porfirio).  [assumption].
+16 Older(Caitlyn,Quentyn).  [assumption].
+19 Older(Quentyn,Joslyn).  [assumption].
+20 -Oldest(Caitlyn).  [deny(3)].
+21 Oldest(Quentyn) | Oldest(Porfirio) | Oldest(Joslyn).  [back_unit_del(12),unit_del(c,20)].
+24 -Oldest(Porfirio).  [resolve(15,a,13,a)].
+25 Oldest(Quentyn) | Oldest(Joslyn).  [back_unit_del(21),unit_del(b,24)].
+28 -Oldest(Quentyn).  [resolve(16,a,13,a)].
+29 Oldest(Joslyn).  [back_unit_del(25),unit_del(a,28)].
+36 $F.  [resolve(19,a,13,a),unit_del(a,29)].
+
+============================== end of proof ==========================
+
+============================== STATISTICS ============================
+
+Given=11. Generated=40. Kept=28. proofs=1.
+Usable=11. Sos=12. Demods=4. Limbo=2, Disabled=16. Hints=0.
+Weight_deleted=0. Literals_deleted=0.
+Forward_subsumed=11. Back_subsumed=0.
+Sos_limit_deleted=0. Sos_displaced=0. Sos_removed=0.
+New_demodulators=4 (0 lex), Back_demodulated=0. Back_unit_deleted=3.
+Demod_attempts=168. Demod_rewrites=0.
+Res_instance_prunes=0. Para_instance_prunes=0. Basic_paramod_prunes=0.
+Nonunit_fsub_feature_tests=0. Nonunit_bsub_feature_tests=13.
+Megabytes=0.03.
+User_CPU=0.00, System_CPU=0.06, Wall_clock=0.
+
+============================== end of statistics =====================
+
+============================== end of search =========================
+
+THEOREM PROVED
+
+Exiting with 1 proof.
+
+Process 15192 exit (max_proofs) Sat Nov 27 01:11:10 2021

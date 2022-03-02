@@ -1,0 +1,257 @@
+============================== Mace4 =================================
+Mace4 (32) version Dec-2007, Dec 2007.
+Process 7660 was started by popaa on DESKTOP-1LD5VI6,
+Thu Nov 25 11:48:05 2021
+The command was "/cygdrive/c/Program Files (x86)/Prover9-Mace4/bin-win32/mace4 -c".
+============================== end of head ===========================
+
+============================== INPUT =================================
+assign(report_stderr,2).
+set(ignore_option_dependencies).
+if(Prover9).
+% Conditional input omitted.
+end_if.
+if(Mace4).
+% Conditional input included.
+assign(domain_size,5).
+assign(start_size,5).
+assign(end_size,5).
+assign(max_models,-1).
+assign(max_seconds,60).
+end_if.
+
+formulas(assumptions).
+Barbara = 0.
+Carla = 1.
+Edna = 2.
+Fiona = 3.
+Mary = 4.
+Exercise(Barbara) | Exercise(Carla) | Exercise(Edna) | Exercise(Fiona) | Exercise(Mary).
+Coffee(Barbara) | Coffee(Carla) | Coffee(Edna) | Coffee(Fiona) | Coffee(Mary).
+Worry(Barbara) | Worry(Carla) | Worry(Edna) | Worry(Fiona) | Worry(Mary).
+Hunger(Barbara) | Hunger(Carla) | Hunger(Edna) | Hunger(Fiona) | Hunger(Mary).
+Snoring(Barbara) | Snoring(Carla) | Snoring(Edna) | Snoring(Fiona) | Snoring(Mary).
+Exercise(x) -> -Coffee(x) & -Worry(x) & -Hunger(x) & -Snoring(x).
+Coffee(x) -> -Exercise(x) & -Worry(x) & -Hunger(x) & -Snoring(x).
+Worry(x) -> -Coffee(x) & -Exercise(x) & -Hunger(x) & -Snoring(x).
+Hunger(x) -> -Coffee(x) & -Worry(x) & -Exercise(x) & -Snoring(x).
+Snoring(x) -> -Coffee(x) & -Worry(x) & -Hunger(x) & -Exercise(x).
+Called_12am(Barbara) | Called_12am(Carla) | Called_12am(Edna) | Called_12am(Fiona) | Called_12am(Mary).
+Called_1am(Barbara) | Called_1am(Carla) | Called_1am(Edna) | Called_1am(Fiona) | Called_1am(Mary).
+Called_2am(Barbara) | Called_2am(Carla) | Called_2am(Edna) | Called_2am(Fiona) | Called_2am(Mary).
+Called_3am(Barbara) | Called_3am(Carla) | Called_3am(Edna) | Called_3am(Fiona) | Called_3am(Mary).
+Called_4am(Barbara) | Called_4am(Carla) | Called_4am(Edna) | Called_4am(Fiona) | Called_4am(Mary).
+Called_12am(x) -> -Called_1am(x) & -Called_2am(x) & -Called_3am(x) & -Called_4am(x).
+Called_1am(x) -> -Called_12am(x) & -Called_2am(x) & -Called_3am(x) & -Called_4am(x).
+Called_2am(x) -> -Called_1am(x) & -Called_12am(x) & -Called_3am(x) & -Called_4am(x).
+Called_3am(x) -> -Called_1am(x) & -Called_2am(x) & -Called_12am(x) & -Called_4am(x).
+Called_4am(x) -> -Called_1am(x) & -Called_2am(x) & -Called_3am(x) & -Called_12am(x).
+-Exercise(Fiona).
+Exercise(x) -> Called_12am(x) & (Called_1am(Fiona) | Called_2am(Fiona) | Called_3am(Fiona) | Called_4am(Fiona)) | Called_1am(x) & (Called_2am(Fiona) | Called_3am(Fiona) | Called_4am(Fiona)) | Called_2am(x) & (Called_3am(Fiona) | Called_4am(Fiona)) | Called_3am(x) & Called_4am(Fiona).
+Exercise(x) & Coffee(y) -> Called_12am(y) & (Called_1am(x) | Called_2am(x) | Called_3am(x) | Called_4am(x)) | Called_1am(y) & (Called_2am(x) | Called_3am(x) | Called_4am(x)) | Called_2am(y) & (Called_3am(x) | Called_4am(x)) | Called_3am(y) & Called_4am(x).
+Called_12am(Carla).
+-Hunger(Carla).
+-Exercise(Carla).
+-Coffee(Mary).
+-Worry(Mary).
+-Called_3am(Mary).
+-Called_4am(Mary).
+Coffee(x) -> Called_12am(Mary) & (Called_1am(x) | Called_2am(x) | Called_3am(x) | Called_4am(x)) | Called_1am(Mary) & (Called_2am(x) | Called_3am(x) | Called_4am(x)) | Called_2am(Mary) & (Called_3am(x) | Called_4am(x)).
+Worry(x) -> Called_12am(Mary) & (Called_1am(x) | Called_2am(x) | Called_3am(x) | Called_4am(x)) | Called_1am(Mary) & (Called_2am(x) | Called_3am(x) | Called_4am(x)) | Called_2am(Mary) & (Called_3am(x) | Called_4am(x)).
+-Coffee(Edna).
+m1 <-> Called_12am(Mary) & (Called_1am(Fiona) | Called_2am(Fiona) | Called_3am(Fiona) | Called_4am(Fiona)) | Called_1am(Mary) & (Called_2am(Fiona) | Called_3am(Fiona) | Called_4am(Fiona)) | Called_2am(Mary) & (Called_3am(Fiona) | Called_4am(Fiona)) | Called_3am(Mary) & Called_4am(Fiona).
+end_of_list.
+
+formulas(goals).
+end_of_list.
+
+============================== end of input ==========================
+
+% Enabling option dependencies (ignore applies only on input).
+
+============================== PROCESS NON-CLAUSAL FORMULAS ==========
+
+% Formulas that are not ordinary clauses:
+1 Exercise(x) -> -Coffee(x) & -Worry(x) & -Hunger(x) & -Snoring(x) # label(non_clause).  [assumption].
+2 Coffee(x) -> -Exercise(x) & -Worry(x) & -Hunger(x) & -Snoring(x) # label(non_clause).  [assumption].
+3 Worry(x) -> -Coffee(x) & -Exercise(x) & -Hunger(x) & -Snoring(x) # label(non_clause).  [assumption].
+4 Hunger(x) -> -Coffee(x) & -Worry(x) & -Exercise(x) & -Snoring(x) # label(non_clause).  [assumption].
+5 Snoring(x) -> -Coffee(x) & -Worry(x) & -Hunger(x) & -Exercise(x) # label(non_clause).  [assumption].
+6 Called_12am(x) -> -Called_1am(x) & -Called_2am(x) & -Called_3am(x) & -Called_4am(x) # label(non_clause).  [assumption].
+7 Called_1am(x) -> -Called_12am(x) & -Called_2am(x) & -Called_3am(x) & -Called_4am(x) # label(non_clause).  [assumption].
+8 Called_2am(x) -> -Called_1am(x) & -Called_12am(x) & -Called_3am(x) & -Called_4am(x) # label(non_clause).  [assumption].
+9 Called_3am(x) -> -Called_1am(x) & -Called_2am(x) & -Called_12am(x) & -Called_4am(x) # label(non_clause).  [assumption].
+10 Called_4am(x) -> -Called_1am(x) & -Called_2am(x) & -Called_3am(x) & -Called_12am(x) # label(non_clause).  [assumption].
+11 Exercise(x) -> Called_12am(x) & (Called_1am(Fiona) | Called_2am(Fiona) | Called_3am(Fiona) | Called_4am(Fiona)) | Called_1am(x) & (Called_2am(Fiona) | Called_3am(Fiona) | Called_4am(Fiona)) | Called_2am(x) & (Called_3am(Fiona) | Called_4am(Fiona)) | Called_3am(x) & Called_4am(Fiona) # label(non_clause).  [assumption].
+12 Exercise(x) & Coffee(y) -> Called_12am(y) & (Called_1am(x) | Called_2am(x) | Called_3am(x) | Called_4am(x)) | Called_1am(y) & (Called_2am(x) | Called_3am(x) | Called_4am(x)) | Called_2am(y) & (Called_3am(x) | Called_4am(x)) | Called_3am(y) & Called_4am(x) # label(non_clause).  [assumption].
+13 Coffee(x) -> Called_12am(Mary) & (Called_1am(x) | Called_2am(x) | Called_3am(x) | Called_4am(x)) | Called_1am(Mary) & (Called_2am(x) | Called_3am(x) | Called_4am(x)) | Called_2am(Mary) & (Called_3am(x) | Called_4am(x)) # label(non_clause).  [assumption].
+14 Worry(x) -> Called_12am(Mary) & (Called_1am(x) | Called_2am(x) | Called_3am(x) | Called_4am(x)) | Called_1am(Mary) & (Called_2am(x) | Called_3am(x) | Called_4am(x)) | Called_2am(Mary) & (Called_3am(x) | Called_4am(x)) # label(non_clause).  [assumption].
+15 m1 <-> Called_12am(Mary) & (Called_1am(Fiona) | Called_2am(Fiona) | Called_3am(Fiona) | Called_4am(Fiona)) | Called_1am(Mary) & (Called_2am(Fiona) | Called_3am(Fiona) | Called_4am(Fiona)) | Called_2am(Mary) & (Called_3am(Fiona) | Called_4am(Fiona)) | Called_3am(Mary) & Called_4am(Fiona) # label(non_clause).  [assumption].
+
+============================== end of process non-clausal formulas ===
+
+============================== CLAUSES FOR SEARCH ====================
+
+formulas(mace4_clauses).
+Barbara = 0.
+Carla = 1.
+Edna = 2.
+Fiona = 3.
+Mary = 4.
+Exercise(Barbara) | Exercise(Carla) | Exercise(Edna) | Exercise(Fiona) | Exercise(Mary).
+Coffee(Barbara) | Coffee(Carla) | Coffee(Edna) | Coffee(Fiona) | Coffee(Mary).
+Worry(Barbara) | Worry(Carla) | Worry(Edna) | Worry(Fiona) | Worry(Mary).
+Hunger(Barbara) | Hunger(Carla) | Hunger(Edna) | Hunger(Fiona) | Hunger(Mary).
+Snoring(Barbara) | Snoring(Carla) | Snoring(Edna) | Snoring(Fiona) | Snoring(Mary).
+-Exercise(x) | -Coffee(x).
+-Exercise(x) | -Worry(x).
+-Exercise(x) | -Hunger(x).
+-Exercise(x) | -Snoring(x).
+-Coffee(x) | -Exercise(x).
+-Coffee(x) | -Worry(x).
+-Coffee(x) | -Hunger(x).
+-Coffee(x) | -Snoring(x).
+-Worry(x) | -Coffee(x).
+-Worry(x) | -Exercise(x).
+-Worry(x) | -Hunger(x).
+-Worry(x) | -Snoring(x).
+-Hunger(x) | -Coffee(x).
+-Hunger(x) | -Worry(x).
+-Hunger(x) | -Exercise(x).
+-Hunger(x) | -Snoring(x).
+-Snoring(x) | -Coffee(x).
+-Snoring(x) | -Worry(x).
+-Snoring(x) | -Hunger(x).
+-Snoring(x) | -Exercise(x).
+Called_12am(Barbara) | Called_12am(Carla) | Called_12am(Edna) | Called_12am(Fiona) | Called_12am(Mary).
+Called_1am(Barbara) | Called_1am(Carla) | Called_1am(Edna) | Called_1am(Fiona) | Called_1am(Mary).
+Called_2am(Barbara) | Called_2am(Carla) | Called_2am(Edna) | Called_2am(Fiona) | Called_2am(Mary).
+Called_3am(Barbara) | Called_3am(Carla) | Called_3am(Edna) | Called_3am(Fiona) | Called_3am(Mary).
+Called_4am(Barbara) | Called_4am(Carla) | Called_4am(Edna) | Called_4am(Fiona) | Called_4am(Mary).
+-Called_12am(x) | -Called_1am(x).
+-Called_12am(x) | -Called_2am(x).
+-Called_12am(x) | -Called_3am(x).
+-Called_12am(x) | -Called_4am(x).
+-Called_1am(x) | -Called_12am(x).
+-Called_1am(x) | -Called_2am(x).
+-Called_1am(x) | -Called_3am(x).
+-Called_1am(x) | -Called_4am(x).
+-Called_2am(x) | -Called_1am(x).
+-Called_2am(x) | -Called_12am(x).
+-Called_2am(x) | -Called_3am(x).
+-Called_2am(x) | -Called_4am(x).
+-Called_3am(x) | -Called_1am(x).
+-Called_3am(x) | -Called_2am(x).
+-Called_3am(x) | -Called_12am(x).
+-Called_3am(x) | -Called_4am(x).
+-Called_4am(x) | -Called_1am(x).
+-Called_4am(x) | -Called_2am(x).
+-Called_4am(x) | -Called_3am(x).
+-Called_4am(x) | -Called_12am(x).
+-Exercise(Fiona).
+-Exercise(x) | Called_12am(x) | Called_1am(x) | Called_2am(x) | Called_3am(x).
+-Exercise(x) | Called_12am(x) | Called_1am(x) | Called_2am(x) | Called_4am(Fiona).
+-Exercise(x) | Called_12am(x) | Called_1am(x) | Called_3am(Fiona) | Called_4am(Fiona).
+-Exercise(x) | Called_12am(x) | Called_2am(Fiona) | Called_3am(Fiona) | Called_4am(Fiona).
+-Exercise(x) | Called_1am(Fiona) | Called_2am(Fiona) | Called_3am(Fiona) | Called_4am(Fiona).
+-Exercise(x) | -Coffee(y) | Called_12am(y) | Called_1am(y) | Called_2am(y) | Called_3am(y).
+-Exercise(x) | -Coffee(y) | Called_12am(y) | Called_1am(y) | Called_2am(y) | Called_4am(x).
+-Exercise(x) | -Coffee(y) | Called_12am(y) | Called_1am(y) | Called_3am(x) | Called_4am(x).
+-Exercise(x) | -Coffee(y) | Called_12am(y) | Called_2am(x) | Called_3am(x) | Called_4am(x).
+-Exercise(x) | -Coffee(y) | Called_1am(x) | Called_2am(x) | Called_3am(x) | Called_4am(x).
+Called_12am(Carla).
+-Hunger(Carla).
+-Exercise(Carla).
+-Coffee(Mary).
+-Worry(Mary).
+-Called_3am(Mary).
+-Called_4am(Mary).
+-Coffee(x) | Called_12am(Mary) | Called_1am(Mary) | Called_2am(Mary).
+-Coffee(x) | Called_12am(Mary) | Called_1am(Mary) | Called_3am(x) | Called_4am(x).
+-Coffee(x) | Called_12am(Mary) | Called_2am(x) | Called_3am(x) | Called_4am(x).
+-Coffee(x) | Called_1am(x) | Called_2am(x) | Called_3am(x) | Called_4am(x).
+-Worry(x) | Called_12am(Mary) | Called_1am(Mary) | Called_2am(Mary).
+-Worry(x) | Called_12am(Mary) | Called_1am(Mary) | Called_3am(x) | Called_4am(x).
+-Worry(x) | Called_12am(Mary) | Called_2am(x) | Called_3am(x) | Called_4am(x).
+-Worry(x) | Called_1am(x) | Called_2am(x) | Called_3am(x) | Called_4am(x).
+-Coffee(Edna).
+-m1 | Called_12am(Mary) | Called_1am(Mary) | Called_2am(Mary) | Called_3am(Mary).
+-m1 | Called_12am(Mary) | Called_1am(Mary) | Called_2am(Mary) | Called_4am(Fiona).
+-m1 | Called_12am(Mary) | Called_1am(Mary) | Called_3am(Fiona) | Called_4am(Fiona).
+-m1 | Called_12am(Mary) | Called_2am(Fiona) | Called_3am(Fiona) | Called_4am(Fiona).
+-m1 | Called_1am(Fiona) | Called_2am(Fiona) | Called_3am(Fiona) | Called_4am(Fiona).
+m1 | -Called_12am(Mary) | -Called_1am(Fiona).
+m1 | -Called_12am(Mary) | -Called_2am(Fiona).
+m1 | -Called_12am(Mary) | -Called_3am(Fiona).
+m1 | -Called_12am(Mary) | -Called_4am(Fiona).
+m1 | -Called_1am(Mary) | -Called_2am(Fiona).
+m1 | -Called_1am(Mary) | -Called_3am(Fiona).
+m1 | -Called_1am(Mary) | -Called_4am(Fiona).
+m1 | -Called_2am(Mary) | -Called_3am(Fiona).
+m1 | -Called_2am(Mary) | -Called_4am(Fiona).
+m1 | -Called_3am(Mary) | -Called_4am(Fiona).
+end_of_list.
+
+============================== end of clauses for search =============
+
+% The maximum domain element in the input is 4.
+
+============================== DOMAIN SIZE 5 =========================
+
+============================== MODEL =================================
+
+interpretation( 5, [number=1, seconds=0], [
+
+        function(Barbara, [ 0 ]),
+
+        function(Carla, [ 1 ]),
+
+        function(Edna, [ 2 ]),
+
+        function(Fiona, [ 3 ]),
+
+        function(Mary, [ 4 ]),
+
+        relation(m1, [ 1 ]),
+
+        relation(Called_12am(_), [ 0, 1, 0, 0, 0 ]),
+
+        relation(Called_1am(_), [ 0, 0, 0, 0, 1 ]),
+
+        relation(Called_2am(_), [ 1, 0, 0, 0, 0 ]),
+
+        relation(Called_3am(_), [ 0, 0, 1, 0, 0 ]),
+
+        relation(Called_4am(_), [ 0, 0, 0, 1, 0 ]),
+
+        relation(Coffee(_), [ 1, 0, 0, 0, 0 ]),
+
+        relation(Exercise(_), [ 0, 0, 1, 0, 0 ]),
+
+        relation(Hunger(_), [ 0, 0, 0, 0, 1 ]),
+
+        relation(Snoring(_), [ 0, 1, 0, 0, 0 ]),
+
+        relation(Worry(_), [ 0, 0, 0, 1, 0 ])
+]).
+
+============================== end of model ==========================
+
+============================== STATISTICS ============================
+
+For domain size 5.
+
+Current CPU time: 0.00 seconds (total CPU time: 0.03 seconds).
+Ground clauses: seen=429, kept=390.
+Selections=185, assignments=370, propagations=1969, current_models=1.
+Rewrite_terms=5, rewrite_bools=15388, indexes=0.
+Rules_from_neg_clauses=0, cross_offs=0.
+
+============================== end of statistics =====================
+
+User_CPU=0.03, System_CPU=0.01, Wall_clock=0.
+
+Exiting with 1 model.
+
+Process 7660 exit (all_models) Thu Nov 25 11:48:05 2021
+The process finished Thu Nov 25 11:48:05 2021
